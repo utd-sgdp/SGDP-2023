@@ -23,7 +23,7 @@ These guidelines will help you get started with the project. However, they can b
 ### Prerequisites
 
 - [Unity Hub](https://unity.com/) with [Unity 2021.3.3f1](https://unity3d.com/get-unity/download/archive) installed
-- [GitKraken Client](https://www.gitkraken.com/) or another Git client
+[GitKraken Client](https://www.gitkraken.com/), [GitHub Desktop](https://desktop.github.com/), or another Git client
 
 ### Creating Your Environment
 
@@ -35,7 +35,7 @@ Once you have cloned the repository, you can open the project in Unity. You can 
 
 ### Contributing
 
-To start, create a branch in GitKraken by clicking the "Branch" button. Then, enter a name for your branch and click "Create Branch". You can now make changes to the project. Once you are done, you can commit your changes by clicking the "Commit" button. Then, enter a message for your commit and click "Commit to Branch". You can now push your changes to the repository by clicking the "Push" button.
+To start, create a branch in GitKraken by clicking the "Branch" button. Then, enter a name for your branch and click "Create Branch". You can now make changes to the project. Once you are done, you can commit your changes by clicking the "Commit" button. Then, enter a message for your commit and click "Commit to Branch". You can now push your changes to the repository by clicking the "Push" button. Similar steps can be followed using GitHub Desktop.
 
 Once you have pushed your changes, you can create a pull request on GitHub. Open GitHub and navigate to the repository. Then, click the "Pull requests" button and click "New pull request". Then, select your branch as the "compare" branch and the "main" branch as the "base" branch. You can now create your pull request by clicking "Create pull request".
 
