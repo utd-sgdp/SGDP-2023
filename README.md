@@ -23,7 +23,7 @@ These guidelines will help you get started with the project. However, they can b
 ### Prerequisites
 
 - [Unity Hub](https://unity.com/) with [Unity 2021.3.3f1](https://unity3d.com/get-unity/download/archive) installed
-- [GitKraken Client](https://www.gitkraken.com/), [Github Desktop](https://desktop.github.com/), or another Git client
+[GitKraken Client](https://www.gitkraken.com/), [GitHub Desktop](https://desktop.github.com/), or another Git client
 
 ### Creating Your Environment
 
