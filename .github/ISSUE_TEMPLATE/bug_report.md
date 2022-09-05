@@ -16,7 +16,6 @@ assignees: ''
 ## Screenshots <!--- If applicable, add screenshots to help explain your problem. -->
 
 ## Desktop <!--- This information is mandatory. -->
- - OS: [e.g. Windows 11]
+ - Operating System:
 
-## Additional Context
-Add any other context about the problem here.
+## Additional Context <!--- Add any other context about the problem below. -->
