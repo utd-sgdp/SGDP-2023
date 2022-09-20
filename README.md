@@ -14,7 +14,12 @@ The Student Game Development Project is an experimental project run by the Stude
 
 ## About
 
-The 2023 project is still in the pitch phase. Once a pitch has been chosen, we will update this section with more information.
+Project Hellscraper (name is not final) was selected as the game to be developed for the 2023 academic year.
+
+> Pick between one of the seven deadly sinners, get items, beat up enemies, and ride an elevator to the top of The Devil’s Hellscraper in his new game show! The game has a cartoony look, contrasting the darker undertones and contains stylized visuals and interesting characters to attract both players and viewers alike.
+
+- [Project Hellscraper GDD](https://docs.google.com/document/d/1gFu7yGxwip--Rm9zXYJ0wzhLWmAbozHyzQw-p_WVfgY/edit?usp=sharing)
+- [Project Hellscraper Pitch](https://docs.google.com/document/d/16drDoUyWX-eJnP4st7k8GWde_DxuA1JM3lH3R06nOTg/edit)
 
 ## Getting Started
 
