@@ -48,6 +48,10 @@ namespace Game.Player {
             GetMousePosition();
             GetPlayerInput();
             SetOrientation();
+        }
+
+        // FixedUpdate is called once per fixed real-time frame update. Used for physics processes.
+        private void FixedUpdate() {
             MovePlayer();
         }
 
