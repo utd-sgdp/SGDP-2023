@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 namespace Game.Player {
@@ -9,17 +10,23 @@ namespace Game.Player {
         // Enter public variables here
         public float speed = 5f; // variable number that dictates the speed in which the player character moves
         public PlayerInputActions playerControls; // Input control system for player movement controls
-       
+
+
+
         // Enter private variables here
         private InputAction move;
         private Vector3 movementVector = Vector3.zero;
+        private Vector2 aim;
         private Rigidbody body;
+        
+        
 
         /// <summary>
         /// Initialize the playerControls object on startup
         /// </summary>
         private void Awake() {
             playerControls = new PlayerInputActions();
+            
         }
 
         /// <summary>
@@ -28,6 +35,7 @@ namespace Game.Player {
         private void OnEnable() {
             move = playerControls.Player.Move;
             move.Enable();
+         
         }
 
         /// <summary>
@@ -35,11 +43,13 @@ namespace Game.Player {
         /// </summary>
         private void OnDisable() {
             move.Disable();
+            
         }
 
         // Start is called before the first frame update
         void Start() {
             body = GetComponent<Rigidbody>();
+          
         }
 
         // Update is called once per frame
@@ -47,15 +57,29 @@ namespace Game.Player {
             // Execute player movement tasks
             GetMousePosition();
             GetPlayerInput();
-            SetOrientation();
             MovePlayer();
+            LookAt(aim);
         }
 
         /// <summary>
-        /// Get current position of the mouse (if using mouse & keyboard) and calculate the angle the player should rotate to
+        /// Get current position of the mouse (if using mouse & keyboard) and calculate the angle the player should rotate to. Works well with WASD keys.
         /// </summary>
         private void GetMousePosition() {
+            Ray ray = Camera.main.ScreenPointToRay(aim);
+            Plane s_plane = new (Vector3.up, Vector3.zero);
+            float rayDistance;
+            
+            if (s_plane.Raycast(ray, out rayDistance))
+            {
+                Vector3 point = ray.GetPoint(rayDistance);
+                LookAt(point);
+            }
+        }
 
+        private void LookAt(Vector3 lookPoint)
+        {
+            Vector3 heightCorrectedPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
+            transform.LookAt(heightCorrectedPoint);
         }
 
         /// <summary>
@@ -63,13 +87,6 @@ namespace Game.Player {
         /// </summary>
         private void GetPlayerInput() {
             movementVector = move.ReadValue<Vector3>(); // read the player input for movement direction
-        }
-
-        /// <summary>
-        /// Use the calculated angle and rotate the player accordingly
-        /// </summary>
-        private void SetOrientation() {
-
         }
 
         /// <summary>
