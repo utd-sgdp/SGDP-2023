@@ -5,55 +5,70 @@ using UnityEngine.InputSystem;
 
 namespace Game.Player
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
         [Min(0)]
         float _movementSpeed = 5f;
-
-        PlayerInputActions playerControls;
-        InputAction move;
-        
-        Vector3 movementVector = Vector3.zero;
-        Vector2 aim;
-        Rigidbody body;
+        Vector3 _movementVector = Vector3.zero;
+        Vector2 _aim;
+        Rigidbody _body;
+        PlayerInput _input;
 
         /// <summary>
-        /// Initialize the playerControls object on startup
+        /// Initialize the PlayerInput object on startup
         /// </summary>
         void Awake()
         {
-            playerControls = new PlayerInputActions();
+            _input = GetComponent<PlayerInput>();
         }
 
         /// <summary>
-        /// Required method for new Unity input system. Activates the playerControls input action system.
+        /// Method called when object becomes active and enabled
         /// </summary>
         void OnEnable()
         {
-            move = playerControls.Player.Move;
-            move.Enable();
+            SubscribeInputs();
         }
 
         /// <summary>
-        /// Required method for new Unity input system. Disables the playerControls input action system
+        /// Sets up and enables the PlayerInput actions. Abstracts the process to OnEnable
+        /// </summary>
+        void SubscribeInputs() 
+        {
+            _input.actions["Move"].performed += OnMove;
+        }
+
+        /// <summary>
+        /// Method called when object is disabled for destroyed
         /// </summary>
         void OnDisable()
         {
-            move.Disable();
+            UnsubscribeInputs();
+        }
+
+        /// <summary>
+        /// Disables PlayerInput actions. Abstracts the process to OnDisable
+        /// </summary>
+        void UnsubscribeInputs()
+        {
+            _input.actions["Move"].performed -= OnMove;
+        }
+
+        void OnMove(InputAction.CallbackContext context) 
+        {
+            _movementVector = context.ReadValue<Vector3>();
         }
 
         void Start()
         {
-            body = GetComponent<Rigidbody>();
+            _body = GetComponent<Rigidbody>();
         }
 
         void Update()
         {
-            // Execute player movement tasks
-            GetMousePosition();
-            GetPlayerInput();
-            LookAt(aim);
+         
         }
 
         void FixedUpdate()
@@ -66,14 +81,14 @@ namespace Game.Player
         /// </summary>
         void GetMousePosition()
         {
-            Ray ray = Camera.main.ScreenPointToRay(aim);
+            /*Ray ray = Camera.main.ScreenPointToRay(_aim);
             Plane s_plane = new (Vector3.up, Vector3.zero);
             
             if (s_plane.Raycast(ray, out float rayDistance))
             {
                 Vector3 point = ray.GetPoint(rayDistance);
                 LookAt(point);
-            }
+            }*/
         }
 
         void LookAt(Vector3 lookPoint)
@@ -87,15 +102,15 @@ namespace Game.Player
         /// </summary>
         void GetPlayerInput()
         {
-            movementVector = move.ReadValue<Vector3>(); // read the player input for movement direction
+            
         }
 
         /// <summary>
-        /// Use the calculated movementVector to move the player accordingly
+        /// Use the calculated _movementVector to move the player accordingly
         /// </summary>
         void MovePlayer()
         {
-            body.velocity = new Vector3(movementVector.x * _movementSpeed, 0f, movementVector.z * _movementSpeed);
+            _body.velocity = new Vector3(_movementVector.x * _movementSpeed, 0f, _movementVector.z * _movementSpeed);
         }
     }
 }
