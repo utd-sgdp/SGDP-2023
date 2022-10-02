@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Coffey_Utils.Editor.Buttons.Utils
+namespace GameEditor.Attributes.Buttons.Utils
 {
     internal class NoScriptFieldEditor : UnityEditor.Editor
     {

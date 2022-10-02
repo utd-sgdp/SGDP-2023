@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Coffey_Utils.Editor
+namespace GameEditor.Attributes
 {
     public static class ShowIfEditorHelper
     {
         public static bool ShouldShow(object target, string[] booleanFields)
         {
             bool show = true;
-            foreach (var field in booleanFields)
+            foreach (var fieldName in booleanFields)
             {
-                FieldInfo conditionField = GetField(target, field);
+                bool not = fieldName.StartsWith("!");
+                FieldInfo conditionField = GetField(target, not ? fieldName[1..] : fieldName);
                 if (conditionField != null && conditionField.FieldType == typeof(bool))
                 {
-                    show &= (bool)conditionField.GetValue(target);
+                    bool value = (bool)conditionField.GetValue(target);
+                    if (not) value = !value;
+                    show &= value;
                 }
             }
             return show;

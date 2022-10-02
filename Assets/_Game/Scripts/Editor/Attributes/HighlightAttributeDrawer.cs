@@ -1,7 +1,8 @@
 #if UNITY_EDITOR
+using Game;
 using UnityEditor;
 
-namespace Coffey_Utils.Editor
+namespace GameEditor.Attributes
 {
     [CustomPropertyDrawer(typeof(HighlightAttribute))]
     public class HighlightAttributeDrawer : HighlightableAttributeDrawer

@@ -1,9 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Reflection;
+using Game;
 using UnityEngine;
 
-namespace Coffey_Utils.Editor.Buttons
+namespace GameEditor.Attributes.Buttons
 {
     internal class ButtonWithoutParameters : ButtonBase
     {

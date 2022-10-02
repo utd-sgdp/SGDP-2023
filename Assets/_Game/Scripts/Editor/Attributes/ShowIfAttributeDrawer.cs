@@ -1,8 +1,9 @@
 #if UNITY_EDITOR
+using Game;
 using UnityEditor;
 using UnityEngine;
 
-namespace Coffey_Utils.Editor
+namespace GameEditor.Attributes
 {
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
     public class ShowIfAttributeDrawer : PropertyDrawer

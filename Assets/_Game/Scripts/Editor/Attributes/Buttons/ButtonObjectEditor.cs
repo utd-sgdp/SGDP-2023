@@ -1,13 +1,13 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 
-namespace Coffey_Utils.Editor.Buttons
+namespace GameEditor.Attributes.Buttons
 {
     using Object = UnityEngine.Object;
 
     [CustomEditor(typeof(Object), true)]
     [CanEditMultipleObjects]
-    internal class ObjectEditor : UnityEditor.Editor
+    internal class ButtonObjectEditor : UnityEditor.Editor
     {
         private ButtonsDrawer _buttonsDrawer;
 

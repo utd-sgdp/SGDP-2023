@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Coffey_Utils.Editor.Buttons.Utils;
+using Game;
+using GameEditor.Attributes.Buttons.Utils;
 using UnityEditor;
 using UnityEngine;
 
-namespace Coffey_Utils.Editor.Buttons
+namespace GameEditor.Attributes.Buttons
 {
     using Object = UnityEngine.Object;
 
