@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beff67ee1f7168044991f62a29294814, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  _track: {fileID: 8300000, guid: b69e86d048c554c4b900281783ab94b8, type: 3}
+  _trackLength: 160.99266
+  _volume: 1
+  _mixerGroup: {fileID: 4225921194974310829, guid: 128005db071562a43815ef973140102a,
+    type: 2}
+  _startTimeIfLooping: 0
+  _fromEndWhenToPlayNextSong: 9
+  _fromStartWhenToPlayNextSong: 151.99266
+  _volumeFadeAtStart: 0
+  _volumeFadeStartTime: 2
+  _volumeFadeStartCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _volumeFadeAtEnd: 0
+  _volumeFadeEndTime: 5
+  _volumeFadeEndCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c782337224fd7044db67227061178fbc, type: 3}
+  m_Name: Sfx Random
+  m_EditorClassIdentifier: 
+  _clips:
+  - UseClip: 0
+    Clip: {fileID: 0}
+    Base: {fileID: 0}
+  - UseClip: 0
+    Clip: {fileID: 0}
+    Base: {fileID: 0}
+  - UseClip: 0
+    Clip: {fileID: 0}
+    Base: {fileID: 0}
+  _mixerGroup: {fileID: 0}
+  _volume:
+    MinValue: 0.6
+    MaxValue: 0.8
+  _pitch:
+    MinValue: 0.9
+    MaxValue: 1.1
+  _stereoPan:
+    MinValue: 0
+    MaxValue: 0
+  _reverbZoneMix:
+    MinValue: 1
+    MaxValue: 1
+  _priority: 128
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _spatial: 0
+  _spatialBlend:
+    MinValue: 1
+    MaxValue: 1
+  _dopplerLevel:
+    MinValue: 1
+    MaxValue: 1
+  _spread:
+    MinValue: 0
+    MaxValue: 0
+  _rolloffMode: 2
+  _minDistance: 1
+  _maxDistance: 10
+  _customRolloff: 1
+  _rolloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _panLevelCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _spreadCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _reverbZoneMixCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
