@@ -6,8 +6,9 @@ namespace Game
 {
     public class Damageable : MonoBehaviour
     {
-        float _health;
-        float _maxHealth;
+        [ReadOnly]
+        [SerializeField] float _health = 100f;
+        [SerializeField] float _maxHealth = 100f;
 
         public void Hurt(float amount)
         {
