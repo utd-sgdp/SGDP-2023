@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-namespace Game
+namespace Game.Enemy
 {
     public class MeleeGruntAI : MonoBehaviour
     {
-        public float moveSpeed;
         Damageable PlayerHealth;
-        Rigidbody rb;
+        private NavMeshAgent navMeshAgent;
         Transform target;
 
         public int attackDamageMin;
@@ -21,8 +21,8 @@ namespace Game
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
-
+            navMeshAgent = GetComponent<NavMeshAgent>();
+          
             //prevents the enemy from attacking immediately when in range
             attackCooldownTimer = attackCooldown;
         }
@@ -56,37 +56,37 @@ namespace Game
             //calculates the distance between the enemy and the player
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
 
-            //direction to move in
-            Vector3 direction = (target.position - transform.position).normalized;
+            Ray vision = new Ray(transform.GetChild(0).transform.position, transform.forward);
+            Debug.DrawRay(transform.GetChild(0).transform.position, transform.forward * attackRange);
+            RaycastHit hit;
+
 
             //if the enemy is out of attack range, move towards the player
             if (distance > attackRange)
             {
-                rb.velocity = direction * moveSpeed;
+                navMeshAgent.destination = targetPosition;
             }
 
             //if in attack range
-            else
+            else if(Physics.Raycast(vision, out hit, attackRange))
             {
-                //stop moving
-                rb.velocity = new Vector3(0, 0, 0);
+                if (hit.collider.tag == "Player")
+                {
+                    //stop moving
+                    navMeshAgent.destination = transform.position;
 
-                //Attack if the cooldown is over
-                if (attackCooldownTimer > 0)
-                {
-                    attackCooldownTimer -= Time.deltaTime;
-                }
-                else
-                {
-                    attackCooldownTimer = attackCooldown;
-                    attackTarget();
+                    //Attack if the cooldown is over
+                    if (attackCooldownTimer > 0)
+                    {
+                        attackCooldownTimer -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        attackCooldownTimer = attackCooldown;
+                        //attack();
+                    }
                 }
             }
-        }
-        void attackTarget()
-        {
-            //hit the player for a random amount of damage
-            PlayerHealth.Hurt(Random.Range(attackDamageMin, attackDamageMax));
         }
     }
 }
