@@ -10,8 +10,10 @@ namespace Game.Weapons
     public class WeaponBomb : WeaponBase
     {
         
-        [SerializeField] private float _explosionRadius = 5f;
-        [SerializeField] private float _bombDamage = 50f;
+        [SerializeField]
+        float _explosionRadius = 5f;
+        [SerializeField]
+        float _bombDamage = 50f;
 
         /// <summary>
         /// Attack method for any enemy with the bomb weapon. All game objects with the Damageable component will take the bomb damage
