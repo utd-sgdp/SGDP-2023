@@ -5,87 +5,102 @@ using UnityEngine.AI;
 
 namespace Game.Enemy
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class MeleeGruntAI : MonoBehaviour
     {
-        Damageable PlayerHealth;
-        private NavMeshAgent navMeshAgent;
-        Transform target;
+        [Header("Tracking")]
+        public Transform Target;
 
-        public int attackDamageMin;
-        public int attackDamageMax;
+        [SerializeField]
+        Transform _eyes;
+        
+        [SerializeField]
+        [Min(0)]
+        float _attackRange = 10;
 
-        public float attackCooldown;
-        private float attackCooldownTimer;
+        [Header("Debug")]
+        [SerializeField, ReadOnly]
+        bool _attacking;
+        
+        NavMeshAgent _agent;
 
-        public float attackRange;
-
-        private void Awake()
+        void Awake()
         {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-          
-            //prevents the enemy from attacking immediately when in range
-            attackCooldownTimer = attackCooldown;
+            _agent = GetComponent<NavMeshAgent>();
         }
 
         void Start()
         {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-            PlayerHealth = target.GetComponent<Damageable>();
+            if (Target != null) return;
+
+            Debug.LogError($"Enemy ({name}) is missing a target");
+            this.enabled = false;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (target)
-            {
-                followTarget();
-            }
-        }
-        private void FixedUpdate()
-        {
-
+            // attack was performed
+            // following is not necessary, so exit
+            if (AttemptAttack()) return;
+            
+            FollowTarget();
         }
 
-        void followTarget()
+        bool AttemptAttack()
         {
-            //finds the player and looks at them
-            Vector3 targetPosition = target.transform.position;
-            targetPosition.y = transform.position.y;
-            transform.LookAt(targetPosition);
-
-            //calculates the distance between the enemy and the player
-            float distance = Vector3.Distance(target.transform.position, this.transform.position);
-
-            Ray vision = new Ray(transform.GetChild(0).transform.position, transform.forward);
-            Debug.DrawRay(transform.GetChild(0).transform.position, transform.forward * attackRange);
-            RaycastHit hit;
-
-
-            //if the enemy is out of attack range, move towards the player
-            if (distance > attackRange)
+            var t = transform;
+            if (!InAttackRange(t.position, Target.position, _attackRange))
             {
-                navMeshAgent.destination = targetPosition;
+                return false;
             }
-
-            //if in attack range
-            else if(Physics.Raycast(vision, out hit, attackRange))
+            
+            if (!InLineOfSight(_eyes.position, t.forward, _attackRange, Target.tag, out RaycastHit hitinfo))
             {
-                if (hit.collider.tag == "Player")
-                {
-                    //stop moving
-                    navMeshAgent.destination = transform.position;
+                return false;
+            }
+            
+            // let weapon take control
+            _agent.isStopped = true;
+            _attacking = true;
+            
+            // weapon will need to need to update _attacking (with Attack property, method, callback, event whatever)
+            // then _agent.isStopped = false
+            // resume follow/attack loop
 
-                    //Attack if the cooldown is over
-                    if (attackCooldownTimer > 0)
-                    {
-                        attackCooldownTimer -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        attackCooldownTimer = attackCooldown;
-                        //attack();
-                    }
-                }
+            return true;
+        }
+        
+        void FollowTarget()
+        {
+            _agent.destination = Target.position;
+        }
+
+        static bool InAttackRange(Vector3 position, Vector3 target, float range)
+        {
+            float distanceSQ = (target - position).sqrMagnitude;
+            return distanceSQ < range * range;
+        }
+
+        /// <summary>
+        /// Checks for a line of sight between position and target.
+        /// </summary>
+        /// <param name="position"> world-space position </param>
+        /// <param name="direction"> direction from position to target </param>
+        /// <param name="range"> max-sight range </param>
+        /// <param name="tag"> the target's tag </param>
+        /// <param name="hitinfo"></param>
+        /// <returns> success if line of sight </returns>
+        static bool InLineOfSight(Vector3 position, Vector3 direction, float range, string tag, out RaycastHit hitinfo)
+        {
+            Ray ray = new(position, direction);
+            if (Physics.Raycast(ray, out hitinfo, range))
+            {
+                Component target = hitinfo.rigidbody ? hitinfo.rigidbody : hitinfo.collider;
+                return target.CompareTag(tag);
+            }
+            else
+            {
+                return false;
             }
         }
     }

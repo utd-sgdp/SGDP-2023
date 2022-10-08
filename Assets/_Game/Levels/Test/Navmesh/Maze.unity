@@ -232,11 +232,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Grunt
       objectReference: {fileID: 0}
-    - target: {fileID: 4962054286657943315, guid: ee06037ee403cd74cbc81712539c957b,
+    - target: {fileID: 4248884504939111463, guid: ee06037ee403cd74cbc81712539c957b,
         type: 3}
-      propertyPath: m_Speed
-      value: 3.5
-      objectReference: {fileID: 0}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 321874035}
+    - target: {fileID: 4248884504939111463, guid: ee06037ee403cd74cbc81712539c957b,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 321874035}
     - target: {fileID: 5568983418705688382, guid: ee06037ee403cd74cbc81712539c957b,
         type: 3}
       propertyPath: m_RootOrder
@@ -307,8 +312,6 @@ GameObject:
   - component: {fileID: 321874034}
   - component: {fileID: 321874033}
   - component: {fileID: 321874032}
-  - component: {fileID: 321874031}
-  - component: {fileID: 321874030}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -316,32 +319,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &321874030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321874029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c7745b22f291244c8203f3ce3ec2d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 100
-  _maxHealth: 100
---- !u!114 &321874031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321874029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d52befbc4dc4824189589b25c892e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &321874032
 CapsuleCollider:
   m_ObjectHideFlags: 0
