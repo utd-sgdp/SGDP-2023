@@ -7,42 +7,53 @@ namespace Game
 {
     public class Damageable : MonoBehaviour
     {
-        [ReadOnly]
-        [SerializeField] float _health = 100f;
-        [SerializeField] float _maxHealth = 100f;
+        [Header("Data")]
+        [SerializeField, ReadOnly]
+        float _health = 100f;
+        
+        [SerializeField]
+        [Min(0)]
+        float _maxHealth = 100f;
 
-        public UnityEvent<float> onHeal;
-        public UnityEvent<float> onHurt;
-        public UnityEvent onMaxHeal;
-        public UnityEvent onKill;
-        public UnityEvent onChange;
-
+        [Header("Events")]
+        public UnityEvent<float> OnChange;
+        public UnityEvent<float> OnHeal;
+        public UnityEvent<float> OnHurt;
+        public UnityEvent<float> OnMaxHeal;
+        public UnityEvent<float> OnKill;
 
         public void Hurt(float amount)
         {
-            onHurt?.Invoke(amount);
-            onChange?.Invoke();
+            _health = Mathf.Max(_health - amount, 0);
 
-            _health -= amount;
-            if(_health <= 0) Kill();
+            if (_health == 0)
+            {
+                Kill();
+            }
+            
+            OnHurt?.Invoke(_health);
+            OnChange?.Invoke(_health);
         }
+        
         public void Heal(float amount)
         {
-            onHeal?.Invoke(amount);
-            onChange?.Invoke();
+            OnHeal?.Invoke(amount);
+            OnChange?.Invoke(_health);
 
             _health = Mathf.Min(_health + amount, _maxHealth);
         }
+        
         public void MaxHeal()
         {
-            onMaxHeal?.Invoke();
-            onChange?.Invoke();
+            OnMaxHeal?.Invoke(_health);
+            OnChange?.Invoke(_health);
 
             _health = _maxHealth;
         }
+        
         public void Kill()
         {
-            onKill?.Invoke();
+            OnKill?.Invoke(_health);
 
             Destroy(gameObject);
         }
