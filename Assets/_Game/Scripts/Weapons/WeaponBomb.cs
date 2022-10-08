@@ -3,34 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Game.Weapons
 {
-    
     public class WeaponBomb : WeaponBase
     {
-        
         [SerializeField]
         float _explosionRadius = 5f;
+        
         [SerializeField]
         float _bombDamage = 50f;
 
         /// <summary>
-        /// Attack method for any enemy with the bomb weapon. All game objects with the Damageable component will take the bomb damage
+        /// Applys damage to all <see cref="Damageable"/>'s in range.
         /// </summary>
         public override void Attack()
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
-
-            //Deals damage by calling function from Damageable on everything in radius
-            foreach (Collider hit in colliders)
+            foreach (var damageable in DamageablesInRange())
             {                
-                Damageable damaged = hit.gameObject.GetComponent<Damageable>();
-                if (damaged != null) // make sure that the collided object has the damageable component before calling a method from that component.
-                {
-                    damaged.Hurt(_bombDamage);
-                }                
+                damageable.Hurt(_bombDamage);
             }
+        }
+
+        /// <summary>
+        /// Iterates through <see cref="Damageable"/> objects in range.
+        /// <example> <code>
+        /// foreach (Damageable damageable in DamageablesInRange())
+        /// {
+        ///     print(damageable);
+        /// }
+        /// </code></example>
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Damageable> DamageablesInRange()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
+            foreach (Collider hit in colliders)
+            {
+                Damageable damaged = hit.gameObject.GetComponent<Damageable>();
+                if (damaged == null) continue;
+
+                yield return damaged;
+            }
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _explosionRadius);
         }
     }
 }
