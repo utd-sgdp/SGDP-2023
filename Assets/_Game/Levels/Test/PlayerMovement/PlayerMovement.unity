@@ -486,8 +486,18 @@ PrefabInstance:
       objectReference: {fileID: 1315591509}
     - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
         type: 3}
+      propertyPath: _dashLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+        type: 3}
       propertyPath: _maxVelocity
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+        type: 3}
+      propertyPath: _dashDuration
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
         type: 3}
