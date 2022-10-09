@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +8,7 @@ namespace Game.Player
     [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
+        #region Inspector Variables
         [Header("Movement")]
         [SerializeField]
         MovementType _movementType = MovementType.AccelerationWithDrag;
@@ -25,11 +24,11 @@ namespace Game.Player
         [Header("Dash")]
         [SerializeField]
         [Min(0)]
-        float _dashLength = 15f;
+        float _dashLength = 5f;
 
         [SerializeField]
         [Min(0)]
-        float _dashDuration = 0.5f;
+        float _dashDuration = 0.05f;
 
         [SerializeField]
         [Min(0)]
@@ -39,50 +38,52 @@ namespace Game.Player
         [SerializeField]
         [Range(0, 1)]
         float  _lookDeadZone = .1f;
+        #endregion
+
+        #region Private Variables
+        bool CanMove
+        {
+            get => !Dashing;
+        }
+        bool Dashing
+        {
+            get => _dashing != null;
+        }
+        Coroutine _dashing;
         
         Rigidbody _body;
         PlayerInput _input;
         InputAction _moveAction;
         InputAction _lookAction;
+        InputAction _dashAction;
 
-        public PlayerState _state = PlayerState.FreeRoam;
-        private bool _canDash = true;
-        private float _dashVelocity = 0f;
-        private float _acceleration = 0;
-        private float _dragCoefficient = 0;
-        private float _velocityMargin = 0.5f;
-
-        // Player State describes what state the player is in and may be used to determine the behaviours of the player in a given state
-        public enum PlayerState
-        {
-            FreeRoam = 0,
-            Dash = 1
-        }
-
-        // Movement type describes how the player's movement is calculated
-        private enum MovementType
-        {
-            AccelerationWithDrag = 0,
-            ConstantVelocity = 1
-        }
+        float _dashVelocity;
+        float _acceleration;
+        float _dragCoefficient;
+        const float VELOCITY_MARGIN = 0.5f;
 
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
+        #endregion
 
         #region MonoBehaviour
         void Awake()
         {
             _body = GetComponent<Rigidbody>();
-            
+            InitializeMoveData();
+        }
+
+        void OnEnable()
+        {
             _input = GetComponent<PlayerInput>();
             _moveAction = _input.actions["Move"];
             _lookAction = _input.actions["Look"];
+            _dashAction = _input.actions["Dash"];
 
-            // Initiallize movement physics values
-            _acceleration = _maxVelocity / _timeToMaxVelocity * lambertW(_maxVelocity / (_velocityMargin));
-            _dragCoefficient = _acceleration / _maxVelocity;
-            _dashVelocity = _dashLength / _dashDuration;
+            SubInput();
         }
-        
+
+        void OnDisable() => UnsubInput();
+
         void Update()
         {
             Look();
@@ -90,99 +91,126 @@ namespace Game.Player
         
         void FixedUpdate()
         {
-            Move();
+            Vector3 direction = GetMoveDirection();
+            Move(direction);
+        }
+
+        void OnValidate() => InitializeMoveData();
+        #endregion
+        
+        #region Input
+        void SubInput() => _dashAction.performed += OnDash;
+        void UnsubInput() => _dashAction.performed -= OnDash;
+
+        Vector3 GetMoveDirection()
+        {
+            Vector3 direction = _moveAction.ReadValue<Vector2>();
+            direction = new Vector3(direction.x, 0, direction.y);
+            return direction.normalized;
         }
         #endregion
 
         #region Movement
-        /// <summary>
-        /// Use the calculated _movementVector to move the player accordingly
-        /// </summary>
-        void Move(bool Fixed = true)
+        void InitializeMoveData()
         {
-            // read input
-            Vector3 move = _moveAction.ReadValue<Vector2>();
-            InputAction dashInput = _input.actions["Dash"];
+            _acceleration = _maxVelocity / _timeToMaxVelocity * Utility.Math.LambertW(_maxVelocity / VELOCITY_MARGIN);
+            _dragCoefficient = _acceleration / _maxVelocity;
+            _dashVelocity = _dashLength / _dashDuration;
+        }
+        
+        /// <summary>
+        /// Move in <see cref="direction"/> with acceleration curve specified by <see cref="_movementType"/>.
+        /// </summary>
+        /// <param name="direction"> normalized, local-space direction vector </param>
+        void Move(Vector3 direction)
+        {
+            // exit, the player is not able to move
+            if (!CanMove) return;
 
-            // convert move input to vector3 and normalize
-            move = new Vector3(move.x, 0, move.y);
-            move = move.normalized;
-            
-            // Start the dash coroutine if player is not dashing and pressed the dash button
-            if (_canDash && dashInput.IsPressed())
+            Vector3 nVelocity;
+            switch (_movementType)
             {
-                StartCoroutine(Dash(move));
+                case MovementType.AccelerationWithDrag:
+                    nVelocity = CalculateVelocityWithDrag(direction);
+                    break;
+                
+                default:
+                case MovementType.ConstantVelocity:
+                    nVelocity = CalculateConstVelocity(direction);
+                    break;
             }
-
-            // Only move if the player state is free roam and allows movement.
-            if(_state == PlayerState.FreeRoam){
-                // normalize time
-                float normFactor = Fixed ? Time.fixedDeltaTime : Time.deltaTime;
-
-                // switch on movement type to determine how to calculate the movement equation
-                switch (_movementType)
-                {
-                    // This case simulates the player accelerating with drag. It's meant to be the weightiest movement option. Feels like Dusk.
-                    case MovementType.AccelerationWithDrag:
-                        Vector3 accelerationVector = Vector3.zero;
-
-                        // set drag force
-                        accelerationVector = -_body.velocity.normalized * _body.velocity.magnitude * _dragCoefficient * normFactor;
-
-                        // add acceleration if the player is holding a movement input
-                        if (move.magnitude > 0)
-                            accelerationVector += move * _acceleration * normFactor;
-
-                        // set the velocity to zero or max velocity if it is within the velocity margin
-                        if (move.magnitude <= 0 && _body.velocity.magnitude < _velocityMargin)
-                            move = Vector3.zero;
-                        else if (_maxVelocity - _body.velocity.magnitude < _velocityMargin)
-                            move = _body.velocity.normalized * _maxVelocity;
-
-                        // set movement
-                        move = _body.velocity + accelerationVector;
-                        break;
-
-                    // This simulates constant velocity. It is the more responsive option. Very snappy, feels like Hollow Knight.
-                    case MovementType.ConstantVelocity:
-                        // Sets the velocity of the player
-                        move *= _maxVelocity;
-                        break;
-                }
-
-                // apply
-                _body.velocity = move;
-            }
+            
+            _body.velocity = nVelocity;
         }
 
         /// <summary>
-        ///  Dash is a coroutine that moves the player in the direction of a dash and the handles the cooldown of the dash
+        /// Velocity is calculated with no acceleration.
         /// </summary>
+        /// <param name="direction"> normalized, local-space direction </param>
+        /// <returns> new velocity </returns>
+        Vector3 CalculateConstVelocity(Vector3 direction)
+        {
+            return _maxVelocity * direction;
+        }
+        
+        /// <summary>
+        /// Velocity is calculated with acceleration depending on input value and previous velocity.
+        /// </summary>
+        /// <param name="direction"> normalized, local-space direction </param>
+        /// <returns> new velocity </returns>
+        Vector3 CalculateVelocityWithDrag(Vector3 direction)
+        {
+            Vector3 currentVelocity = _body.velocity;
+            float   currentSpeed    = currentVelocity.magnitude;
+                
+            // calculate drag force
+            Vector3 acceleration = -currentVelocity.normalized * (currentSpeed * _dragCoefficient * Time.fixedDeltaTime);
+
+            // add acceleration, the player is holding a movement input
+            bool isInputMovement = direction.magnitude > float.Epsilon;
+            if (isInputMovement)
+            {
+                acceleration += direction * (_acceleration * Time.fixedDeltaTime);
+            }
+
+            return Vector3.ClampMagnitude(_body.velocity + acceleration, _maxVelocity);
+        }
+        #endregion
+
+        #region Dash
+        void OnDash(InputAction.CallbackContext context)
+        {
+            Vector3 direction = GetMoveDirection();
+            AttemptDash(direction);
+        }
+        
+        /// <summary>
+        /// Attempts to dash in <see cref="direction"/>.
+        /// </summary>
+        /// <param name="direction"> Normalized, local-space direction. </param>
+        /// <returns> Success of the operation. </returns>
+        public bool AttemptDash(Vector3 direction)
+        {
+            // we are currently dashing, exit
+            if (Dashing) return false;
+            
+            _dashing = StartCoroutine(Dash(direction));
+            return true;
+        }
+        
         IEnumerator Dash(Vector3 direction)
         {
-            // Set canDash to false so a dash can't interupt the current dash
-            _canDash = false;
-
             // Set the velocity of the player to the velocity of the dash
             _body.velocity = direction.normalized * _dashVelocity;
 
-            // Set the players state to dash to prevent movement during the dash
-            _state = PlayerState.Dash;
-
-            // Wait for the span of time the dash will occur
             yield return new WaitForSeconds(_dashDuration);
 
-            // Set state back to free roam to allow player movement
-            _state = PlayerState.FreeRoam;
-
-            // Zero out the player's velocity
+            // ReSharper disable once Unity.InefficientPropertyAccess
             _body.velocity = Vector3.zero;
 
-            // Set canDash to true once the cooldown is complete
             yield return new WaitForSeconds(_dashCoolDown);
-            _canDash = true;
+            _dashing = null;
         }
-
         #endregion
 
         #region Aim
@@ -240,26 +268,16 @@ namespace Game.Player
             transform.forward = worldDir;
         }
         #endregion
-
-        #region Helper Functions
-
-        /// <summary>
-        /// Calculates the lambertW function for float
-        /// </summary>
-        private float lambertW(float x)
-        {
-            if (x < -Math.Exp(-1))
-                throw new Exception("The LambertW-function is not defined for " + x + ".");
-
-            int amountOfIterations = Mathf.Max(4, (int)Mathf.Ceil(Mathf.Log10(x) / 3));
-            float w = 3 * Mathf.Log(x + 1) / 4;
-
-            for (int i = 0; i < amountOfIterations; i++)
-                w = w - (w * Mathf.Exp(w) - x) / (Mathf.Exp(w) * (w + 1) - (w + 2) * (w * Mathf.Exp(w) - x) / (2 * w + 2));
-
-            return w;
-        }
-
-        #endregion
     }
+
+    #region Enums
+    /// <summary>
+    /// Movement type describes how the player's movement is calculated
+    /// </summary>
+    public enum MovementType
+    {
+        AccelerationWithDrag = 0,
+        ConstantVelocity = 1,
+    }
+    #endregion
 }

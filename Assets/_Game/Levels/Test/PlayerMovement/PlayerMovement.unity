@@ -454,24 +454,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1950909559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2389105605677970662, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-    type: 3}
-  m_PrefabInstance: {fileID: 2389105605970444055}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1950909564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950909559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628859e70a2448b49b981e534b63c6eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2389105605970444055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,31 +466,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1315591509}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _dashLength
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _maxVelocity
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _dashDuration
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _movementType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _timeToMaxVelocity
-      value: 0.125
-      objectReference: {fileID: 0}
     - target: {fileID: 2389105605677970661, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
         type: 3}
       propertyPath: m_RootOrder
