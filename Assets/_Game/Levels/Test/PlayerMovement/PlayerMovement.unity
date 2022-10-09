@@ -472,7 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628859e70a2448b49b981e534b63c6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8437272599283095948, guid: ea9269551d8a51145a45bf930cb4e7f2, type: 3}
 --- !u!1001 &2389105605970444055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -485,6 +484,21 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1315591509}
+    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+        type: 3}
+      propertyPath: _maxVelocity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+        type: 3}
+      propertyPath: _movementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+        type: 3}
+      propertyPath: _timeToMaxVelocity
+      value: 0.125
+      objectReference: {fileID: 0}
     - target: {fileID: 2389105605677970661, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
         type: 3}
       propertyPath: m_RootOrder
