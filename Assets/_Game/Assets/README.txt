@@ -12,8 +12,8 @@ Characters = ALL character models GOES HERE
 
 --------------------------------------------------------------------
 
-CREATE AND MOVE ALL SOURCE FILES INTO A SOURCE FOLDER
+MOVE ALL SOURCE FILES INTO A SOURCE FOLDER
 (ex: .fbx, textures, animations)
 
 ONLY HAVE THE PREFAB IN THE MAIN FOLDER 
-(look at the server rack in Props/Office/ServerRack for an example)
+(look at the server rack in Props/Office/ for an example)
