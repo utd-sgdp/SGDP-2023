@@ -41,10 +41,7 @@ namespace Game.Player
         #endregion
 
         #region Private Variables
-        bool CanMove
-        {
-            get => !Dashing;
-        }
+        bool _canMove = true;
         bool Dashing
         {
             get => _dashing != null;
@@ -125,7 +122,7 @@ namespace Game.Player
         void Move(Vector3 direction)
         {
             // exit, the player is not able to move
-            if (!CanMove) return;
+            if (!_canMove) return;
 
             Vector3 nVelocity;
             switch (_movementType)
@@ -194,7 +191,8 @@ namespace Game.Player
         {
             // we are currently dashing, exit
             if (Dashing) return false;
-            
+
+            _canMove = false;
             _dashing = StartCoroutine(Dash(direction));
             return true;
         }
@@ -208,8 +206,10 @@ namespace Game.Player
 
             // ReSharper disable once Unity.InefficientPropertyAccess
             _body.velocity = Vector3.zero;
+            _canMove = true;
 
             yield return new WaitForSeconds(_dashCoolDown);
+
             _dashing = null;
         }
         #endregion
