@@ -173,7 +173,8 @@ namespace Game.Player
                 acceleration += direction * (_acceleration * Time.fixedDeltaTime);
             }
 
-            return Vector3.ClampMagnitude(_body.velocity + acceleration, _maxVelocity);
+            Vector3 nVelocity = _body.velocity + acceleration;
+            return nVelocity.magnitude > VELOCITY_MARGIN? nVelocity : Vector3.zero;
         }
         #endregion
 
