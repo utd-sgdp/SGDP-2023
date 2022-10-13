@@ -58,6 +58,7 @@ namespace Game.Player
         float _acceleration;
         float _dragCoefficient;
         const float VELOCITY_MARGIN = 0.5f;
+        const float VELOCITY_MARGIN_SQ = VELOCITY_MARGIN * VELOCITY_MARGIN;
 
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
         #endregion
@@ -171,7 +172,7 @@ namespace Game.Player
             }
 
             Vector3 nVelocity = _body.velocity + acceleration;
-            return nVelocity.magnitude > VELOCITY_MARGIN? nVelocity : Vector3.zero;
+            return nVelocity.sqrMagnitude > VELOCITY_MARGIN_SQ ? nVelocity : Vector3.zero;
         }
         #endregion
 
