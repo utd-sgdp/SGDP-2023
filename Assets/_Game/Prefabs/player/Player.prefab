@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementType: 0
   _maxVelocity: 15
-  _timeToMaxVelocity: 0.25
+  _timeToMaxVelocity: 0.125
   _dashLength: 5
   _dashDuration: 0.05
   _dashCoolDown: 0.5

@@ -466,16 +466,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1315591509}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _movementType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389105605677970659, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
-        type: 3}
-      propertyPath: _timeToMaxVelocity
-      value: 0.125
-      objectReference: {fileID: 0}
     - target: {fileID: 2389105605677970661, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
         type: 3}
       propertyPath: m_RootOrder
