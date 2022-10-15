@@ -1,0 +1,7 @@
+Firing: 290 - 305
+Idle: 1 - 81
+Back Walk: 85 - 146
+Forward Walk: 150 - 193
+Left walk: 195 - 229
+Right walk: 235 - 271
+Reload: 310 - 400
