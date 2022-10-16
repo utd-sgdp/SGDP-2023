@@ -567,6 +567,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: End Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 1367303419488141475, guid: 9e38d2d9f08fb0540928f3dab5a61f64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7161566972012471561, guid: 9e38d2d9f08fb0540928f3dab5a61f64,
         type: 3}
       propertyPath: m_SizeDelta.x
