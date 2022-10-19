@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Game.Enemy
+namespace Game.Agent
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class MeleeGruntAI : MonoBehaviour
