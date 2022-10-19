@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Agent
 {
-    public sealed class ExampleTree : BehaviourTreeRunner
+    public sealed class ExampleTree : AIAgent
     {
         protected override BehaviourTree CreateTree()
         {

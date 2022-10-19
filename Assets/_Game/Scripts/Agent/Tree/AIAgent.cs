@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Agent.Tree
 {
-    public class BehaviourTreeRunner : MonoBehaviour
+    public class AIAgent : MonoBehaviour
     {
         [SerializeField]
         BehaviourTree _tree;
@@ -21,7 +21,7 @@ namespace Game.Agent.Tree
                 }
             }
             
-            _tree.Bind();
+            _tree.Bind(gameObject, transform);
         }
 
         void Update()
@@ -38,7 +38,7 @@ namespace Game.Agent.Tree
         /// Should be overriden to implement <see cref="BehaviourTree"/>'s in code. This will be ignored if
         /// <see cref="_tree"/> has already been assigned.
         /// </summary>
-        /// <returns> The <see cref="BehaviourTree"/> to be used by this <see cref="BehaviourTreeRunner"/>. </returns>
+        /// <returns> The <see cref="BehaviourTree"/> to be used by this <see cref="AIAgent"/>. </returns>
         protected virtual BehaviourTree CreateTree() => null;
     }
 }

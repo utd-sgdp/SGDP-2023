@@ -36,10 +36,12 @@ namespace Game.Agent.Tree
         }
 
         /// <summary>
-        /// Binds <see cref="Blackboard"/> to all child nodes.
+        /// Initializes <see cref="Blackboard"/> at/for runtime and binds it to all child nodes.
         /// </summary>
-        public void Bind()
+        public void Bind(GameObject gameObject, Transform transform)
         {
+            Blackboard.RuntimeInitialize(gameObject, transform);
+            
             Traverse(RootNode, node =>
             {
                 node.Blackboard = Blackboard;
