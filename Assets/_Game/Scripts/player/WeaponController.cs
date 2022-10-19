@@ -31,6 +31,7 @@ namespace Game.Player
         // Update is called once per frame
         void Update()
         {
+            //if the player inputted attack and is able to attack
             if(_attackAction.WasPressedThisFrame() && _attackAction.IsPressed() && CanAttack)
             {
                 Attack();
@@ -39,13 +40,18 @@ namespace Game.Player
 
         void Attack()
         {
+            //player is currently attacking and therefore cannot input attack again
             IsAttacking = true;
             CanAttack = false;
+
+            //play the attack animation
             Animator anim = Sword.GetComponent<Animator>();
             anim.SetTrigger("Attack");
+
             StartCoroutine(ResetAttackCooldown());
         }
 
+        //lets the player attack again once the cooldown is done
         IEnumerator ResetAttackCooldown()
         {
             StartCoroutine(ResetAttackBool());
@@ -53,6 +59,7 @@ namespace Game.Player
             CanAttack = true;
         }
 
+        //player is no longer attacking once the animation finishes
         IEnumerator ResetAttackBool()
         {
             yield return new WaitForSeconds(1.0f);
