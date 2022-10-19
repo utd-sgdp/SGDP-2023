@@ -1,25 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.Agent.Tree;
 using UnityEngine;
 
-namespace Game.BehaviourTree
+namespace Game.Enemy.Action
 {
     public class DebugLogNode : ActionNode
     {
-        public string message;
+        public string Message;
+        
         protected override void OnStart()
         {
-            Debug.Log($"OnStart{message}");
+            Debug.Log($"OnStart{ Message }");
         }
 
         protected override void OnStop()
         {
-            Debug.Log($"OnStop{message}");
+            Debug.Log($"OnStop{ Message }");
         }
 
         protected override State OnUpdate()
         {
-            Debug.Log($"OnUpdate{message}");
+            Debug.Log($"OnUpdate{ Message }");
             return State.Success;
         }
     }

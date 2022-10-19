@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Game.BehaviourTree
+namespace Game.Agent.Tree
 {
     public abstract class DecoratorNode : Node
     {
         public Node child;
+
+        public sealed override List<Node> GetChildren() => new() { child };
     }
 }
