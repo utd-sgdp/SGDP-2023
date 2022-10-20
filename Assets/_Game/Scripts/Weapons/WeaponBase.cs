@@ -65,6 +65,6 @@ public class WeaponBase : MonoBehaviour
     {
         DuringAttack, //Delay for attack animation/effect
         DuringCooldown //Delay for cooldown
-    };
+    }
 }
 
