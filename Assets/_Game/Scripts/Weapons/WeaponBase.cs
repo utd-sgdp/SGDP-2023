@@ -14,6 +14,8 @@ namespace Game.Weapons
         [SerializeField, Min(0)]
         protected float cooldownDuration;
 
+        public bool Looping;
+
         [Header("Events")]
         public UnityEvent OnAttackStart;
         public UnityEvent OnAttackEnd;
@@ -23,33 +25,35 @@ namespace Game.Weapons
         protected bool attacking;
         protected bool coolingDown;
 
-        public bool AttemptAttack(System.Action<DelayType> callback = null)
+        public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
+            Looping = loop;
+            
             if (attacking || coolingDown)
             {
                 return false;
             }
 
-            Attack(callback);
+            Attack(AfterAttack, AfterCooldown);
             return true;
         }
 
         protected abstract void OnAttack();
 
-        void Attack(System.Action<DelayType> callback)
+        void Attack(System.Action AfterAttack, System.Action AfterCooldown)
         {
             OnAttack();
-            StartCoroutine(AttackDelay(callback));
+            StartCoroutine(AttackDelay(AfterAttack, AfterCooldown));
         }
 
-        IEnumerator AttackDelay(System.Action<DelayType> callback)
+        IEnumerator AttackDelay(System.Action AfterAttack, System.Action AfterCooldown)
         {
             // perform attack
             attacking = true;
             OnAttackStart?.Invoke();
 
             yield return new WaitForSeconds(attackDuration);
-            callback?.Invoke(DelayType.AfterAttack);
+            AfterAttack?.Invoke();
             OnAttackEnd?.Invoke();
 
             // wait for cooldown
@@ -58,17 +62,13 @@ namespace Game.Weapons
             OnCooldownStart?.Invoke();
 
             yield return new WaitForSeconds(cooldownDuration);
-            callback?.Invoke(DelayType.AfterCooldown);
+            AfterCooldown?.Invoke();
             coolingDown = false;
             OnCooldownEnd?.Invoke();
-        }
-
-        /// <summary>
-        /// The current progress of an attack. I.e. <see cref="DelayType.AfterAttack"/> is after an attack is complete.
-        /// </summary>
-        public enum DelayType
-        {
-            AfterAttack = 0, AfterCooldown = 1,
+            
+            // loop attack
+            if (!Looping) yield break;
+            AttemptAttack(true, AfterAttack, AfterCooldown);
         }
     }
 }
