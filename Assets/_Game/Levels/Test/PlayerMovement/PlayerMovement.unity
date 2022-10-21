@@ -757,5 +757,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bomber: {fileID: 2053327919}
-  _player: {fileID: 0}
+  _player: {fileID: 2096966212}
   _range: 30
+--- !u!1 &2096966212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2389105605677970662, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+    type: 3}
+  m_PrefabInstance: {fileID: 287616999}
+  m_PrefabAsset: {fileID: 0}
