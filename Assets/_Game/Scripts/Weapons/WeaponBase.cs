@@ -1,70 +1,74 @@
-/*
-    -Script to be inherited by weapons
-    -Enemy and Player weapons
-    -Will eventually manage weapon animations
-*/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WeaponBase : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField]
-    private float attackDuration;
-
-    [SerializeField]
-    private float cooldownDuration;
-
-    //Attack takes arguments of <cooldown duration>
-    public event System.Action<float> OnAttack;
-
-    private bool attacking;
-    private bool coolingDown;
-
-    private bool AttemptAttack(System.Action<DelayType> callback = null)
+    public abstract class WeaponBase : MonoBehaviour
     {
-        if(attacking || coolingDown)
+        [Header("Timing")]
+        [SerializeField, Min(0)]
+        protected float attackDuration;
+
+        [SerializeField, Min(0)]
+        protected float cooldownDuration;
+
+        [Header("Events")]
+        public UnityEvent OnAttackStart;
+        public UnityEvent OnAttackEnd;
+        public UnityEvent OnCooldownStart;
+        public UnityEvent OnCooldownEnd;
+
+        protected bool attacking;
+        protected bool coolingDown;
+
+        public bool AttemptAttack(System.Action<DelayType> callback = null)
         {
-            return false;
+            if (attacking || coolingDown)
+            {
+                return false;
+            }
+
+            Attack(callback);
+            return true;
         }
 
-        Attack(callback);
-        return true;
-    }
+        protected abstract void OnAttack();
 
-    private void Attack(System.Action<DelayType> callback)
-    {
-        StartCoroutine(AttackDelay(callback));
-        OnAttack?.Invoke(cooldownDuration);
-    }
-
-    IEnumerator AttackDelay(System.Action<DelayType> callback)
-    {
-        if(callback == null)
+        void Attack(System.Action<DelayType> callback)
         {
-            yield break;
+            OnAttack();
+            StartCoroutine(AttackDelay(callback));
         }
 
-        //Attack Animation time
-        attacking = true;
+        IEnumerator AttackDelay(System.Action<DelayType> callback)
+        {
+            // perform attack
+            attacking = true;
+            OnAttackStart?.Invoke();
 
-        yield return new WaitForSeconds(attackDuration);
-        callback.Invoke(DelayType.DuringAttack);
+            yield return new WaitForSeconds(attackDuration);
+            callback?.Invoke(DelayType.AfterAttack);
+            OnAttackEnd?.Invoke();
 
-        //Attack Cooldown
-        attacking = false;
-        coolingDown = true;
+            // wait for cooldown
+            attacking = false;
+            coolingDown = true;
+            OnCooldownStart?.Invoke();
 
-        yield return new WaitForSeconds(cooldownDuration);
-        callback.Invoke(DelayType.DuringCooldown);
-        coolingDown = false;
-    }
+            yield return new WaitForSeconds(cooldownDuration);
+            callback?.Invoke(DelayType.AfterCooldown);
+            coolingDown = false;
+            OnCooldownEnd?.Invoke();
+        }
 
-    public enum DelayType
-    {
-        DuringAttack, //Delay for attack animation/effect
-        DuringCooldown //Delay for cooldown
+        /// <summary>
+        /// The current progress of an attack. I.e. <see cref="DelayType.AfterAttack"/> is after an attack is complete.
+        /// </summary>
+        public enum DelayType
+        {
+            AfterAttack = 0, AfterCooldown = 1,
+        }
     }
 }
-
