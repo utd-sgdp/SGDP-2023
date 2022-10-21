@@ -1,15 +1,16 @@
 using System;
 using Game.Weapons;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(PlayerInput))]
-    public class PlayerGun : MonoBehaviour
+    public class PlayerWeapon : MonoBehaviour
     {
         [SerializeField]
-        GunBasic _gun;
+        WeaponBase _weapon;
 
         PlayerInput _inputComponent;
         PlayerInput _input
@@ -40,7 +41,13 @@ namespace Game.Player
             float buttonValue = context.ReadValue<float>();
             bool buttonDown = buttonValue > 0.5f;
 
-            _gun.Firing = buttonDown;
+            if (buttonDown)
+            {
+                _weapon.AttemptAttack(true);
+                return;
+            }
+
+            _weapon.Looping = false;
         }
     }
 }
