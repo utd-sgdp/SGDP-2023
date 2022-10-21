@@ -5,25 +5,25 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -4791504522942941401
-    second: _idle
+    second: Idle
   - first:
       74: 8692827651552835829
-    second: _walkforward
+    second: Walk Forward
   - first:
       74: -7783227237824937128
-    second: _walkbackward
+    second: Walk Backward
   - first:
       74: -4153299246785717871
-    second: _walkleft
+    second: Walk Left
   - first:
       74: -53318096677749615
-    second: _walkright
+    second: Walk Right
   - first:
       74: 6130527428295603074
-    second: _firing
+    second: Firing
   - first:
       74: 6033199597511308148
-    second: -reload
+    second: Reload
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -54,7 +54,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: _idle
+      name: Idle
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 1
@@ -83,7 +83,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _walkforward
+      name: Walk Forward
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 150
@@ -112,7 +112,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _walkbackward
+      name: Walk Backward
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 85
@@ -141,7 +141,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _walkleft
+      name: Walk Left
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 195
@@ -170,7 +170,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _walkright
+      name: Walk Right
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 235
@@ -199,7 +199,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _firing
+      name: Firing
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 290
@@ -228,7 +228,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: -reload
+      name: Reload
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 310
