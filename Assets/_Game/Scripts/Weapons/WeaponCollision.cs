@@ -18,7 +18,7 @@ namespace Game.Weapons
         private void OnTriggerEnter(Collider other)
         {
             //if the player was attacking and the weapon hit an enemy
-            if (other.tag == "Enemy"  && mb.IsAttacking)
+            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && mb.getAttacking())
             {
                 //deal damage
                 other.gameObject.GetComponent<Damageable>().Hurt(mb.damage);

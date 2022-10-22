@@ -657,6 +657,11 @@ PrefabInstance:
       propertyPath: cooldownDuration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2599155091823678030, guid: 197be45b79e9f464ab5714d9979ab42a,
+        type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4981168435230209114, guid: 197be45b79e9f464ab5714d9979ab42a,
         type: 3}
       propertyPath: m_RootOrder

@@ -16,6 +16,8 @@ namespace Game.Weapons
 
         public bool Looping;
 
+        public LayerMask targetLayer;
+
         [Header("Events")]
         public UnityEvent OnAttackStart;
         public UnityEvent OnAttackEnd;

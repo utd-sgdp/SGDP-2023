@@ -8,13 +8,18 @@ namespace Game.Weapons
     {
         public float damage = 10f;
 
-        public bool IsAttacking = false;
+        
         public GameObject Weapon;
+
+        public bool getAttacking()
+        {
+            return attacking;
+        }
 
         protected override void OnAttack()
         {
             //player is currently attacking, so check for collision in MeleeCollisionDetection
-            IsAttacking = true;
+           
 
             //play the attack animation
             Animator anim = Weapon.GetComponent<Animator>();

@@ -135,6 +135,9 @@ MonoBehaviour:
   attackDuration: 0
   cooldownDuration: 0
   Looping: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
   OnAttackStart:
     m_PersistentCalls:
       m_Calls: []
@@ -147,6 +150,7 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
+  damage: 10
   IsAttacking: 0
   Weapon: {fileID: 0}
 --- !u!114 &4449143716001241822
