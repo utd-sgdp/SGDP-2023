@@ -5,10 +5,15 @@ namespace Game.Agent.Tree
     public class AIAgent : MonoBehaviour
     {
         [SerializeField]
-        BehaviourTree _tree;
+        public BehaviourTree _tree;
         
         void Start()
         {
+            if(_tree != null)
+            {
+                //Replaces tree with a clone of the tree to prevent multiple AIAgents using the same tree from conflicting.
+                _tree = _tree.Clone();
+            }
             // allow sub-classes to create a tree through code
             if (_tree == null)
             {

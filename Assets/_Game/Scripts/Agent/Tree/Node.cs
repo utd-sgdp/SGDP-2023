@@ -10,10 +10,12 @@ namespace Game.Agent.Tree
     
     public abstract class Node : ScriptableObject
     {
-        public State CurrentState { get; protected set; } = State.Running;
-        public bool Started { get; protected set; }
+        [HideInInspector] public State CurrentState { get; protected set; } = State.Running;
+        [HideInInspector] public bool Started { get; protected set; }
+        [HideInInspector] public string guid;
         [TextArea] public string Description;
         [HideInInspector] public Blackboard Blackboard;
+        [HideInInspector] public Vector2 editorPosition;
 
         // ReSharper disable Unity.PerformanceAnalysis
         public State Update()
@@ -57,5 +59,11 @@ namespace Game.Agent.Tree
         protected abstract State OnUpdate();
 
         public abstract List<Node> GetChildren();
+
+        //Allow AIAgent to clone nodes to copy the behaviour tree for runtime usage to prevent multiple AIAgents using the same tree from conflicting.
+        public virtual Tree.Node Clone()
+        {
+            return Instantiate(this);
+        }
     }
 }

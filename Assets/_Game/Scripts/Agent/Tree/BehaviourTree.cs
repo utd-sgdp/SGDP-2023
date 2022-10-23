@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace Game.Agent.Tree
 {
@@ -8,6 +10,8 @@ namespace Game.Agent.Tree
         public Node RootNode;
         public State TreeState = State.Running;
         public Blackboard Blackboard;
+        //Nodes in tree
+        public List<Node> nodes = new List<Node>();
 
         public State Update()
         {
@@ -46,6 +50,103 @@ namespace Game.Agent.Tree
             {
                 node.Blackboard = Blackboard;
             });
+        }
+
+        public Node CreateNode(System.Type type)
+        {
+            Node node = ScriptableObject.CreateInstance(type) as Node;
+            //Set name to appear in inspector
+            node.name = type.Name;
+            node.guid = GUID.Generate().ToString();
+            nodes.Add(node);
+
+            //Makes ScriptableObject node subasset of BehaviourTree object
+            AssetDatabase.AddObjectToAsset(node, this);
+            AssetDatabase.SaveAssets();
+
+            return node;
+        }
+
+        public void DeleteNode(Node node)
+        {
+            nodes.Remove(node);
+            AssetDatabase.RemoveObjectFromAsset(node);
+            AssetDatabase.SaveAssets();
+        }
+
+        //Methods to add and remove children to be called by OnGraphViewChanged when an edge is created between nodes
+        public void AddChild(Node parent, Node child)
+        {
+            RootNode root = parent as RootNode;
+            if (root)
+            {
+                root.Child = child;
+            }
+
+                DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator)
+            {
+                decorator.child = child;
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                composite.Children.Add(child);
+            }
+        }
+
+        public void RemoveChild(Node parent, Node child)
+        {
+            RootNode root = parent as RootNode;
+            if (root)
+            {
+                root.Child = null;
+            }
+
+            DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator)
+            {
+                decorator.child = null;
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                composite.Children.Remove(child);
+            }
+        }
+
+        public List<Node> GetChildren(Node parent)
+        {
+            List<Node> children = new List<Node>();
+            DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator && decorator.child != null)
+            {
+                children.Add(decorator.child);
+            }
+
+            RootNode root = parent as RootNode;
+            if (root && root.Child != null)
+            {
+                children.Add(root.Child);
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                return composite.Children;
+            }
+
+            return children;
+        }
+
+        //Allow AIAgent to clone the tree for runtime usage to prevent multiple AIAgents using the same tree from conflicting.
+        public BehaviourTree Clone()
+        {
+            BehaviourTree tree = Instantiate(this);
+            tree.RootNode = tree.RootNode.Clone();
+            return tree;
         }
     }
 }
