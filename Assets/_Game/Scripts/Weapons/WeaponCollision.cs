@@ -4,25 +4,32 @@ using UnityEngine;
 
 namespace Game.Weapons
 {
-    [RequireComponent(typeof(MeleeBasic))]
     public class WeaponCollision : MonoBehaviour
     {
-        MeleeBasic mb;
+        [Header("Debug")]
+        [SerializeField, ReadOnly] WeaponBase _weapon;
+        [SerializeField, ReadOnly] LayerMask _targetLayer = ~0;
 
-
-
-        public void Awake()
+        public void Configure(WeaponBase weapon, LayerMask targetLayers)
         {
-            mb = this.gameObject.GetComponent<MeleeBasic>();
+            _weapon = weapon;
+            _targetLayer = targetLayers;
         }
-        private void OnTriggerEnter(Collider other)
+
+        public void Enable() => gameObject.SetActive(true);
+        public void Disable() => gameObject.SetActive(false);
+        
+        void OnTriggerEnter(Collider other)
         {
-            //if the player was attacking and the weapon hit an enemy
-            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && mb.getAttacking())
-            {
-                //deal damage
-                other.gameObject.GetComponent<Damageable>().Hurt(mb.damage);
-            }
+            // ignore collision, other object is not on our target layer
+            if (!_targetLayer.Includes(other.gameObject.layer)) return;
+            
+            Damageable target = other.gameObject.GetComponentInChildren<Damageable>();
+            if (!target) return;
+            
+            // deal damage
+            target.Hurt(_weapon.Damage);
+            print($"{_weapon.name} hit {other.gameObject.name} for {_weapon.Damage} points.");
         }
     }
 }

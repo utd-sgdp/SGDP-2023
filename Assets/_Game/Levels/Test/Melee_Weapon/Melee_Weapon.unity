@@ -660,8 +660,13 @@ PrefabInstance:
     - target: {fileID: 2599155091823678030, guid: 197be45b79e9f464ab5714d9979ab42a,
         type: 3}
       propertyPath: targetLayer.m_Bits
-      value: 128
+      value: 183
       objectReference: {fileID: 0}
+    - target: {fileID: 4449143716001241822, guid: 197be45b79e9f464ab5714d9979ab42a,
+        type: 3}
+      propertyPath: mb
+      value: 
+      objectReference: {fileID: 2069705629}
     - target: {fileID: 4981168435230209114, guid: 197be45b79e9f464ab5714d9979ab42a,
         type: 3}
       propertyPath: m_RootOrder

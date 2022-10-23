@@ -4,27 +4,33 @@ using UnityEngine;
 
 namespace Game.Weapons
 {
+    [RequireComponent(typeof(Animator))]
     public class MeleeBasic : WeaponBase
     {
-        public float damage = 10f;
-
-        
-        public GameObject Weapon;
-
-        public bool getAttacking()
+        Animator _anim;
+        Animator _animator
         {
-            return attacking;
+            get
+            {
+                if (!_anim)
+                {
+                    _anim = GetComponent<Animator>();
+                }
+
+                return _anim;
+            }
         }
 
         protected override void OnAttack()
         {
-            //player is currently attacking, so check for collision in MeleeCollisionDetection
-           
-
-            //play the attack animation
-            Animator anim = Weapon.GetComponent<Animator>();
-            anim.SetTrigger("Attack");
-            attackDuration = anim.GetCurrentAnimatorClipInfo(0).Length;
+            // play the attack animation
+            _animator.SetTrigger(ST_ATTACK);
+            
+            // set attack length
+            AnimationClip currentClip = _anim.GetCurrentAnimatorClipInfo(0)[0].clip;
+            attackDuration = currentClip.length;
         }
+        
+        static readonly int ST_ATTACK = Animator.StringToHash("Attack");
     }
 }
