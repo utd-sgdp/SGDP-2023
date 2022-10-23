@@ -7,6 +7,12 @@ namespace Game.Weapons
 {
     public abstract class WeaponBase : MonoBehaviour
     {
+        public float Damage => damage;
+        
+        [Header("Damage")]
+        [SerializeField]
+        protected float damage = 10f;
+        
         [Header("Timing")]
         [SerializeField, Min(0)]
         protected float attackDuration;
@@ -15,6 +21,9 @@ namespace Game.Weapons
         protected float cooldownDuration;
 
         public bool Looping;
+        
+        [Header("Targeting")]
+        public LayerMask targetLayer;
 
         [Header("Events")]
         public UnityEvent OnAttackStart;
@@ -24,6 +33,46 @@ namespace Game.Weapons
 
         protected bool attacking;
         protected bool coolingDown;
+        WeaponCollision[] _collidables;
+
+        protected virtual void Awake()
+        {
+            ConfigureCollisions();
+            DisableCollisions();
+        }
+
+        public void ConfigureCollisions()
+        {
+            _collidables = GetComponentsInChildren<WeaponCollision>();
+            foreach (var col in _collidables)
+            {
+                col.Configure(this, targetLayer);
+            }
+        }
+
+        /// <summary>
+        /// Enables all weapon collisions.
+        /// Can be called by <see cref="AnimationEvent"/>s.
+        /// </summary>
+        public void EnableCollisions()
+        {
+            foreach (var col in _collidables)
+            {
+                col.Enable();
+            }
+        }
+
+        /// <summary>
+        /// Disables all weapon collisions.
+        /// Can be called by <see cref="AnimationEvent"/>s.
+        /// </summary>
+        public void DisableCollisions()
+        {
+            foreach (var col in _collidables)
+            {
+                col.Disable();
+            }
+        }
 
         public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
