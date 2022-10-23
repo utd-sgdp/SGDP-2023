@@ -60,6 +60,7 @@ namespace Game.Player
         /// </summary>
         void Move(bool Fixed=true)
         {
+           
             // read input
             Vector2 move = _moveAction.ReadValue<Vector2>();
             
@@ -69,6 +70,10 @@ namespace Game.Player
             
             // apply
             _body.velocity = new Vector3(move.x, 0f, move.y);
+
+            // parameters for animation.
+            _animate.SetFloat("Velocity Z", _velocityZ);
+            _animate.SetFloat("Velocity X", _velocityX);
         }
         #endregion
 
