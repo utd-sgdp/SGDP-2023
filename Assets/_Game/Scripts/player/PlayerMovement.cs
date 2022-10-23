@@ -18,11 +18,17 @@ namespace Game.Player
         [SerializeField]
         [Range(0, 1)]
         float  _lookDeadZone = .1f;
+
+        [SerializeField]
+        float _velocityZ;
+        [SerializeField]
+        float _velocityX;
         
         Rigidbody _body;
         PlayerInput _input;
         InputAction _moveAction;
         InputAction _lookAction;
+        Animator _animate;
         
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
 
@@ -30,6 +36,7 @@ namespace Game.Player
         void Awake()
         {
             _body = GetComponent<Rigidbody>();
+            _animate = GetComponent<Animator>();
             
             _input = GetComponent<PlayerInput>();
             _moveAction = _input.actions["Move"];
