@@ -537,8 +537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 500
   _lookDeadZone: 0.1
-  _velocityZ: 0
-  _velocityX: 0
+  _velocityZ: 1
+  _velocityX: 1
 --- !u!54 &1675870460
 Rigidbody:
   m_ObjectHideFlags: 0
