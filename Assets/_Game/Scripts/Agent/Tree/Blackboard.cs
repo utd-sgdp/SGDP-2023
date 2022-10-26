@@ -6,6 +6,8 @@ namespace Game.Agent.Tree
     [System.Serializable]
     public class Blackboard
     {
+        public Transform target;
+
         [NonSerialized] public GameObject gameObject;
         [NonSerialized] public Transform transform;
 
