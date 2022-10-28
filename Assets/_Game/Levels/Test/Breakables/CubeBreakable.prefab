@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296300630639127585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000000059604645}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,12 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a784451447ad94c843d04a10c441db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbroken_object: {fileID: 3079018378924827931}
-  broken_object: {fileID: 638880075799360830}
-  breakingForce: 1
-  ExplosionFactor: {x: 10, y: 10, z: 10}
-  physicsDelay: 3
-  despawnDelay: 30
+  _brokenObject: {fileID: 3079018378924827931}
+  _unbrokenObject: {fileID: 638880075799360830}
+  _breakingThreshold: 1
+  _physicsDisableDelay: 5
+  _despawnDelay: 30
+  OnBreak:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &4527749031209221330
 Rigidbody:
   m_ObjectHideFlags: 0
