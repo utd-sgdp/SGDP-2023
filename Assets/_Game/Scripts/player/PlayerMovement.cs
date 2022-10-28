@@ -19,24 +19,24 @@ namespace Game.Player
         [Range(0, 1)]
         float  _lookDeadZone = .1f;
 
-        [SerializeField]
-        float _velocityZ;
-        [SerializeField]
-        float _velocityX;
+        [Header("Animation")]
+        [SerializeField] Animator _anim;
         
         Rigidbody _body;
         PlayerInput _input;
         InputAction _moveAction;
         InputAction _lookAction;
-        Animator _animate;
         
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
+        static readonly int FLOAT_VELOCITY_Z = Animator.StringToHash("Velocity Z");
+        static readonly int FLOAT_VELOCITY_X = Animator.StringToHash("Velocity X");
 
         #region MonoBehaviour
         void Awake()
         {
             _body = GetComponent<Rigidbody>();
-            _animate = GetComponent<Animator>();
+            
+            if (!_anim) Debug.LogWarning($"{name} has no player Animator.");
             
             _input = GetComponent<PlayerInput>();
             _moveAction = _input.actions["Move"];
@@ -60,7 +60,6 @@ namespace Game.Player
         /// </summary>
         void Move(bool Fixed=true)
         {
-           
             // read input
             Vector2 move = _moveAction.ReadValue<Vector2>();
             
@@ -71,9 +70,20 @@ namespace Game.Player
             // apply
             _body.velocity = new Vector3(move.x, 0f, move.y);
 
-            // parameters for animation.
-            _animate.SetFloat("Velocity Z", _velocityZ);
-            _animate.SetFloat("Velocity X", _velocityX);
+            UpdateAnimation(move);
+        }
+
+        void UpdateAnimation(Vector2 move)
+        {
+            // exit, there is no animator to update
+            if (!_anim) return;
+            
+            // calculate movement relative to the direction we are facing
+            Vector3 relative = new Vector3(move.x, 0, move.y);
+            relative = Quaternion.Euler(0, -transform.rotation.eulerAngles.y, 0) * relative;
+            
+            _anim.SetFloat(FLOAT_VELOCITY_X, relative.x);
+            _anim.SetFloat(FLOAT_VELOCITY_Z, relative.z);
         }
         #endregion
 
