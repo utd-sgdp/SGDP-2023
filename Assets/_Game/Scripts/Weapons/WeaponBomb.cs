@@ -14,9 +14,9 @@ namespace Game.Weapons
         float _bombDamage = 50f;
 
         /// <summary>
-        /// Applys damage to all <see cref="Damageable"/>'s in range.
+        /// Applies damage to all <see cref="Damageable"/>'s in range.
         /// </summary>
-        public override void Attack()
+        protected override void OnAttack()
         {
             foreach (var damageable in DamageablesInRange())
             {                

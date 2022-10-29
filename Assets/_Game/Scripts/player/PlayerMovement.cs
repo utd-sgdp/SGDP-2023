@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,40 +8,87 @@ namespace Game.Player
     [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
+        #region Inspector Variables
         [Header("Movement")]
         [SerializeField]
+        MovementType _movementType = MovementType.AccelerationWithDrag;
+
+        [SerializeField]
         [Min(0)]
-        float _movementSpeed = 500f;
-        
+        float _maxVelocity = 15f;
+
+        [SerializeField]
+        [Min(0)]
+        float _timeToMaxVelocity = 0.25f;
+
+        [Header("Dash")]
+        [SerializeField]
+        [Min(0)]
+        float _dashLength = 5f;
+
+        [SerializeField]
+        [Min(0)]
+        float _dashDuration = 0.05f;
+
+        [SerializeField]
+        [Min(0)]
+        float _dashCoolDown = 0.5f;
+
         [Header("Look")]
         [SerializeField]
         [Range(0, 1)]
         float  _lookDeadZone = .1f;
-
+        
         [Header("Animation")]
         [SerializeField] Animator _anim;
+        #endregion
+
+        #region Private Variables
+        bool _canMove = true;
+        bool Dashing
+        {
+            get => _dashing != null;
+        }
+        Coroutine _dashing;
         
         Rigidbody _body;
         PlayerInput _input;
         InputAction _moveAction;
         InputAction _lookAction;
-        
+        InputAction _dashAction;
+
+        float _dashVelocity;
+        float _acceleration;
+        float _dragCoefficient;
+        const float VELOCITY_MARGIN = 0.5f;
+        const float VELOCITY_MARGIN_SQ = VELOCITY_MARGIN * VELOCITY_MARGIN;
+
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
         static readonly int FLOAT_VELOCITY_Z = Animator.StringToHash("Velocity Z");
         static readonly int FLOAT_VELOCITY_X = Animator.StringToHash("Velocity X");
+        #endregion
 
         #region MonoBehaviour
         void Awake()
         {
             _body = GetComponent<Rigidbody>();
+            InitializeMoveData();
             
             if (!_anim) Debug.LogWarning($"{name} has no player Animator.");
-            
+        }
+
+        void OnEnable()
+        {
             _input = GetComponent<PlayerInput>();
             _moveAction = _input.actions["Move"];
             _lookAction = _input.actions["Look"];
+            _dashAction = _input.actions["Dash"];
+
+            SubInput();
         }
-        
+
+        void OnDisable() => UnsubInput();
+
         void Update()
         {
             Look();
@@ -50,40 +96,142 @@ namespace Game.Player
         
         void FixedUpdate()
         {
-            Move();
+            Vector3 direction = GetMoveDirection();
+            Move(direction);
+        }
+
+        void OnValidate() => InitializeMoveData();
+        #endregion
+        
+        #region Input
+        void SubInput() => _dashAction.performed += OnDash;
+        void UnsubInput() => _dashAction.performed -= OnDash;
+
+        Vector3 GetMoveDirection()
+        {
+            Vector3 direction = _moveAction.ReadValue<Vector2>();
+            direction = new Vector3(direction.x, 0, direction.y);
+            return direction.normalized;
         }
         #endregion
 
         #region Movement
-        /// <summary>
-        /// Use the calculated _movementVector to move the player accordingly
-        /// </summary>
-        void Move(bool Fixed=true)
+        void InitializeMoveData()
         {
-            // read input
-            Vector2 move = _moveAction.ReadValue<Vector2>();
-            
-            // apply speed multiplier and normalize time
-            float normFactor = Fixed ? Time.fixedDeltaTime : Time.deltaTime;
-            move *= _movementSpeed * normFactor;
-            
-            // apply
-            _body.velocity = new Vector3(move.x, 0f, move.y);
-
-            UpdateAnimation(move);
+            _acceleration = _maxVelocity / _timeToMaxVelocity * Utility.Math.LambertW(_maxVelocity / VELOCITY_MARGIN);
+            _dragCoefficient = _acceleration / _maxVelocity;
+            _dashVelocity = _dashLength / _dashDuration;
         }
+        
+        /// <summary>
+        /// Move in <see cref="direction"/> with acceleration curve specified by <see cref="_movementType"/>.
+        /// </summary>
+        /// <param name="direction"> normalized, local-space direction vector </param>
+        void Move(Vector3 direction)
+        {
+            // exit, the player is not able to move
+            if (!_canMove) return;
 
-        void UpdateAnimation(Vector2 move)
+            Vector3 nVelocity;
+            switch (_movementType)
+            {
+                case MovementType.AccelerationWithDrag:
+                    nVelocity = CalculateVelocityWithDrag(direction);
+                    break;
+                
+                default:
+                case MovementType.ConstantVelocity:
+                    nVelocity = CalculateConstVelocity(direction);
+                    break;
+            }
+            
+            _body.velocity = nVelocity;
+            UpdateAnimation(nVelocity);
+        }
+        
+        void UpdateAnimation(Vector3 move)
         {
             // exit, there is no animator to update
             if (!_anim) return;
             
             // calculate movement relative to the direction we are facing
-            Vector3 relative = new Vector3(move.x, 0, move.y);
-            relative = Quaternion.Euler(0, -transform.rotation.eulerAngles.y, 0) * relative;
+            move = Quaternion.Euler(0, -transform.rotation.eulerAngles.y, 0) * move;
             
-            _anim.SetFloat(FLOAT_VELOCITY_X, relative.x);
-            _anim.SetFloat(FLOAT_VELOCITY_Z, relative.z);
+            _anim.SetFloat(FLOAT_VELOCITY_X, move.x);
+            _anim.SetFloat(FLOAT_VELOCITY_Z, move.z);
+        }
+
+        /// <summary>
+        /// Velocity is calculated with no acceleration.
+        /// </summary>
+        /// <param name="direction"> normalized, local-space direction </param>
+        /// <returns> new velocity </returns>
+        Vector3 CalculateConstVelocity(Vector3 direction)
+        {
+            return _maxVelocity * direction;
+        }
+        
+        /// <summary>
+        /// Velocity is calculated with acceleration depending on input value and previous velocity.
+        /// </summary>
+        /// <param name="direction"> normalized, local-space direction </param>
+        /// <returns> new velocity </returns>
+        Vector3 CalculateVelocityWithDrag(Vector3 direction)
+        {
+            Vector3 currentVelocity = _body.velocity;
+            float   currentSpeed    = currentVelocity.magnitude;
+                
+            // calculate drag force
+            Vector3 acceleration = -currentVelocity.normalized * (currentSpeed * _dragCoefficient * Time.fixedDeltaTime);
+
+            // add acceleration, the player is holding a movement input
+            bool isInputMovement = direction.magnitude > float.Epsilon;
+            if (isInputMovement)
+            {
+                acceleration += direction * (_acceleration * Time.fixedDeltaTime);
+            }
+
+            Vector3 nVelocity = _body.velocity + acceleration;
+            return nVelocity.sqrMagnitude > VELOCITY_MARGIN_SQ ? nVelocity : Vector3.zero;
+        }
+        #endregion
+
+        #region Dash
+        void OnDash(InputAction.CallbackContext context)
+        {
+            Vector3 direction = GetMoveDirection();
+            AttemptDash(direction);
+        }
+        
+        /// <summary>
+        /// Attempts to dash in <see cref="direction"/>.
+        /// </summary>
+        /// <param name="direction"> Normalized, local-space direction. </param>
+        /// <returns> Success of the operation. </returns>
+        public bool AttemptDash(Vector3 direction)
+        {
+            // we are currently dashing, exit
+            if (Dashing) return false;
+
+            _canMove = false;
+            _dashing = StartCoroutine(Dash(direction));
+            return true;
+        }
+        
+        IEnumerator Dash(Vector3 direction)
+        {
+            // Set the velocity of the player to the velocity of the dash
+            _body.velocity = direction.normalized * _dashVelocity;
+
+            yield return new WaitForSeconds(_dashDuration);
+
+            // ReSharper disable once Unity.InefficientPropertyAccess
+            _body.velocity = Vector3.zero;
+            _canMove = true;
+
+            yield return new WaitForSeconds(_dashCoolDown);
+
+            _dashing = null;
         }
         #endregion
 
@@ -143,4 +291,15 @@ namespace Game.Player
         }
         #endregion
     }
+
+    #region Enums
+    /// <summary>
+    /// Movement type describes how the player's movement is calculated
+    /// </summary>
+    public enum MovementType
+    {
+        AccelerationWithDrag = 0,
+        ConstantVelocity = 1,
+    }
+    #endregion
 }
