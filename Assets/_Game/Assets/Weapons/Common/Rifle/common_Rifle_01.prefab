@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2295756656264202435}
   - component: {fileID: 4051231724897385481}
   m_Layer: 0
-  m_Name: commonRifle
+  m_Name: common_Rifle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
