@@ -22,7 +22,13 @@ namespace Game.Agent.Editor
 
             UnityEngine.Object.DestroyImmediate(editor);
             editor = UnityEditor.Editor.CreateEditor(nodeView.node);
-            IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+            //Renders object if it still exists
+            IMGUIContainer container = new IMGUIContainer(() => {
+                if (editor.target)
+                {
+                    editor.OnInspectorGUI();
+                }
+            });
             Add(container);
         }
     }

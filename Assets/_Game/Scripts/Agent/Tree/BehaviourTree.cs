@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace Game.Agent.Tree
 {
@@ -58,10 +59,16 @@ namespace Game.Agent.Tree
             //Set name to appear in inspector
             node.name = type.Name;
             node.guid = GUID.Generate().ToString();
+
+            Undo.RecordObject(this, "Behaviour Tree (CreateNode)");
             nodes.Add(node);
 
             //Makes ScriptableObject node subasset of BehaviourTree object
-            AssetDatabase.AddObjectToAsset(node, this);
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(node, this);
+            }
+            Undo.RegisterCreatedObjectUndo(node, "Behaviour Tree (CreateNode)");
             AssetDatabase.SaveAssets();
 
             return node;
@@ -69,8 +76,11 @@ namespace Game.Agent.Tree
 
         public void DeleteNode(Node node)
         {
+            Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
             nodes.Remove(node);
-            AssetDatabase.RemoveObjectFromAsset(node);
+
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(node);
             AssetDatabase.SaveAssets();
         }
 
@@ -80,19 +90,25 @@ namespace Game.Agent.Tree
             RootNode root = parent as RootNode;
             if (root)
             {
-                root.Child = child;
+                Undo.RecordObject(root, "Behaviour Tree (AddChild)");
+                root.child = child;
+                EditorUtility.SetDirty(root);
             }
 
                 DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
+                Undo.RecordObject(decorator, "Behaviour Tree (AddChild)");
                 decorator.child = child;
+                EditorUtility.SetDirty(decorator);
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
             {
+                Undo.RecordObject(composite, "Behaviour Tree (AddChild)");
                 composite.Children.Add(child);
+                EditorUtility.SetDirty(composite);
             }
         }
 
@@ -101,19 +117,25 @@ namespace Game.Agent.Tree
             RootNode root = parent as RootNode;
             if (root)
             {
-                root.Child = null;
+                Undo.RecordObject(root, "Behaviour Tree (RemoveChild)");
+                root.child = null;
+                EditorUtility.SetDirty(root);
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
+                Undo.RecordObject(decorator, "Behaviour Tree (RemoveChild)");
                 decorator.child = null;
+                EditorUtility.SetDirty(decorator);
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
             {
+                Undo.RecordObject(composite, "Behaviour Tree (RemoveChild)");
                 composite.Children.Remove(child);
+                EditorUtility.SetDirty(composite);
             }
         }
 
@@ -127,9 +149,9 @@ namespace Game.Agent.Tree
             }
 
             RootNode root = parent as RootNode;
-            if (root && root.Child != null)
+            if (root && root.child != null)
             {
-                children.Add(root.Child);
+                children.Add(root.child);
             }
 
             CompositeNode composite = parent as CompositeNode;
@@ -141,11 +163,27 @@ namespace Game.Agent.Tree
             return children;
         }
 
+        /**
+        public void Traverse(Node node, System.Action<Node> visiter)
+        {
+            if (node)
+            {
+                visiter.Invoke(node);
+                var children = GetChildren(node);
+                children.ForEach((n) => Traverse(n, visiter));
+            }
+        }**/
+
         //Allow AIAgent to clone the tree for runtime usage to prevent multiple AIAgents using the same tree from conflicting.
         public BehaviourTree Clone()
         {
             BehaviourTree tree = Instantiate(this);
             tree.RootNode = tree.RootNode.Clone();
+            tree.nodes = new List<Node>();
+            Traverse(tree.RootNode, (n) =>
+            {
+                tree.nodes.Add(n);
+            });
             return tree;
         }
     }

@@ -28,6 +28,15 @@ namespace Game.Agent.Editor
 
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Agent/Editor/BehaviourTreeEditor.uss");
             styleSheets.Add(styleSheet);
+
+            //Add method to update view whenever undo or redo
+            Undo.undoRedoPerformed += OnUndoRedo;
+        }
+
+        private void OnUndoRedo()
+        {
+            PopulateView(tree);
+            AssetDatabase.SaveAssets();
         }
 
         NodeView FindNodeView(Tree.Node node)
@@ -99,6 +108,16 @@ namespace Game.Agent.Editor
                     tree.AddChild(parentView.node, childView.node);
                 });
             }
+
+            if (graphViewChange.movedElements != null)
+            {
+                nodes.ForEach((n) =>
+                {
+                    NodeView view = n as NodeView;
+                    view.SortChildren();
+                });
+            }
+
             return graphViewChange;
         }
 
@@ -148,6 +167,15 @@ namespace Game.Agent.Editor
             NodeView nodeView = new NodeView(node);
             nodeView.OnNodeSelected =  OnNodeSelected;
             AddElement(nodeView);
+        }
+
+        public void UpdateNodeStates()
+        {
+            nodes.ForEach((n) =>
+            {
+                NodeView view = n as NodeView;
+                view.UpdateState();
+            });
         }
     }
 }
