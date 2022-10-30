@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1895605851495637868}
-  - component: {fileID: 993181093531739915}
+  - component: {fileID: 4139368135274777539}
   m_Layer: 5
   m_Name: Win Menu
   m_TagString: Untagged
@@ -173,10 +173,10 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
-  m_SizeDelta: {x: -0.00012207, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &993181093531739915
+--- !u!114 &4139368135274777539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895605851495637869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9010875e31d3d354b95b73450e23ac62, type: 3}
+  m_Script: {fileID: 11500000, guid: 37389d06aa88f5a45a2cb4a38ac6c86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2191561354583937118
@@ -310,9 +310,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 993181093531739915}
-        m_TargetAssemblyTypeName: WinMenu, Game
-        m_MethodName: returnToHUB
+      - m_Target: {fileID: 4139368135274777539}
+        m_TargetAssemblyTypeName: EndMenu, Game
+        m_MethodName: ReturnToHUB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -655,9 +655,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 993181093531739915}
-        m_TargetAssemblyTypeName: WinMenu, Game
-        m_MethodName: restartLevel
+      - m_Target: {fileID: 4139368135274777539}
+        m_TargetAssemblyTypeName: EndMenu, Game
+        m_MethodName: RestartRun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

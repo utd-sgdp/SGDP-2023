@@ -1,36 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
-    // Makes menu dissapear.
-    public void hideMenu()
+    static Scene _currentScene => SceneManager.GetActiveScene();
+
+    void Start()
+    {
+        ShowMenu();
+    }
+    
+    public void HideMenu()
     {
         gameObject.SetActive(false);
     }
 
-    // Makes menu appear on screen.
-    public void showMenu()
+    public void ShowMenu()
     {
         gameObject.SetActive(true);
     }
 
-   // Sends player back to starting level.
-   public void restartLevel()
+   public void RestartRun()
    {
-       // Will load the next scene when it's ready.
-       // SceneManager.LoadScene("");
-       Debug.Log("Restarting run");
+       GameScene.Load(Level.Game);
    }
 
-        // Sends player back to HUB.
-   public void returnToHUB()
+   public void ReturnToHUB()
    {
-       // Will load the next scene when it's ready.
-       // SceneManager.LoadScene("");
-       Debug.Log("Returning to HUB");
+       GameScene.Load(Level.Start);
    }
 }  
 
