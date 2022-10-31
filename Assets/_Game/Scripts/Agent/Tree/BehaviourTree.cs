@@ -7,7 +7,7 @@ namespace Game.Agent.Tree
     {
         public Node RootNode;
         public State TreeState = State.Running;
-        public Blackboard Blackboard;
+        public Blackboard Blackboard = new Blackboard();
 
         public State Update()
         {

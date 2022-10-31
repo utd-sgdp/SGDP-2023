@@ -20,7 +20,6 @@ namespace Game.Agent.Tree
                     return;
                 }
             }
-            
             _tree.Bind(gameObject, transform);
         }
 

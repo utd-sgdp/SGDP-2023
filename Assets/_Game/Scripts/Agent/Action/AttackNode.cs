@@ -19,6 +19,11 @@ namespace Game.Enemy.Action
                     _weaponHolder = Blackboard.gameObject.GetComponent<WeaponHolder>();
                 }
 
+                if (!_weaponHolder) 
+                {
+                    Debug.LogError($"{Blackboard.gameObject} is missing a weapon holder.");
+                }
+
                 return _weaponHolder.Value;
             }
         }

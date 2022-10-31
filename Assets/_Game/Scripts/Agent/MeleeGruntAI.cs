@@ -1,3 +1,59 @@
+using Game.Agent.Tree;
+using Game.Enemy.Action;
+using Game.Enemy.Composite;
+using Game.Enemy.Decorator;
+using UnityEngine;
+
+namespace Game.Agent
+{
+    public sealed class MeleeGruntAI : AIAgent
+    {
+        protected override BehaviourTree CreateTree()
+        {
+            // create tree
+            var tree = ScriptableObject.CreateInstance<BehaviourTree>();
+
+            // create nodes
+            var rootNode = ScriptableObject.CreateInstance<RootNode>();
+            tree.RootNode = rootNode;
+
+            var sequencer = ScriptableObject.CreateInstance<SequencerNode>();
+            rootNode.Child = sequencer;
+
+            var setTargetToPlayer = ScriptableObject.CreateInstance<SetTargetToPlayerNode>();
+            var repeat = ScriptableObject.CreateInstance<RepeatNode>();
+
+            sequencer.Children.Add(setTargetToPlayer);
+            sequencer.Children.Add(repeat);
+
+            var ifElse = ScriptableObject.CreateInstance<IfElseNode>();
+            repeat.child = ifElse;
+
+            var andNode = ScriptableObject.CreateInstance<LogicAndNode>();
+
+            var inAttackRange = ScriptableObject.CreateInstance<InAttackRangeNode>();
+            inAttackRange.attackRange = 10;
+            var inLineOfSight = ScriptableObject.CreateInstance<InLineOfSightNode>();
+            inLineOfSight.range = 100;
+
+            andNode.Children.Add(inAttackRange);
+            andNode.Children.Add(inLineOfSight);
+
+            var attack = ScriptableObject.CreateInstance<AttackNode>();
+            var follow = ScriptableObject.CreateInstance<FollowTargetNode>();
+            follow.desiredDistance = 9;
+
+            ifElse.Children.Add(andNode);
+            ifElse.Children.Add(attack);
+            ifElse.Children.Add(follow);
+
+            return tree;
+        }
+    }
+}
+
+//The old melee grunt AI
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -105,3 +161,4 @@ namespace Game.Agent
         }
     }
 }
+*/
