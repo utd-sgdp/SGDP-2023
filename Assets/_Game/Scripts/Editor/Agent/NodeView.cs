@@ -9,15 +9,15 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Game.Agent.Editor
+namespace GameEditor.Agent
 {
     public class NodeView : UnityEditor.Experimental.GraphView.Node
     {
         public Action<NodeView> OnNodeSelected;
-        public Tree.Node node;
+        public Game.Agent.Tree.Node node;
         public Port input;
         public Port output;
-        public NodeView(Tree.Node node) : base("Assets\\_Game\\Scripts\\Agent\\Editor\\NodeView.uxml")
+        public NodeView(Game.Agent.Tree.Node node) : base("Assets\\_Game\\Scripts\\Agent\\Editor\\NodeView.uxml")
         {
             //Store reference and title to be displayed
             this.node = node;
@@ -41,19 +41,19 @@ namespace Game.Agent.Editor
         //Give each node class to change style of each type independently in editor
         private void SetupClasses()
         {
-            if (node is Tree.ActionNode)
+            if (node is Game.Agent.Tree.ActionNode)
             {
                 AddToClassList("action");
             }
-            else if (node is Tree.CompositeNode)
+            else if (node is Game.Agent.Tree.CompositeNode)
             {
                 AddToClassList("composite");
             }
-            else if (node is Tree.DecoratorNode)
+            else if (node is Game.Agent.Tree.DecoratorNode)
             {
                 AddToClassList("decorator");
             }
-            else if (node is Tree.RootNode)
+            else if (node is Game.Agent.Tree.RootNode)
             {
                 AddToClassList("root");
             }
@@ -61,19 +61,19 @@ namespace Game.Agent.Editor
 
         private void CreateInputPorts()
         {
-            if (node is Tree.ActionNode)
+            if (node is Game.Agent.Tree.ActionNode)
             {
                 input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
-            else if (node is Tree.CompositeNode)
+            else if (node is Game.Agent.Tree.CompositeNode)
             {
                 input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
-            else if (node is Tree.DecoratorNode)
+            else if (node is Game.Agent.Tree.DecoratorNode)
             {
                 input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
-            else if (node is Tree.RootNode)
+            else if (node is Game.Agent.Tree.RootNode)
             {
                 
             }
@@ -89,19 +89,19 @@ namespace Game.Agent.Editor
 
         private void CreateOutputPorts()
         {
-            if (node is Tree.ActionNode)
+            if (node is Game.Agent.Tree.ActionNode)
             {
 
             }
-            else if (node is Tree.CompositeNode)
+            else if (node is Game.Agent.Tree.CompositeNode)
             {
                 output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
             }
-            else if (node is Tree.DecoratorNode)
+            else if (node is Game.Agent.Tree.DecoratorNode)
             {
                 output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
-            else if (node is Tree.RootNode)
+            else if (node is Game.Agent.Tree.RootNode)
             {
                 output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
@@ -143,7 +143,7 @@ namespace Game.Agent.Editor
             }
         }
 
-        private int SortByHorizontalPosition(Tree.Node left, Tree.Node right)
+        private int SortByHorizontalPosition(Game.Agent.Tree.Node left, Game.Agent.Tree.Node right)
         {
             return left.editorPosition.x < right.editorPosition.y ? -1 : 1;
         }

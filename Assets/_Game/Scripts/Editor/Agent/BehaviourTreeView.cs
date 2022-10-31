@@ -7,13 +7,13 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using System;
 using System.Linq;
 
-namespace Game.Agent.Editor
+namespace GameEditor.Agent
 {
     public class BehaviourTreeView : GraphView
     {
         public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
 
-        Tree.BehaviourTree tree;
+        Game.Agent.Tree.BehaviourTree tree;
         public Action<NodeView> OnNodeSelected;
         public BehaviourTreeView()
         {
@@ -26,7 +26,7 @@ namespace Game.Agent.Editor
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
 
-            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Agent/Editor/BehaviourTreeEditor.uss");
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Editor/Agent/BehaviourTreeEditor.uss");
             styleSheets.Add(styleSheet);
 
             //Add method to update view whenever undo or redo
@@ -39,12 +39,12 @@ namespace Game.Agent.Editor
             AssetDatabase.SaveAssets();
         }
 
-        NodeView FindNodeView(Tree.Node node)
+        NodeView FindNodeView(Game.Agent.Tree.Node node)
         {
             return GetNodeByGuid(node.guid) as NodeView;
         }
 
-        internal void PopulateView(Tree.BehaviourTree tree)
+        internal void PopulateView(Game.Agent.Tree.BehaviourTree tree)
         {
             this.tree = tree;
 
@@ -56,7 +56,7 @@ namespace Game.Agent.Editor
 
             if (tree.RootNode == null)
             {
-                tree.RootNode = tree.CreateNode(typeof(Tree.RootNode)) as Tree.RootNode;
+                tree.RootNode = tree.CreateNode(typeof(Game.Agent.Tree.RootNode)) as Game.Agent.Tree.RootNode;
                 EditorUtility.SetDirty(tree);
                 AssetDatabase.SaveAssets();
             }
@@ -131,7 +131,7 @@ namespace Game.Agent.Editor
             //base.BuildContextualMenu(evt);
             //Create dropdown menu with option for each type of node
             {
-                var types = TypeCache.GetTypesDerivedFrom<Tree.ActionNode>();
+                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.ActionNode>();
                 foreach (var type in types)
                 {
                     evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
@@ -139,7 +139,7 @@ namespace Game.Agent.Editor
             }
 
             {
-                var types = TypeCache.GetTypesDerivedFrom<Tree.DecoratorNode>();
+                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.DecoratorNode>();
                 foreach (var type in types)
                 {
                     evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
@@ -147,7 +147,7 @@ namespace Game.Agent.Editor
             }
 
             {
-                var types = TypeCache.GetTypesDerivedFrom<Tree.CompositeNode>();
+                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.CompositeNode>();
                 foreach (var type in types)
                 {
                     evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
@@ -157,11 +157,11 @@ namespace Game.Agent.Editor
 
         void CreateNode(System.Type type)
         {
-            Tree.Node node = tree.CreateNode(type);
+            Game.Agent.Tree.Node node = tree.CreateNode(type);
             CreateNodeView(node);
         }
 
-        void CreateNodeView(Tree.Node node)
+        void CreateNodeView(Game.Agent.Tree.Node node)
         {
             //Take in node and add it to the window
             NodeView nodeView = new NodeView(node);

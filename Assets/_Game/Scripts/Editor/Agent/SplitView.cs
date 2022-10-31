@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
-namespace Game.Agent.Editor
+namespace GameEditor.Agent
 {
     public class SplitView : TwoPaneSplitView
     {

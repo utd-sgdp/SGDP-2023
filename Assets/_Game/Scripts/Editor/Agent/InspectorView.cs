@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEditor;
-namespace Game.Agent.Editor
+namespace GameEditor.Agent
 {
     public class InspectorView : VisualElement
     {
@@ -10,10 +10,7 @@ namespace Game.Agent.Editor
 
         UnityEditor.Editor editor;
 
-        public InspectorView()
-        {
-
-        }
+        public InspectorView() { }
 
         internal void UpdateSelection(NodeView nodeView)
         {

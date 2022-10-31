@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
 using Game.Agent.Tree;
 
-namespace Game.Agent.Editor
+namespace GameEditor.Agent
 {
     public class BehaviourTreeEditor : EditorWindow
     {
@@ -21,12 +21,12 @@ namespace Game.Agent.Editor
             BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();
             wnd.titleContent = new GUIContent("BehaviourTreeEditor");
         }
-
+        
         //Opens editor window if double click a BehaviourTree
         [OnOpenAsset]
         public static bool OnOpenAsset(int instanceId, int line)
         {
-            if (Selection.activeObject is Tree.BehaviourTree)
+            if (Selection.activeObject is Game.Agent.Tree.BehaviourTree)
             {
                 OpenWindow();
                 return true;
@@ -40,12 +40,12 @@ namespace Game.Agent.Editor
             VisualElement root = rootVisualElement;
 
             // Import UXML
-            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/_Game/Scripts/Agent/Editor/BehaviourTreeEditor.uxml");
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/_Game/Scripts/Editor/Agent/BehaviourTreeEditor.uxml");
             visualTree.CloneTree(root);
 
             // A stylesheet can be added to a VisualElement.
             // The style will be applied to the VisualElement and all of its children.
-            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Agent/Editor/BehaviourTreeEditor.uss");
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Editor/Agent/BehaviourTreeEditor.uss");
             root.styleSheets.Add(styleSheet);
 
             treeView = root.Q<BehaviourTreeView>();
@@ -93,7 +93,7 @@ namespace Game.Agent.Editor
 
         private void OnSelectionChange()
         {
-            Tree.BehaviourTree tree = Selection.activeObject as Tree.BehaviourTree;
+            Game.Agent.Tree.BehaviourTree tree = Selection.activeObject as Game.Agent.Tree.BehaviourTree;
 
             if (!tree)
             {
