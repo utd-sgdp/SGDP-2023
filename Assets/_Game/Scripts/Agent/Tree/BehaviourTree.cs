@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Game.Agent.Tree
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Agent/Tree")]
     public class BehaviourTree : ScriptableObject
     {
-        public Node RootNode;
-        public State TreeState = State.Running;
-        public Blackboard Blackboard;
-        //Nodes in tree
-        public List<Node> nodes = new List<Node>();
+        [HideInInspector] public Node RootNode;
+        [HideInInspector] public State TreeState = State.Running;
+        [HideInInspector] public Blackboard Blackboard;
+        [HideInInspector] public List<Node> nodes = new();
 
         public State Update()
         {
@@ -29,7 +31,7 @@ namespace Game.Agent.Tree
         /// </summary>
         /// <param name="node"> The node to traverse downwards from. </param>
         /// <param name="callback"> Callback performed at each node visited. </param>
-        public static void Traverse(Node node, System.Action<Node> callback)
+        public static void Traverse(Node node, Action<Node> callback)
         {
             if (!node) return;
             
@@ -53,137 +55,136 @@ namespace Game.Agent.Tree
             });
         }
 
-        public Node CreateNode(System.Type type)
+        public Node CreateNode(Type type)
         {
-            Node node = ScriptableObject.CreateInstance(type) as Node;
-            //Set name to appear in inspector
+            Node node = CreateInstance(type) as Node;
+            nodes.Add(node);
+            
+            #if UNITY_EDITOR
+            // Set name to appear in inspector
+            // ReSharper disable once PossibleNullReferenceException
             node.name = type.Name;
             node.guid = GUID.Generate().ToString();
 
             Undo.RecordObject(this, "Behaviour Tree (CreateNode)");
-            nodes.Add(node);
 
-            //Makes ScriptableObject node subasset of BehaviourTree object
+            // Makes node sub-asset of BehaviourTree
             if (!Application.isPlaying)
             {
                 AssetDatabase.AddObjectToAsset(node, this);
             }
             Undo.RegisterCreatedObjectUndo(node, "Behaviour Tree (CreateNode)");
             AssetDatabase.SaveAssets();
+            #endif
 
             return node;
         }
 
         public void DeleteNode(Node node)
         {
-            Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
             nodes.Remove(node);
+            
+            #if UNITY_EDITOR
+            Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
 
             //AssetDatabase.RemoveObjectFromAsset(node);
             Undo.DestroyObjectImmediate(node);
             AssetDatabase.SaveAssets();
+            #endif
         }
 
-        //Methods to add and remove children to be called by OnGraphViewChanged when an edge is created between nodes
-        public void AddChild(Node parent, Node child)
+        /// <summary>
+        /// Adds node to tree. Can be called by OnGraphViewChanged to connect nodes.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="child"></param>
+        public static void AddChild(Node parent, Node child)
         {
+            bool isValid = false;
             RootNode root = parent as RootNode;
             if (root)
             {
-                Undo.RecordObject(root, "Behaviour Tree (AddChild)");
                 root.child = child;
-                EditorUtility.SetDirty(root);
+                isValid = true;
             }
 
-                DecoratorNode decorator = parent as DecoratorNode;
+            DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
-                Undo.RecordObject(decorator, "Behaviour Tree (AddChild)");
                 decorator.child = child;
-                EditorUtility.SetDirty(decorator);
+                isValid = true;
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
+            {
+                composite.Children.Add(child);
+                isValid = true;
+            }
+
+            #if UNITY_EDITOR
+            if (isValid)
             {
                 Undo.RecordObject(composite, "Behaviour Tree (AddChild)");
-                composite.Children.Add(child);
                 EditorUtility.SetDirty(composite);
             }
+            #endif
         }
 
-        public void RemoveChild(Node parent, Node child)
+        /// <summary>
+        /// Removes node from tree. Can be called by OnGraphViewChanged to disconnect or remove nodes.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="child"></param>
+        public static void RemoveChild(Node parent, Node child)
         {
+            bool isValid = false;
             RootNode root = parent as RootNode;
             if (root)
             {
-                Undo.RecordObject(root, "Behaviour Tree (RemoveChild)");
                 root.child = null;
-                EditorUtility.SetDirty(root);
+                isValid = true;
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
-                Undo.RecordObject(decorator, "Behaviour Tree (RemoveChild)");
                 decorator.child = null;
-                EditorUtility.SetDirty(decorator);
+                isValid = true;
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
+            {
+                composite.Children.Remove(child);
+                isValid = true;
+            }
+            
+            #if UNITY_EDITOR
+            if (isValid)
             {
                 Undo.RecordObject(composite, "Behaviour Tree (RemoveChild)");
-                composite.Children.Remove(child);
                 EditorUtility.SetDirty(composite);
             }
+            #endif
         }
 
-        public List<Node> GetChildren(Node parent)
-        {
-            List<Node> children = new List<Node>();
-            DecoratorNode decorator = parent as DecoratorNode;
-            if (decorator && decorator.child != null)
-            {
-                children.Add(decorator.child);
-            }
-
-            RootNode root = parent as RootNode;
-            if (root && root.child != null)
-            {
-                children.Add(root.child);
-            }
-
-            CompositeNode composite = parent as CompositeNode;
-            if (composite)
-            {
-                return composite.Children;
-            }
-
-            return children;
-        }
-
-        /**
-        public void Traverse(Node node, System.Action<Node> visiter)
-        {
-            if (node)
-            {
-                visiter.Invoke(node);
-                var children = GetChildren(node);
-                children.ForEach((n) => Traverse(n, visiter));
-            }
-        }**/
-
-        //Allow AIAgent to clone the tree for runtime usage to prevent multiple AIAgents using the same tree from conflicting.
+        /// <summary>
+        /// Creates deep copy of this <see cref="BehaviourTree"/>. Useful to clone at runtime to prevent errors caused by
+        /// multiple agents using the same tree.
+        /// </summary>
+        /// <returns></returns>
         public BehaviourTree Clone()
         {
             BehaviourTree tree = Instantiate(this);
             tree.RootNode = tree.RootNode.Clone();
             tree.nodes = new List<Node>();
-            Traverse(tree.RootNode, (n) =>
+            
+            Traverse(tree.RootNode, node =>
             {
-                tree.nodes.Add(n);
+                tree.nodes.Add(node);
             });
+            
             return tree;
         }
     }

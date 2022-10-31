@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Game.Agent.Tree
 {
@@ -9,7 +8,7 @@ namespace Game.Agent.Tree
 
         public sealed override List<Node> GetChildren() => new() { child };
 
-        public override Tree.Node Clone()
+        public override Node Clone()
         {
             DecoratorNode node = Instantiate(this);
             node.child = child.Clone();

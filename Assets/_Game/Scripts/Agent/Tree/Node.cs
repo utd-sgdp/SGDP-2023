@@ -10,10 +10,11 @@ namespace Game.Agent.Tree
     
     public abstract class Node : ScriptableObject
     {
-        [HideInInspector] public State CurrentState { get; protected set; } = State.Running;
-        [HideInInspector] public bool Started { get; protected set; }
-        [HideInInspector] public string guid;
+        public State CurrentState { get; protected set; } = State.Running;
+        public bool Started { get; protected set; }
+        
         [TextArea] public string Description;
+        [HideInInspector] public string guid;
         [HideInInspector] public Blackboard Blackboard;
         [HideInInspector] public Vector2 editorPosition;
 
@@ -60,8 +61,12 @@ namespace Game.Agent.Tree
 
         public abstract List<Node> GetChildren();
 
-        //Allow AIAgent to clone nodes to copy the behaviour tree for runtime usage to prevent multiple AIAgents using the same tree from conflicting.
-        public virtual Tree.Node Clone()
+        /// <summary>
+        /// Create deep copy of this <see cref="Node"/>. Useful to clone at runtime to prevent errors caused by
+        /// multiple agents using the same tree.
+        /// </summary>
+        /// <returns></returns>
+        public virtual Node Clone()
         {
             return Instantiate(this);
         }

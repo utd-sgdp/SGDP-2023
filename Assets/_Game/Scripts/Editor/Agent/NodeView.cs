@@ -1,5 +1,4 @@
 using Game.Agent.Tree;
-using PlasticPipe.PlasticProtocol.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,21 +13,22 @@ namespace GameEditor.Agent
     public class NodeView : UnityEditor.Experimental.GraphView.Node
     {
         public Action<NodeView> OnNodeSelected;
-        public Game.Agent.Tree.Node node;
-        public Port input;
-        public Port output;
-        public NodeView(Game.Agent.Tree.Node node) : base("Assets\\_Game\\Scripts\\Agent\\Editor\\NodeView.uxml")
+        public Game.Agent.Tree.Node Node;
+        public Port Input;
+        public Port Output;
+        
+        public NodeView(Game.Agent.Tree.Node node) : base("Assets\\_Game\\Scripts\\Editor\\Agent\\NodeView.uxml")
         {
-            //Store reference and title to be displayed
-            this.node = node;
-            this.title = node.name;
-            this.viewDataKey = node.guid;
+            // Store reference and title to be displayed
+            Node = node;
+            title = node.name;
+            viewDataKey = node.guid;
 
-            //Set UI element's position to match the node's position
+            // Set UI element's position to match the node's position
             style.left = node.editorPosition.x;
             style.top = node.editorPosition.y;
 
-            //Create ports for edges to go to depending on type of node
+            // Create ports for edges to go to depending on type of node
             CreateInputPorts();
             CreateOutputPorts();
             SetupClasses();
@@ -38,112 +38,89 @@ namespace GameEditor.Agent
             descriptionLabel.Bind(new SerializedObject(node));
         }
 
-        //Give each node class to change style of each type independently in editor
-        private void SetupClasses()
+        // Give each node class to change style of each type independently in editor
+        void SetupClasses()
         {
-            if (node is Game.Agent.Tree.ActionNode)
+            switch (Node)
             {
-                AddToClassList("action");
-            }
-            else if (node is Game.Agent.Tree.CompositeNode)
-            {
-                AddToClassList("composite");
-            }
-            else if (node is Game.Agent.Tree.DecoratorNode)
-            {
-                AddToClassList("decorator");
-            }
-            else if (node is Game.Agent.Tree.RootNode)
-            {
-                AddToClassList("root");
+                case ActionNode:
+                    AddToClassList("action");
+                    break;
+                case CompositeNode:
+                    AddToClassList("composite");
+                    break;
+                case DecoratorNode:
+                    AddToClassList("decorator");
+                    break;
+                case RootNode:
+                    AddToClassList("root");
+                    break;
             }
         }
 
-        private void CreateInputPorts()
+        void CreateInputPorts()
         {
-            if (node is Game.Agent.Tree.ActionNode)
+            if (Node is ActionNode or CompositeNode or DecoratorNode)
             {
-                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
-            }
-            else if (node is Game.Agent.Tree.CompositeNode)
-            {
-                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
-            }
-            else if (node is Game.Agent.Tree.DecoratorNode)
-            {
-                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
-            }
-            else if (node is Game.Agent.Tree.RootNode)
-            {
-                
+                Input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
 
-            if (input != null)
-            {
-                input.portName = "";
-                input.style.flexDirection = FlexDirection.Column; //Ports created during runtime so this modifies style during runtime
-                inputContainer.Add(input);
-            }
+            // exit, this node has no input ports to configure
+            if (Input == null) return;
+
+            // Ports created during runtime so this modifies style during runtime
+            Input.style.flexDirection = FlexDirection.Column;
             
+            Input.portName = "";
+            inputContainer.Add(Input);
         }
 
-        private void CreateOutputPorts()
+        void CreateOutputPorts()
         {
-            if (node is Game.Agent.Tree.ActionNode)
+            if (Node is CompositeNode or DecoratorNode or RootNode)
             {
-
-            }
-            else if (node is Game.Agent.Tree.CompositeNode)
-            {
-                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
-            }
-            else if (node is Game.Agent.Tree.DecoratorNode)
-            {
-                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
-            }
-            else if (node is Game.Agent.Tree.RootNode)
-            {
-                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
+                Output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
             }
 
-            if (output != null)
-            {
-                output.portName = "";
-                output.style.flexDirection = FlexDirection.ColumnReverse; //Ports created during runtime so this modifies style during runtime
-                outputContainer.Add(output);
-            }
+            // exit, this node has no output ports to configure
+            if (Output == null) return;
+
+            // Ports created during runtime so this modifies style during runtime
+            Output.style.flexDirection = FlexDirection.ColumnReverse;
+            
+            Output.portName = "";
+            outputContainer.Add(Output);
         }
 
         public override void OnSelected()
         {
             base.OnSelected();
-            if (OnNodeSelected != null)
-            {
-                OnNodeSelected.Invoke(this);
-            }
+            OnNodeSelected?.Invoke(this);
         }
 
-        //Override method from GraphView
         public override void SetPosition(Rect newPos)
         {
             base.SetPosition(newPos);
-            Undo.RecordObject(node, "Behaviour Tree (Set Position)");
-            node.editorPosition.x = newPos.xMin;
-            node.editorPosition.y = newPos.yMin;
-            EditorUtility.SetDirty(node);
+            Undo.RecordObject(Node, "Behaviour Tree (Set Position)");
+            
+            Node.editorPosition.x = newPos.xMin;
+            Node.editorPosition.y = newPos.yMin;
+            
+            EditorUtility.SetDirty(Node);
         }
 
-        //Sort composite nodes to order children from position in editor left to right
+        /// <summary>
+        /// Sorts composite nodes' children by horizontal position.
+        /// </summary>
         public void SortChildren()
         {
-            CompositeNode composite = node as CompositeNode;
-            if (composite)
-            {
-                composite.Children.Sort(SortByHorizontalPosition);
-            }
+            CompositeNode composite = Node as CompositeNode;
+            if (!composite) return;
+            
+            composite.Children.Sort(SortByHorizontalPosition);
         }
 
-        private int SortByHorizontalPosition(Game.Agent.Tree.Node left, Game.Agent.Tree.Node right)
+        static int SortByHorizontalPosition(Game.Agent.Tree.Node left, Game.Agent.Tree.Node right)
         {
             return left.editorPosition.x < right.editorPosition.y ? -1 : 1;
         }
@@ -153,22 +130,27 @@ namespace GameEditor.Agent
             RemoveFromClassList("running");
             RemoveFromClassList("success");
             RemoveFromClassList("failure");
-            if (Application.isPlaying) {
-                switch (node.CurrentState)
-                {
-                    case State.Running:
-                        if (node.Started)
-                        {
-                            AddToClassList("running");
-                        }
-                        break;
-                    case State.Success:
-                        AddToClassList("success");
-                        break;
-                    case State.Failure:
-                        AddToClassList("failure");
-                        break;
-                }
+
+            // exit, the behaviour tree is not running.
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
+            switch (Node.CurrentState)
+            {
+                case State.Running:
+                    if (Node.Started)
+                    {
+                        AddToClassList("running");
+                    }
+                    break;
+                case State.Success:
+                    AddToClassList("success");
+                    break;
+                case State.Failure:
+                    AddToClassList("failure");
+                    break;
             }
         }
     }

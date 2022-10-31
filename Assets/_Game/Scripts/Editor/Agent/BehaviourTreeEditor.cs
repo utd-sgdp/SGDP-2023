@@ -15,23 +15,25 @@ namespace GameEditor.Agent
         SerializedObject treeObject;
         SerializedProperty blackboardProperty;
 
-        [MenuItem("BehaviourTreeEditor/Editor ...")]
         public static void OpenWindow()
         {
-            BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();
-            wnd.titleContent = new GUIContent("BehaviourTreeEditor");
+            BehaviourTreeEditor window = GetWindow<BehaviourTreeEditor>();
+            window.titleContent = new GUIContent("BehaviourTreeEditor");
         }
         
-        //Opens editor window if double click a BehaviourTree
+        /// <summary>
+        /// Opens editor window, if a BehaviourTree has been double clicked
+        /// </summary>
+        /// <param name="instanceId"></param>
+        /// <param name="line"></param>
+        /// <returns></returns>
         [OnOpenAsset]
         public static bool OnOpenAsset(int instanceId, int line)
         {
-            if (Selection.activeObject is Game.Agent.Tree.BehaviourTree)
-            {
-                OpenWindow();
-                return true;
-            }
-            return false;
+            if (Selection.activeObject is not BehaviourTree) return false;
+
+            OpenWindow();
+            return true;
         }
 
         public void CreateGUI()
@@ -62,19 +64,19 @@ namespace GameEditor.Agent
             OnSelectionChange();
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
-        private void OnPlayModeStateChanged(PlayModeStateChange obj)
+        void OnPlayModeStateChanged(PlayModeStateChange obj)
         {
             switch (obj)
             {
@@ -91,12 +93,13 @@ namespace GameEditor.Agent
             }
         }
 
-        private void OnSelectionChange()
+        void OnSelectionChange()
         {
-            Game.Agent.Tree.BehaviourTree tree = Selection.activeObject as Game.Agent.Tree.BehaviourTree;
+            BehaviourTree tree = Selection.activeObject as BehaviourTree;
 
             if (!tree)
             {
+                // TODO: ???????
                 if (Selection.activeGameObject)
                 {
                     AIAgent runner = Selection.activeGameObject.GetComponent<AIAgent>();
@@ -105,10 +108,8 @@ namespace GameEditor.Agent
 
             if (Application.isPlaying)
             {
-                if (tree)
-                {
-                    treeView.PopulateView(tree);
-                }
+                if (!tree) return;
+                treeView.PopulateView(tree);
             }
             else
             {
@@ -118,11 +119,10 @@ namespace GameEditor.Agent
                 }
             }
 
-            if (tree != null)
-            {
-                treeObject = new SerializedObject(tree);
-                blackboardProperty = treeObject.FindProperty("Blackboard");
-            }
+            if (tree == null) return;
+
+            treeObject = new SerializedObject(tree);
+            blackboardProperty = treeObject.FindProperty("Blackboard");
         }
 
         void OnNodeSelectionChanged(NodeView node)

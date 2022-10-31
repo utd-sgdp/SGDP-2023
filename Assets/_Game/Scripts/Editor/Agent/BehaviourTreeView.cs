@@ -3,39 +3,41 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using System;
 using System.Linq;
+using Game.Agent.Tree;
 
 namespace GameEditor.Agent
 {
     public class BehaviourTreeView : GraphView
     {
-        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
 
-        Game.Agent.Tree.BehaviourTree tree;
+        BehaviourTree _tree;
         public Action<NodeView> OnNodeSelected;
+        
         public BehaviourTreeView()
         {
-            //Adds a grid to background
+            // Show grid background
             Insert(0, new GridBackground());
 
-            //Add Controls to editor window
+            // Add controls
             this.AddManipulator(new ContentZoomer());
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
 
+            // load stylesheet
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/_Game/Scripts/Editor/Agent/BehaviourTreeEditor.uss");
             styleSheets.Add(styleSheet);
 
-            //Add method to update view whenever undo or redo
+            // enable undo/redo
             Undo.undoRedoPerformed += OnUndoRedo;
         }
 
-        private void OnUndoRedo()
+        void OnUndoRedo()
         {
-            PopulateView(tree);
+            PopulateView(_tree);
             AssetDatabase.SaveAssets();
         }
 
@@ -44,50 +46,53 @@ namespace GameEditor.Agent
             return GetNodeByGuid(node.guid) as NodeView;
         }
 
-        internal void PopulateView(Game.Agent.Tree.BehaviourTree tree)
+        internal void PopulateView(BehaviourTree tree)
         {
-            this.tree = tree;
+            _tree = tree;
 
-            //Ignore events from graphView
+            // Ignore events from graphView
             graphViewChanged -= OnGraphViewChanged;
-            //Clear view of any previous tree
+            
+            // Clear view of any previous tree
             DeleteElements(graphElements);
             graphViewChanged += OnGraphViewChanged;
 
+            // create root node, if missing
             if (tree.RootNode == null)
             {
-                tree.RootNode = tree.CreateNode(typeof(Game.Agent.Tree.RootNode)) as Game.Agent.Tree.RootNode;
+                tree.RootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
                 EditorUtility.SetDirty(tree);
                 AssetDatabase.SaveAssets();
             }
 
-            //Call CreateNodeView on each node of tree
-            tree.nodes.ForEach(node => CreateNodeView(node));
+            // render each node
+            tree.nodes.ForEach(CreateNodeView);
 
-            //Create edges between parents and children
-            tree.nodes.ForEach(node => {
-                var children = tree.GetChildren(node);
-                children.ForEach(child => {
+            // render node edges
+            foreach (var node in tree.nodes)
+            {
+                var children = node.GetChildren();
+                foreach (var child in children)
+                {
                     NodeView parentView = FindNodeView(node);
                     NodeView childView = FindNodeView(child);
 
-                    Edge edge = parentView.output.ConnectTo(childView.input);
+                    Edge edge = parentView.Output.ConnectTo(childView.Input);
                     AddElement(edge);
-                });
-            });
+                }
+            }
         }
 
-        private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
+        GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
         {
-            //Cast to NodeView then delete node
+            // delete nodes (and their children/edges)
             if (graphViewChange.elementsToRemove != null)
             {
-                graphViewChange.elementsToRemove.ForEach(elem =>
+                foreach (var elem in graphViewChange.elementsToRemove)
                 {
-                    NodeView nodeView = elem as NodeView;
-                    if (nodeView != null)
+                    if (elem is NodeView nodeView)
                     {
-                        tree.DeleteNode(nodeView.node);
+                        _tree.DeleteNode(nodeView.Node);
                     }
 
                     Edge edge = elem as Edge;
@@ -95,27 +100,28 @@ namespace GameEditor.Agent
                     {
                         NodeView parentView = edge.output.node as NodeView;
                         NodeView childView = edge.input.node as NodeView;
-                        tree.RemoveChild(parentView.node, childView.node);
+                        BehaviourTree.RemoveChild(parentView.Node, childView.Node);
                     }
-                });
+                }
             }
 
             if (graphViewChange.edgesToCreate != null)
             {
-                graphViewChange.edgesToCreate.ForEach(edge => {
+                foreach (var edge in graphViewChange.edgesToCreate)
+                {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
-                    tree.AddChild(parentView.node, childView.node);
-                });
+                    BehaviourTree.AddChild(parentView.Node, childView.Node);
+                }
             }
 
             if (graphViewChange.movedElements != null)
             {
-                nodes.ForEach((n) =>
+                foreach (var n in nodes)
                 {
                     NodeView view = n as NodeView;
                     view.SortChildren();
-                });
+                }
             }
 
             return graphViewChange;
@@ -128,54 +134,53 @@ namespace GameEditor.Agent
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            //base.BuildContextualMenu(evt);
-            //Create dropdown menu with option for each type of node
+            // base.BuildContextualMenu(evt);
+            
+            // show action nodes
+            var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
+            foreach (var type in types)
             {
-                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.ActionNode>();
-                foreach (var type in types)
-                {
-                    evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
-                }
+                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
             }
 
+            // show decorator nodes
+            types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
+            foreach (var type in types)
             {
-                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.DecoratorNode>();
-                foreach (var type in types)
-                {
-                    evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
-                }
+                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
             }
 
+            // show composite nodes
+            types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
+            foreach (var type in types)
             {
-                var types = TypeCache.GetTypesDerivedFrom<Game.Agent.Tree.CompositeNode>();
-                foreach (var type in types)
-                {
-                    evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
-                }
+                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
             }
         }
 
-        void CreateNode(System.Type type)
+        void CreateNode(Type type)
         {
-            Game.Agent.Tree.Node node = tree.CreateNode(type);
+            Game.Agent.Tree.Node node = _tree.CreateNode(type);
             CreateNodeView(node);
         }
 
         void CreateNodeView(Game.Agent.Tree.Node node)
         {
-            //Take in node and add it to the window
-            NodeView nodeView = new NodeView(node);
-            nodeView.OnNodeSelected =  OnNodeSelected;
+            // render node
+            NodeView nodeView = new NodeView(node)
+            {
+                OnNodeSelected = OnNodeSelected,
+            };
             AddElement(nodeView);
         }
 
         public void UpdateNodeStates()
         {
-            nodes.ForEach((n) =>
+            foreach (var node in nodes)
             {
-                NodeView view = n as NodeView;
+                NodeView view = node as NodeView;
                 view.UpdateState();
-            });
+            }
         }
     }
 }

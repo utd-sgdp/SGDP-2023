@@ -6,26 +6,25 @@ namespace GameEditor.Agent
 {
     public class InspectorView : VisualElement
     {
-        public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<InspectorView, UxmlTraits> { }
 
-        UnityEditor.Editor editor;
-
-        public InspectorView() { }
+        Editor _editor;
 
         internal void UpdateSelection(NodeView nodeView)
         {
-            //Clear inspector elements then display information about node
+            // remove previous selection's info
             Clear();
 
-            UnityEngine.Object.DestroyImmediate(editor);
-            editor = UnityEditor.Editor.CreateEditor(nodeView.node);
-            //Renders object if it still exists
+            // update editor reference
+            UnityEngine.Object.DestroyImmediate(_editor);
+            _editor = Editor.CreateEditor(nodeView.Node);
+            
+            // render object
             IMGUIContainer container = new IMGUIContainer(() => {
-                if (editor.target)
-                {
-                    editor.OnInspectorGUI();
-                }
+                if (!_editor.target) return;
+                _editor.OnInspectorGUI();
             });
+            
             Add(container);
         }
     }
