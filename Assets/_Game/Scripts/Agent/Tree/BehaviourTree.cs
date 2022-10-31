@@ -58,16 +58,18 @@ namespace Game.Agent.Tree
         public Node CreateNode(Type type)
         {
             Node node = CreateInstance(type) as Node;
-            nodes.Add(node);
-            
-            #if UNITY_EDITOR
-            // Set name to appear in inspector
-            // ReSharper disable once PossibleNullReferenceException
             node.name = type.Name;
             node.guid = GUID.Generate().ToString();
 
+            #if UNITY_EDITOR
+            // Set name to appear in inspector
+            // ReSharper disable once PossibleNullReferenceException
             Undo.RecordObject(this, "Behaviour Tree (CreateNode)");
+            #endif
 
+            nodes.Add(node);
+
+            #if UNITY_EDITOR
             // Makes node sub-asset of BehaviourTree
             if (!Application.isPlaying)
             {
@@ -82,14 +84,16 @@ namespace Game.Agent.Tree
 
         public void DeleteNode(Node node)
         {
-            nodes.Remove(node);
-            
             #if UNITY_EDITOR
-            Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
+                Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
+            #endif
 
-            //AssetDatabase.RemoveObjectFromAsset(node);
-            Undo.DestroyObjectImmediate(node);
-            AssetDatabase.SaveAssets();
+            nodes.Remove(node);
+
+            #if UNITY_EDITOR                           
+                //AssetDatabase.RemoveObjectFromAsset(node);
+                Undo.DestroyObjectImmediate(node);
+                AssetDatabase.SaveAssets();
             #endif
         }
 
@@ -100,35 +104,47 @@ namespace Game.Agent.Tree
         /// <param name="child"></param>
         public static void AddChild(Node parent, Node child)
         {
-            bool isValid = false;
             RootNode root = parent as RootNode;
             if (root)
             {
+                #if UNITY_EDITOR
+                Undo.RecordObject(root, "Behaviour Tree (AddChild)");
+                #endif
+
                 root.child = child;
-                isValid = true;
+
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(root);
+                #endif
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
+                #if UNITY_EDITOR
+                Undo.RecordObject(decorator, "Behaviour Tree (AddChild)");
+                #endif
+
                 decorator.child = child;
-                isValid = true;
+
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(decorator);
+                #endif
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
             {
-                composite.Children.Add(child);
-                isValid = true;
-            }
-
-            #if UNITY_EDITOR
-            if (isValid)
-            {
+                #if UNITY_EDITOR
                 Undo.RecordObject(composite, "Behaviour Tree (AddChild)");
+                #endif
+
+                composite.Children.Add(child);
+
+                #if UNITY_EDITOR
                 EditorUtility.SetDirty(composite);
+                #endif
             }
-            #endif
         }
 
         /// <summary>
@@ -138,35 +154,47 @@ namespace Game.Agent.Tree
         /// <param name="child"></param>
         public static void RemoveChild(Node parent, Node child)
         {
-            bool isValid = false;
             RootNode root = parent as RootNode;
             if (root)
             {
+                #if UNITY_EDITOR
+                Undo.RecordObject(root, "Behaviour Tree (RemoveChild)");
+                #endif
+
                 root.child = null;
-                isValid = true;
+
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(root);
+                #endif
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
+                #if UNITY_EDITOR
+                Undo.RecordObject(decorator, "Behaviour Tree (RemoveChild)");
+                #endif
+
                 decorator.child = null;
-                isValid = true;
+
+                #if UNITY_EDITOR
+                EditorUtility.SetDirty(decorator);
+                #endif
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
             {
-                composite.Children.Remove(child);
-                isValid = true;
-            }
-            
-            #if UNITY_EDITOR
-            if (isValid)
-            {
+                #if UNITY_EDITOR
                 Undo.RecordObject(composite, "Behaviour Tree (RemoveChild)");
+                #endif
+
+                composite.Children.Remove(child);
+
+                #if UNITY_EDITOR
                 EditorUtility.SetDirty(composite);
+                #endif
             }
-            #endif
         }
 
         /// <summary>
