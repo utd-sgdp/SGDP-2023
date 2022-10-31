@@ -1,6 +1,5 @@
 using System;
 using Game.Weapons;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +8,7 @@ namespace Game.Player
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerWeapon : MonoBehaviour
     {
+        public WeaponBase Weapon => _weapon;
         [SerializeField]
         WeaponBase _weapon;
 
@@ -26,10 +26,6 @@ namespace Game.Player
             }
         }
 
-        public WeaponBase getWeapon()
-        {
-            return _weapon;
-        }
 
         void OnEnable()
         {

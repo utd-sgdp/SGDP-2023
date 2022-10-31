@@ -17,7 +17,7 @@ namespace Game.Items
             if (pw == null) return;
 
 
-            pw.getWeapon().Multiplier += DamageIncrease;
+            pw.Weapon.Multiplier += DamageIncrease;
 
             print("Damage increased by " + DamageIncrease * 100 + " percent");
         }
