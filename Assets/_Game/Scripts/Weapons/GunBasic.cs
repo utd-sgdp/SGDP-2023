@@ -9,10 +9,12 @@ namespace Game.Weapons
     public class GunBasic : WeaponBase
     {
         [Header("Stats")]
-        public int magazineSize;
-        public float reloadTime,fireRate;
-        private bool reloading = false;
-        public int bulletsLeft;
+        [SerializeField]
+        int _magazineSize;
+        float _reloadTime;
+        
+        [SerializeField, ReadOnly]
+        int _bulletsLeft;
 
         [Header("References")]
         [SerializeField, HighlightIfNull]
@@ -20,34 +22,42 @@ namespace Game.Weapons
         
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
+        
+        bool _reloading;
 
-        protected override void Awake() {
-            bulletsLeft = magazineSize;
-            ConfigureCollisions();
-            DisableCollisions();
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            _bulletsLeft = _magazineSize;
         }
+        
         protected override void OnAttack()
         {
-            if(reloading){
-                Debug.Log("Reloading");
+            if (_reloading)
+            {
+                Debug.Log("The gun is still reloading...");
+                return;
             }
 
-            if(!reloading){
-                _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
-                bulletsLeft--;
+            if (_bulletsLeft <= 0)
+            {
+                StartCoroutine(reload());
+                return;
             }
             
-            if(bulletsLeft <= 0 && !reloading) {
-                StartCoroutine(reload());
-            }
+            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
+            _bulletsLeft--;
         }
 
         IEnumerator reload()
         {
-            reloading = true; 
-            yield return new WaitForSeconds(reloadTime);
-            bulletsLeft = magazineSize;
-            reloading = false;
+            _reloading = true;
+            
+            yield return new WaitForSeconds(_reloadTime);
+            _reloading = false;
+            
+            _bulletsLeft = _magazineSize;
         }
     }
 }
