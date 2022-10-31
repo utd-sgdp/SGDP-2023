@@ -55,6 +55,7 @@ namespace GameEditor.Agent
             blackboardView = root.Q<IMGUIContainer>();
             blackboardView.onGUIHandler = () =>
             {
+                if (treeObject == null) return;
                 treeObject.Update();
                 EditorGUILayout.PropertyField(blackboardProperty);
                 treeObject.ApplyModifiedProperties();

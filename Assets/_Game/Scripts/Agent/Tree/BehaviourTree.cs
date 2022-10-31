@@ -58,12 +58,13 @@ namespace Game.Agent.Tree
         public Node CreateNode(Type type)
         {
             Node node = CreateInstance(type) as Node;
+            
+            // ReSharper disable once PossibleNullReferenceException
             node.name = type.Name;
             node.guid = GUID.Generate().ToString();
 
             #if UNITY_EDITOR
             // Set name to appear in inspector
-            // ReSharper disable once PossibleNullReferenceException
             Undo.RecordObject(this, "Behaviour Tree (CreateNode)");
             #endif
 
@@ -85,15 +86,15 @@ namespace Game.Agent.Tree
         public void DeleteNode(Node node)
         {
             #if UNITY_EDITOR
-                Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
+            Undo.RecordObject(this, "Behaviour Tree (DeleteNode)");
             #endif
 
             nodes.Remove(node);
 
             #if UNITY_EDITOR                           
-                //AssetDatabase.RemoveObjectFromAsset(node);
-                Undo.DestroyObjectImmediate(node);
-                AssetDatabase.SaveAssets();
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(node);
+            AssetDatabase.SaveAssets();
             #endif
         }
 

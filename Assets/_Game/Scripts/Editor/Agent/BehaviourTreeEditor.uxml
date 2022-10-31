@@ -3,12 +3,12 @@
     <uie:Toolbar>
         <uie:ToolbarMenu display-tooltip-when-elided="true" text="Assets" />
     </uie:Toolbar>
-    <GameEditor.Agent.SplitView fixed-pane-initial-dimension="200">
+    <GameEditor.Agent.SplitView fixed-pane-initial-dimension="250" style="height: auto; width: auto;">
         <ui:VisualElement name="left-panel">
-            <GameEditor.Agent.SplitView orientation="Vertical" fixed-pane-initial-dimension="275">
+            <GameEditor.Agent.SplitView orientation="Vertical" fixed-pane-initial-dimension="300">
                 <ui:VisualElement name="inspector-container" style="height: 286px;">
-                    <GameEditor.Agent.InspectorView />
                     <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                    <GameEditor.Agent.InspectorView />
                 </ui:VisualElement>
                 <ui:VisualElement name="blackboard-container">
                     <ui:Label text="Blackboard" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />

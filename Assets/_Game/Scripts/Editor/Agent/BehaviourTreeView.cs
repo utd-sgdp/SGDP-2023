@@ -112,6 +112,7 @@ namespace GameEditor.Agent
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
                     BehaviourTree.AddChild(parentView.Node, childView.Node);
+                    parentView.SortChildren();
                 }
             }
 

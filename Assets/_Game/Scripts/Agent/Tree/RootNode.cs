@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game.Agent.Tree
 {
     public sealed class RootNode : Node
     {
-        public Node child;
+        [HideInInspector] public Node child;
         
         protected override void OnStart() { }
         protected override void OnStop() { }
