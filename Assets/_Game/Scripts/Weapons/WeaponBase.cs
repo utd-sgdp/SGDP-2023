@@ -8,6 +8,8 @@ namespace Game.Weapons
     public abstract class WeaponBase : MonoBehaviour
     {
         public float Damage => damage;
+
+        public float Multiplier = 1f;
         
         [Header("Damage")]
         [SerializeField]

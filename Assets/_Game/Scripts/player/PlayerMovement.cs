@@ -21,6 +21,8 @@ namespace Game.Player
         [Min(0)]
         float _timeToMaxVelocity = 0.25f;
 
+        public float Multiplier = 1f;
+
         [Header("Dash")]
         [SerializeField]
         [Min(0)]
@@ -145,7 +147,7 @@ namespace Game.Player
                     break;
             }
             
-            _body.velocity = nVelocity;
+            _body.velocity = nVelocity * Multiplier;
             UpdateAnimation(nVelocity);
         }
         

@@ -26,6 +26,11 @@ namespace Game.Player
             }
         }
 
+        public WeaponBase getWeapon()
+        {
+            return _weapon;
+        }
+
         void OnEnable()
         {
             _input.actions["Fire"].performed += SetFiring;
