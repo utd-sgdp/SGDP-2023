@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Items.Statistics;
 using UnityEngine;
 using Game.Player;
 using Game.Weapons;
@@ -9,13 +10,12 @@ namespace Game.Items
     public class DamageUpItem : ItemBase
     {
         [SerializeField]
-        float DamageIncrease = .15f;
+        StatModifier _modifier;
 
-        public override void pickup(GameObject player)
+        protected override void Pickup(PlayerStats player)
         {
-            ps.increaseDamageMultiplier(DamageIncrease);
-
-            print("Damage increased by " + DamageIncrease * 100 + " percent");
+            base.Pickup(player);
+            player.Damage.AddModifier(_modifier);
         }
     }
 }

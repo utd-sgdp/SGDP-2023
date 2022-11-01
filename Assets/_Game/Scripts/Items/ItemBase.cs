@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Player;
+using UnityEngine.Events;
 
 namespace Game.Items
 {
@@ -9,20 +10,23 @@ namespace Game.Items
     {
         public LayerMask layer = ~0;
 
-        public PlayerStats ps;
+        public UnityEvent<TransformData> OnPickup;
 
-        public abstract void pickup(GameObject player);
+        protected virtual void Pickup(PlayerStats player)
+        {
+            Destroy(gameObject, 0.01f);
+        }
 
-        private void OnTriggerEnter(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             // if not on our target layer, ignore collision
             if (!layer.Includes(other.gameObject.layer)) return;
 
-            ps = other.gameObject.GetComponentInParent<PlayerStats>();
-            if (ps == null) return;
+            var player = other.attachedRigidbody.GetComponent<PlayerStats>();
+            if (!player) return;
 
-            pickup(other.gameObject);
-            Destroy(gameObject);
+            Pickup(player);
+            OnPickup?.Invoke(transform);
         }
     }
 }

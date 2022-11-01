@@ -9,14 +9,10 @@ namespace Game.Items
         [SerializeField]
         float amountHealed = 50f;
 
-        public override void pickup(GameObject player)
+        protected override void Pickup(PlayerStats player)
         {
-            Damageable damageable = player.GetComponentInParent<Damageable>();
-            if (damageable == null) return;
-
-            damageable.Heal(amountHealed);
-
-            print("Healed for " + amountHealed + " health");
+            base.Pickup(player);
+            player.Damageable.Heal(amountHealed);
         }
     }
 }

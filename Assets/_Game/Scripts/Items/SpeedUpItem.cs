@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Items.Statistics;
 using UnityEngine;
 using Game.Player;
 
@@ -8,13 +9,12 @@ namespace Game.Items
     public class SpeedUpItem : ItemBase
     {
         [SerializeField]
-        float SpeedIncrease = .15f;
+        StatModifier _modifier;
 
-        public override void pickup(GameObject player)
+        protected override void Pickup(PlayerStats player)
         {
-            ps.increaseSpeedMultiplier(SpeedIncrease);
-
-            print("Speed increased by " + SpeedIncrease * 100 + " percent");
+            base.Pickup(player);
+            player.Speed.AddModifier(_modifier);
         }
     }
 }

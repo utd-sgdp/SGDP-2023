@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Items.Statistics;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Game.Weapons
 {
-    public abstract class WeaponBase : MonoBehaviour
+    public abstract class WeaponBase : MonoBehaviour, IStatTarget
     {
         public float Damage => damage;
 
@@ -120,6 +121,12 @@ namespace Game.Weapons
             // loop attack
             if (!Looping) yield break;
             AttemptAttack(true, AfterAttack, AfterCooldown);
+        }
+
+        public void OnStatChange(Stat stat)
+        {
+            Multiplier = stat.Value;
+            print($"Changed damage multiplier to { stat.Value }.");
         }
     }
 }

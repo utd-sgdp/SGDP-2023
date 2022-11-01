@@ -1,31 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Game.Items.Statistics;
 using Game.Player;
+using Game.Weapons;
+using UnityEngine;
 
 namespace Game
 {
-    [RequireComponent(typeof(PlayerWeapon))]
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(PlayerWeapon), typeof(PlayerMovement))]
     public class PlayerStats : MonoBehaviour
     {
-        PlayerWeapon pw;
-        PlayerMovement pm;
-        // Start is called before the first frame update
-        void Start()
+        PlayerWeapon DamageTarget;
+        public Stat Damage = new();
+        
+        IStatTarget SpeedTarget;
+        public Stat Speed = new();
+        
+        public Damageable Damageable { get; private set; }
+        
+        void Awake()
         {
-            pw = GetComponent<PlayerWeapon>();
-            pm = GetComponent<PlayerMovement>();
+            DamageTarget = GetComponent<PlayerWeapon>();
+            SpeedTarget = GetComponent<PlayerMovement>();
+            Damageable = GetComponentInChildren<Damageable>();
         }
 
-        public void increaseDamageMultiplier(float multiplier)
+        // connect stat object to game behaviours
+        void OnEnable()
         {
-            pw.Weapon.Multiplier += multiplier;
+            Damage.OnChange += DamageTarget.Weapon.OnStatChange;
+            Speed.OnChange += SpeedTarget.OnStatChange;
         }
 
-        public void increaseSpeedMultiplier(float multiplier)
+        void OnDisable()
         {
-            pm.Multiplier += multiplier;
+            Damage.OnChange -= DamageTarget.Weapon.OnStatChange;
+            Speed.OnChange  -= SpeedTarget.OnStatChange;
         }
     }
 }
