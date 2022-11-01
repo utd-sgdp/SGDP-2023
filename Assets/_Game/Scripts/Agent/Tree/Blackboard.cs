@@ -7,6 +7,7 @@ namespace Game.Agent.Tree
     public class Blackboard
     {
         public Transform target;
+        public Vector3 originalLocation;
 
         [NonSerialized] public GameObject gameObject;
         [NonSerialized] public Transform transform;
