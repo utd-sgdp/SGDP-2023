@@ -12,10 +12,7 @@ namespace Game.Items
 
         public override void pickup(GameObject player)
         {
-            PlayerMovement pm = player.GetComponentInParent<PlayerMovement>();
-            if (pm == null) return;
-
-            pm.Multiplier += SpeedIncrease;
+            ps.increaseSpeedMultiplier(SpeedIncrease);
 
             print("Speed increased by " + SpeedIncrease * 100 + " percent");
         }

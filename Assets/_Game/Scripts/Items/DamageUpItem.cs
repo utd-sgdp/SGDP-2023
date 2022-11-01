@@ -13,11 +13,7 @@ namespace Game.Items
 
         public override void pickup(GameObject player)
         {
-            PlayerWeapon pw = player.GetComponentInParent<PlayerWeapon>();
-            if (pw == null) return;
-
-
-            pw.Weapon.Multiplier += DamageIncrease;
+            ps.increaseDamageMultiplier(DamageIncrease);
 
             print("Damage increased by " + DamageIncrease * 100 + " percent");
         }
