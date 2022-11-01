@@ -33,6 +33,8 @@ namespace Game
         }
 
         #region Detect Doors
+
+        // Detects the direction each door faces and assigns that direction to them
         [Button]
         void DetectDoorDirection()
         {

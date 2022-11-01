@@ -17,12 +17,14 @@ namespace Game
             Open();
         }
 
+        // Opens the door
         public void Open()
         {
             mesh.enabled = false;
             col.enabled = false;
         }
 
+        // Closes the door
         public void Close()
         {
             mesh.enabled = true;
