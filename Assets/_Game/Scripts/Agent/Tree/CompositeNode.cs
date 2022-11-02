@@ -7,5 +7,12 @@ namespace Game.Agent.Tree
         public List<Node> Children = new();
 
         public sealed override List<Node> GetChildren() => Children.Clone();
+
+        public override Node Clone()
+        {
+            CompositeNode node = Instantiate(this);
+            node.Children = Children.ConvertAll(child => child.Clone());
+            return node;
+        }
     }
 }

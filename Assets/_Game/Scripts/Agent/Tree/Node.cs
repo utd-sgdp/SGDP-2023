@@ -12,8 +12,12 @@ namespace Game.Agent.Tree
     {
         public State CurrentState { get; protected set; } = State.Running;
         public bool Started { get; protected set; }
-        [TextArea] public string Description;
+        
+        [TextArea(3, 8)] public string Description;
+        [HideInInspector] public string guid;
         [HideInInspector] public Blackboard Blackboard;
+        [HideInInspector] public Vector2 editorPosition;
+        
 
         // ReSharper disable Unity.PerformanceAnalysis
         public State Update()
@@ -57,5 +61,15 @@ namespace Game.Agent.Tree
         protected abstract State OnUpdate();
 
         public abstract List<Node> GetChildren();
+
+        /// <summary>
+        /// Create deep copy of this <see cref="Node"/>. Useful to clone at runtime to prevent errors caused by
+        /// multiple agents using the same tree.
+        /// </summary>
+        /// <returns></returns>
+        public virtual Node Clone()
+        {
+            return Instantiate(this);
+        }
     }
 }

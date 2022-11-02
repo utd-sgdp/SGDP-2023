@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/_Game/Scripts/Editor/Agent/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=93ce34d99ce716848af1fff6632f7a22&amp;type=3#BehaviourTreeEditor" />
+    <uie:Toolbar>
+        <uie:ToolbarMenu display-tooltip-when-elided="true" text="Assets" />
+    </uie:Toolbar>
+    <GameEditor.Agent.SplitView fixed-pane-initial-dimension="250" style="height: auto; width: auto;">
+        <ui:VisualElement name="left-panel">
+            <GameEditor.Agent.SplitView orientation="Vertical" fixed-pane-initial-dimension="300">
+                <ui:VisualElement name="inspector-container" style="height: 286px;">
+                    <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                    <GameEditor.Agent.InspectorView />
+                </ui:VisualElement>
+                <ui:VisualElement name="blackboard-container">
+                    <ui:Label text="Blackboard" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+            </GameEditor.Agent.SplitView>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel">
+            <ui:Label text="Tree View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+            <GameEditor.Agent.BehaviourTreeView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </GameEditor.Agent.SplitView>
+</ui:UXML>
