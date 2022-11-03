@@ -85,12 +85,23 @@ namespace Game.Weapons
 
         public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
-            Looping = loop;
             
-            if (attacking || coolingDown)
-            {
-                return false;
+            switch(fireMode){
+                case FireMode.SemiAuto:{
+                    if (attacking || coolingDown||Looping){
+                        return false;
+                    }
+                    break;
+                }
+                case FireMode.Auto:{
+                    if (attacking || coolingDown){
+                        return false;
+                    }
+                    break;
+                }
+                default: break;
             }
+            Looping = loop;
 
             Attack(AfterAttack, AfterCooldown);
             return true;
