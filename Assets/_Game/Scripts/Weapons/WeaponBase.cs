@@ -8,6 +8,11 @@ namespace Game.Weapons
     public abstract class WeaponBase : MonoBehaviour
     {
         public float Damage => damage;
+
+        public enum FireMode {
+            SemiAuto,
+            Auto
+        }
         
         [Header("Damage")]
         [SerializeField]
@@ -21,6 +26,10 @@ namespace Game.Weapons
         protected float cooldownDuration;
 
         public bool Looping;
+
+        
+        [SerializeField]
+        protected FireMode fireMode;
         
         [Header("Targeting")]
         public LayerMask targetLayer;

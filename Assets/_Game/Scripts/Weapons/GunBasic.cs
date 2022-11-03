@@ -11,6 +11,8 @@ namespace Game.Weapons
         [Header("Stats")]
         [SerializeField]
         int _magazineSize;
+        
+        [SerializeField]
         float _reloadTime;
         
         [SerializeField, ReadOnly]
