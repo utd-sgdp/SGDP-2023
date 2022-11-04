@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Agent.Tree;
@@ -8,6 +9,7 @@ namespace Game.Enemy.Decorator
 {
     public class RepeatNode : DecoratorNode
     {
+        [HideInInspector]
         public Optional<int> LoopAmount = new(0);
         
         [SerializeField, ReadOnly]
