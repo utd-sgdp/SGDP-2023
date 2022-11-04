@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Game.Level
 {
     public class Breakable : MonoBehaviour
@@ -65,5 +69,34 @@ namespace Game.Level
             Destroy(_brokenObject);
             Destroy(_unbrokenObject);
         }
+        
+        #if UNITY_EDITOR
+        [Button(Label = "Add Rigidbodies")]
+        public void AddRigidbodies()
+        {
+            Undo.RecordObject(gameObject, "Breakable (Add Rigidbodies)");
+            foreach (var piece in _brokenObject.GetComponentsInChildren<MeshFilter>())
+            {
+                Rigidbody rb = piece.GetComponent<Rigidbody>();
+                if (rb) continue;
+
+                Undo.AddComponent<Rigidbody>(piece.gameObject);
+            }
+        }
+
+        [Button(Label = "Add Mesh Colliders")]
+        public void AddColliders()
+        {
+            Undo.RecordObject(gameObject, "Breakable (Add Mesh Colliders)");
+            foreach (var piece in _brokenObject.GetComponentsInChildren<MeshFilter>())
+            {
+                Collider col = piece.GetComponent<Collider>();
+                if (col) continue;
+
+                MeshCollider m = Undo.AddComponent<MeshCollider>(piece.gameObject);
+                m.sharedMesh = piece.sharedMesh;
+            }
+        }
+        #endif
     }
 }
