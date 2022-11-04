@@ -58,6 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3861daabca3317741a31d5f886ff5f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weapon: {fileID: 0}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4981168435230209115
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c259325e717c2964babf3dd9e429af3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplier: 1
   damage: 10
   attackDuration: 0
   cooldownDuration: 0
