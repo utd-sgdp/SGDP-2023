@@ -8,10 +8,10 @@ namespace Game.Level
     public class Breakable : MonoBehaviour
     {
         [SerializeField, HighlightIfNull]
-        protected GameObject _brokenObject;
+        protected GameObject _unbrokenObject;
 
         [SerializeField, HighlightIfNull]
-        protected GameObject _unbrokenObject;
+        protected GameObject _brokenObject;
 
         [SerializeField] protected float _breakingThreshold = 1f;
         [SerializeField] protected float _physicsDisableDelay = 5f;
@@ -22,8 +22,8 @@ namespace Game.Level
 
         void Start()
         {
-            _brokenObject.SetActive(true);
-            _unbrokenObject.SetActive(false);
+            _unbrokenObject.SetActive(true);
+            _brokenObject.SetActive(false);
         }
 
         void OnCollisionEnter(Collision collision)
@@ -35,8 +35,8 @@ namespace Game.Level
             Destroy(GetComponent<Rigidbody>());
             
             // swap broken/unbroken
-            _brokenObject.SetActive(false);
-            _unbrokenObject.SetActive(true);
+            _unbrokenObject.SetActive(false);
+            _brokenObject.SetActive(true);
             
             OnBreak?.Invoke(transform);
 
@@ -53,7 +53,7 @@ namespace Game.Level
 
         void StopPhysics()
         {
-            foreach (Transform child in _unbrokenObject.transform)
+            foreach (Transform child in _brokenObject.transform)
             {
                 var rb = child.gameObject.GetComponent<Rigidbody>(); 
                 Destroy(rb);
@@ -62,8 +62,8 @@ namespace Game.Level
 
         void DespawnPieces()
         {
-            Destroy(_unbrokenObject);
             Destroy(_brokenObject);
+            Destroy(_unbrokenObject);
         }
     }
 }
