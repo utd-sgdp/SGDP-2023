@@ -20,7 +20,7 @@ namespace Game.Weapons
         {
             foreach (var damageable in DamageablesInRange())
             {                
-                damageable.Hurt(_bombDamage);
+                damageable.Hurt(_bombDamage * Multiplier);
             }
         }
 

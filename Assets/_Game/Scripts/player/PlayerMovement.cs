@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
+using Game.Items.Statistics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IStatTarget
     {
         #region Inspector Variables
         [Header("Movement")]
@@ -20,6 +21,8 @@ namespace Game.Player
         [SerializeField]
         [Min(0)]
         float _timeToMaxVelocity = 0.25f;
+
+        public float Multiplier = 1f;
 
         [Header("Dash")]
         [SerializeField]
@@ -145,7 +148,7 @@ namespace Game.Player
                     break;
             }
             
-            _body.velocity = nVelocity;
+            _body.velocity = nVelocity * Multiplier;
             UpdateAnimation(nVelocity);
         }
         
@@ -288,6 +291,14 @@ namespace Game.Player
             
             Vector3 worldDir = new Vector3(direction.x, 0, direction.y);
             transform.forward = worldDir;
+        }
+        #endregion
+        
+        #region Multipliers
+        public void OnStatChange(Stat stat)
+        {
+            Multiplier = stat.Value;
+            print($"Changed speed multiplier to { stat.Value }.");
         }
         #endregion
     }

@@ -129,7 +129,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd2f03037ed3054ea8a1892aba27457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 1
+  Multiplier: 1
+  damage: 10
+  attackDuration: 0
+  cooldownDuration: 0
+  Looping: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  OnAttackStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCooldownStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCooldownEnd:
+    m_PersistentCalls:
+      m_Calls: []
   _bulletPrefab: {fileID: 9033473416695831239, guid: ea9269551d8a51145a45bf930cb4e7f2,
     type: 3}
   _gunTip: {fileID: 6066618544118744548}
