@@ -8,6 +8,9 @@ namespace Game.Weapons
 {
     public class GunBasic : WeaponBase
     {
+        public int MagazineSize => _magazineSize;
+        public int BulletsLeft => _bulletsLeft;
+        
         [Header("Stats")]
         [SerializeField]
         int _magazineSize;
