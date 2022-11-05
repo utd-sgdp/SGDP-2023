@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Items.Statistics;
@@ -6,6 +7,12 @@ using UnityEngine.Events;
 
 namespace Game.Weapons
 {
+    public enum FireMode
+    {
+        SemiAuto,
+        Auto,
+    }
+    
     public abstract class WeaponBase : MonoBehaviour, IStatTarget
     {
         public float Damage => damage;
@@ -23,7 +30,11 @@ namespace Game.Weapons
         [SerializeField, Min(0)]
         protected float cooldownDuration;
 
+        [NonSerialized]
         public bool Looping;
+        
+        [SerializeField]
+        protected FireMode fireMode;
         
         [Header("Targeting")]
         public LayerMask targetLayer;
@@ -79,12 +90,29 @@ namespace Game.Weapons
 
         public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
-            Looping = loop;
             
-            if (attacking || coolingDown)
+            switch(fireMode)
             {
-                return false;
+                case FireMode.SemiAuto:
+                {
+                    if (attacking || coolingDown|| Looping)
+                    {
+                        return false;
+                    }
+                    break;
+                }
+                
+                case FireMode.Auto:
+                {
+                    if (attacking || coolingDown)
+                    {
+                        return false;
+                    }
+                    break;
+                }
             }
+            
+            Looping = loop;
 
             Attack(AfterAttack, AfterCooldown);
             return true;
