@@ -18,6 +18,7 @@ namespace Game.Enemy.Action
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo, range))
             {
+                // TODO: access damageable differently
                 Component t = hitinfo.rigidbody ? hitinfo.rigidbody : hitinfo.collider;
                 //Debug.Log($"{t.gameObject}");
                 return t.CompareTag(Blackboard.target.tag) ? State.Success : State.Failure;
