@@ -32,14 +32,16 @@ namespace Game.Enemy.Action
 
         protected override State OnUpdate()
         {
-            //Debug.Log($"{Vector3.Distance(Blackboard.transform.position, Blackboard.target.position)}");
-            
+            Debug.Log($"{Vector3.Distance(Blackboard.transform.position, Blackboard.target.position)}");
             if ((Vector3.Distance(Blackboard.transform.position, Blackboard.target.position) > desiredDistanceMax)) {
                 _agent.destination = Blackboard.target.position;
                 return State.Running;
             }
             else if (Vector3.Distance(Blackboard.transform.position, Blackboard.target.position) <= desiredDistanceMin){
-                _agent.destination = Blackboard.originalLocation;
+                var heading = Blackboard.target.position - GameObject.FindGameObjectWithTag("Player").transform.position;
+                var direction = heading / heading.magnitude;
+                //Probably should only randomize this once                
+                _agent.destination = ((direction + new Vector3(Random.Range(-(direction.x*0.15f), (direction.x * 0.15f)), Random.Range(-(direction.y * 0.15f), (direction.y * 0.15f)), Random.Range(-(direction.z * 0.15f), (direction.z * 0.15f)))) * new Vector3(desiredDistanceMin, desiredDistanceMin, desiredDistanceMin).magnitude);
                 //Debug.Log($"first one {_agent.destination}");
                 return State.Running;
             }

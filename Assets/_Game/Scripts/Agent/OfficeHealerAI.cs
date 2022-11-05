@@ -9,7 +9,6 @@ namespace Game.Agent
 {
     public sealed class OfficeHealerAI : AIAgent
     {
-        public int i = 0;
         protected override BehaviourTree CreateTree()
         {
             
@@ -21,7 +20,7 @@ namespace Game.Agent
             tree.RootNode = rootNode;
 
             var repeat = ScriptableObject.CreateInstance<RepeatNode>();
-            rootNode.Child = repeat;
+            rootNode.child = repeat;
             
             
             

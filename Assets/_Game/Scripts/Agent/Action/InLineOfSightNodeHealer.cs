@@ -17,8 +17,9 @@ namespace Game.Enemy.Action
             Ray ray = new(Blackboard.transform.position, Blackboard.target.position - Blackboard.gameObject.transform.position);
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo, range))
-            {               
+            {
                 Component t = hitinfo.rigidbody ? hitinfo.rigidbody : hitinfo.collider;
+                //Debug.Log($"{t.gameObject}");
                 return t.CompareTag(Blackboard.target.tag) ? State.Success : State.Failure;
             }
             else

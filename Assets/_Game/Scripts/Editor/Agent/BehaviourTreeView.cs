@@ -6,12 +6,13 @@ using UnityEditor.Experimental.GraphView;
 using System;
 using System.Linq;
 using Game.Agent.Tree;
+using UnityEngine;
 
 namespace GameEditor.Agent
 {
     public class BehaviourTreeView : GraphView
     {
-        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
 
         BehaviourTree _tree;
         public Action<NodeView> OnNodeSelected;
@@ -71,7 +72,7 @@ namespace GameEditor.Agent
             // render node edges
             foreach (var node in tree.nodes)
             {
-                var children = node.GetChildren();
+                var children = tree.GetChildren(node); 
                 foreach (var child in children)
                 {
                     NodeView parentView = FindNodeView(node);
