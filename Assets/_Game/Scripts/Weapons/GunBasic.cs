@@ -12,13 +12,17 @@ namespace Game.Weapons
         
         [Header("Stats")]
         [SerializeField]
-        int _magazineSize;
-        
+        protected int _magazineSize;
         [SerializeField]
-        float _reloadTime;
+        protected float _range = 100f;
+
+        [SerializeField]
+        protected float _reloadTime;
+        [SerializeField]
+        protected bool _hitScan = false;
         
         [SerializeField, ReadOnly]
-        int _bulletsLeft;
+        protected int _bulletsLeft;
 
         [Header("References")]
         [SerializeField, HighlightIfNull]
@@ -27,7 +31,7 @@ namespace Game.Weapons
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
         
-        bool _reloading;
+        protected bool _reloading;
 
         protected override void Awake()
         {
@@ -49,7 +53,18 @@ namespace Game.Weapons
                 StartCoroutine(reload());
                 return;
             }
-            
+
+            if (_hitScan)
+            {
+                RaycastHit hit;
+                if(Physics.Raycast(_gunTip.position, _gunTip.forward, out hit, _range))
+                {
+                    Debug.Log(hit.transform.name+" was hit at "+hit.point);
+                }
+                _bulletsLeft--;
+                return;
+            }
+
             _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
             _bulletsLeft--;
         }
