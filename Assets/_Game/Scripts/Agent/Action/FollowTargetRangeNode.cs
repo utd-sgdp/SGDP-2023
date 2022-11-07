@@ -28,10 +28,6 @@ namespace Game.Enemy.Action
         
         protected override void OnStart()
         {
-            if (Blackboard.originalLocation.Equals(Vector3.zero))
-            {
-                Blackboard.originalLocation = Blackboard.gameObject.transform.position;
-            }
             
             s_agent.isStopped = false;
         }
@@ -40,35 +36,46 @@ namespace Game.Enemy.Action
 
         protected override State OnUpdate()
         {
-            Debug.Log($"{Vector3.Distance(Blackboard.transform.position, Blackboard.target.position)}");
+            //Debug.Log($"{Vector3.Distance(Blackboard.transform.position, Blackboard.target.position)}");
 
             float distanceFromTargetSQ = (Blackboard.target.position - Blackboard.transform.position).sqrMagnitude;
             float desiredSQ = desiredDistanceMax * desiredDistanceMax; 
             if (distanceFromTargetSQ > desiredSQ)
             {
                 s_agent.destination = Blackboard.target.position;
+                s_agent.isStopped = false;
                 return State.Running;
             }
-            
-            desiredSQ = desiredDistanceMin * desiredDistanceMin; 
+            desiredSQ = desiredDistanceMin * desiredDistanceMin;
+            if (Blackboard.movementReference != null)
+            {
+                if (distanceFromTargetSQ <= desiredSQ)
+                {
+                    var direction = (Blackboard.target.position - Blackboard.movementReference.position).normalized;
+
+                    // TODO: don't recalculate destination if still valid
+                    // calculate movement away from target                
+                    float angle = Random.Range(-moveAwayRandomRotation, moveAwayRandomRotation);
+                    Vector3 nDest = Quaternion.Euler(0, angle, 0) * direction * (desiredDistanceMin + s_agent.stoppingDistance);
+                    s_agent.destination = nDest;
+                    s_agent.isStopped = false;
+                    return State.Running;
+                }
+            }
             if (distanceFromTargetSQ <= desiredSQ)
             {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                
-                var direction = (Blackboard.target.position - player.transform.position).normalized;
-                
+                var direction = (Blackboard.transform.position - Blackboard.target.position).normalized;
+
                 // TODO: don't recalculate destination if still valid
                 // calculate movement away from target                
                 float angle = Random.Range(-moveAwayRandomRotation, moveAwayRandomRotation);
-                Vector3 nDest = Quaternion.Euler(0, angle, 0) * direction * desiredDistanceMin;
+                Vector3 nDest = Quaternion.Euler(0, angle, 0) * direction * (desiredDistanceMin + s_agent.stoppingDistance);
                 s_agent.destination = nDest;
-                
-                //Debug.Log($"first one {_agent.destination}");
+                s_agent.isStopped = false;
                 return State.Running;
             }
-            
-            //Debug.Log($"second one {_agent.destination}");
-            s_agent.isStopped = false;
+
+            s_agent.isStopped = true;
             return State.Success;
         }
     }

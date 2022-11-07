@@ -21,19 +21,23 @@ namespace Game.Agent.Action
 
         protected override State OnUpdate()
         {
-            if (Blackboard.target == null)
+            Blackboard.movementReference = GameObject.FindGameObjectWithTag("Player").transform;
+            //Run away from player if no enemies are healable or target has died
+            if (Blackboard.target == null || Blackboard.target == GameObject.FindGameObjectWithTag("Player").transform)
             {
                 var enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
                 foreach (GameObject enemy in enemies)
                 {
                     Damageable test = enemy.GetComponent<Damageable>();
-                    if (test._health < test._maxHealth)
+                    if (test._health < test._maxHealth && enemy != Blackboard.gameObject)
                     {
                         Blackboard.target = enemy.GetComponent<Transform>();
                         return State.Success;
                     }
                 }
+                Blackboard.target = GameObject.FindGameObjectWithTag("Player").transform;
+                Blackboard.movementReference = null;
                 //Prevent setting current to null object
                 return State.Failure;
             }
@@ -49,7 +53,7 @@ namespace Game.Agent.Action
                 foreach (GameObject enemy in enemies)
                 {
                     Damageable test = enemy.GetComponent<Damageable>();
-                    if (test._health < test._maxHealth)
+                    if (test._health < test._maxHealth && enemy != Blackboard.gameObject)
                     {
                         Blackboard.target = enemy.GetComponent<Transform>();
                         return State.Success;
@@ -57,6 +61,7 @@ namespace Game.Agent.Action
                 }
                 return State.Success;
             }
+            Blackboard.movementReference = null;
             return State.Failure;
         }
 

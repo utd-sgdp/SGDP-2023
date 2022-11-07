@@ -16,8 +16,8 @@ MonoBehaviour:
   guid: f1a18288552921d428da35decaf43a03
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 478, y: 812}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 412.00003, y: 822.495}
   range: 100
 --- !u!114 &-5627697004733660636
 MonoBehaviour:
@@ -35,7 +35,7 @@ MonoBehaviour:
   guid: c0ad30dc7554fc7408dc022a74b49dee
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 611, y: 63}
   child: {fileID: -4412924074608699281}
 --- !u!114 &-4812654099407341824
@@ -54,8 +54,8 @@ MonoBehaviour:
   guid: 4b9beb208f2310c4385fce6f33fa62c0
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 629, y: 695}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 563, y: 705.495}
   Children:
   - {fileID: -8785861328089889525}
   - {fileID: -74476848927557411}
@@ -75,9 +75,9 @@ MonoBehaviour:
   guid: c3497953124041d42a6bb53ce7362c29
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 611, y: 159.88}
-  child: {fileID: 4769522627086841545}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 611, y: 160}
+  child: {fileID: 5510368714899120253}
   LoopAmount:
     _enabled: 0
     _value: 0
@@ -98,31 +98,8 @@ MonoBehaviour:
   guid: 6b7e2a3abf3dc9d4bab5541a76613c7c
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 725, y: 583}
---- !u!114 &-1942316127640126762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f132988352f964180db8331b1f0aba, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: bf21a7c5743895a4cbb0297c234f746a
-  Blackboard:
-    target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 704, y: 380}
-  child: {fileID: 7781239715865732379}
-  LoopAmount:
-    _enabled: 0
-    _value: 0
-  _loopsDone: 0
+    movementReference: {fileID: 0}
+  editorPosition: {x: 470.00003, y: 410.495}
 --- !u!114 &-74476848927557411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +116,8 @@ MonoBehaviour:
   guid: 8ec972cc0bbf82a4da15aa836131c632
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 686, y: 812}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 620.00006, y: 822.495}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,14 +134,10 @@ MonoBehaviour:
   TreeState: 0
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   nodes:
   - {fileID: -5627697004733660636}
   - {fileID: -4412924074608699281}
-  - {fileID: 4769522627086841545}
-  - {fileID: 3562647726561634625}
-  - {fileID: -1942316127640126762}
-  - {fileID: 7781239715865732379}
   - {fileID: 1155824660352245310}
   - {fileID: -4812654099407341824}
   - {fileID: 4847485317166457287}
@@ -172,6 +145,9 @@ MonoBehaviour:
   - {fileID: -8785861328089889525}
   - {fileID: -74476848927557411}
   - {fileID: -3959638719752661602}
+  - {fileID: 3839894303639239524}
+  - {fileID: 5510368714899120253}
+  - {fileID: 8891976815155368856}
 --- !u!114 &1155824660352245310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,12 +164,12 @@ MonoBehaviour:
   guid: 81136e4fea741ba4692e6bf2607fb081
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 554, y: 583}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 488.00003, y: 593.49506}
   Children:
-  - {fileID: -4812654099407341824}
   - {fileID: 4847485317166457287}
---- !u!114 &3562647726561634625
+  - {fileID: -4812654099407341824}
+--- !u!114 &3839894303639239524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,36 +178,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee6b3a72ce13de047a46f442064f053d, type: 3}
-  m_Name: FindDamagedEnemy
+  m_Script: {fileID: 11500000, guid: c5e69d0c4eede7149b265f47ddb36858, type: 3}
+  m_Name: DoAllNode
   m_EditorClassIdentifier: 
   Description: 
-  guid: 7dab17c34d3f708468ce55a70f7c1e60
+  guid: fe9ffe4ea88141545b9b6d769ac856e2
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 511, y: 380}
---- !u!114 &4769522627086841545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c0f4e04b75ae4498431c65b2134345, type: 3}
-  m_Name: IfNode
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: bb9a9cf5c936ff64dbd968f406e1f7c0
-  Blackboard:
-    target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 611, y: 248}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 521, y: 486.495}
   Children:
-  - {fileID: 3562647726561634625}
-  - {fileID: -1942316127640126762}
+  - {fileID: 6015938272665867166}
+  - {fileID: 1155824660352245310}
+  _current: 0
 --- !u!114 &4847485317166457287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,9 +207,31 @@ MonoBehaviour:
   guid: c1b9d1fa8a7827e46a1277b722d61cdd
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 461, y: 695}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 385.00003, y: 705.495}
   attackRange: 7
+--- !u!114 &5510368714899120253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cf92a45c32c5d4696e505d41a6d0e8, type: 3}
+  m_Name: IfElseNode
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: cb0191eb84722aa46b703e67f39ecf2c
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 611.00006, y: 285.495}
+  Children:
+  - {fileID: -3959638719752661602}
+  - {fileID: 3839894303639239524}
+  - {fileID: 8891976815155368856}
 --- !u!114 &6015938272665867166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,11 +248,12 @@ MonoBehaviour:
   guid: 494e1ce8028c00747a4da988cf75bce5
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 366, y: 583}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 300.00003, y: 593.49506}
   desiredDistanceMax: 6
   desiredDistanceMin: 4
---- !u!114 &7781239715865732379
+  moveAwayRandomRotation: 0.15
+--- !u!114 &8891976815155368856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,17 +262,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25207f1e3e85f54ba21d468aa0ff0bb, type: 3}
-  m_Name: SequencerNode
+  m_Script: {fileID: 11500000, guid: b303676e15f8f1f4e9168f94b7d2f8cb, type: 3}
+  m_Name: FollowTargetRangeNode
   m_EditorClassIdentifier: 
   Description: 
-  guid: 6e5bf676a7a65554d906f835e17f32a2
+  guid: e55a43372f873564d9af4ad847e007d4
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
-  editorPosition: {x: 611, y: 479}
-  Children:
-  - {fileID: 6015938272665867166}
-  - {fileID: 1155824660352245310}
-  - {fileID: -3959638719752661602}
-  _current: 0
+    movementReference: {fileID: 0}
+  editorPosition: {x: 685, y: 410}
+  desiredDistanceMax: 7
+  desiredDistanceMin: 6
+  moveAwayRandomRotation: 0.15
