@@ -19,10 +19,10 @@ namespace Game.Utility
     public class Optional<T>
     {
         [SerializeField]
-        bool _enabled;
+        internal bool _enabled;
         
         [SerializeField]
-        T _value;
+        internal T _value;
 
         public bool Enabled => _enabled;
         public T Value => _value;
@@ -31,6 +31,11 @@ namespace Game.Utility
         {
             _enabled = false;
             _value = initialValue;
+        }
+
+        public Optional()
+        {
+            _enabled = false;
         }
     }
 }
