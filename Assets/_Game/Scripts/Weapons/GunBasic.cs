@@ -9,6 +9,12 @@ namespace Game.Weapons
     {
         public int MagazineSize => _magazineSize;
         public int BulletsLeft => _bulletsLeft;
+
+       protected enum reloadMode 
+        {
+            magazineReload,
+            incrementReload
+        }
         
         [Header("Stats")]
         [SerializeField]
@@ -20,6 +26,9 @@ namespace Game.Weapons
         protected float _reloadTime;
         [SerializeField]
         protected bool _hitScan = false;
+
+        [SerializeField]
+        protected reloadMode _reloadMode;
         
         [SerializeField, ReadOnly]
         protected int _bulletsLeft;
@@ -44,13 +53,21 @@ namespace Game.Weapons
         {
             if (_reloading)
             {
-                Debug.Log("The gun is still reloading...");
-                return;
+                if (_reloadMode == reloadMode.incrementReload)
+                {
+                    Debug.Log("Reload interrupted!");
+                    _reloading = false;
+                }
+                else if(_reloadMode == reloadMode.magazineReload) 
+                {
+                    Debug.Log("Currently reloading...");
+                    return;
+                }
             }
 
             if (_bulletsLeft <= 0)
             {
-                StartCoroutine(reload());
+                reload();
                 return;
             }
 
@@ -69,14 +86,44 @@ namespace Game.Weapons
             _bulletsLeft--;
         }
 
-        IEnumerator reload()
+        /// <summary>
+        /// Reload method encapsulating the separate implementations of the reload functions
+        /// </summary>
+        void reload()
+        {
+            if(_reloadMode == reloadMode.magazineReload)
+            {
+               StartCoroutine(magazineReload());
+            }
+            else if(_reloadMode == reloadMode.incrementReload) 
+            {
+               StartCoroutine(incrementReload());
+            }
+        }
+
+        private IEnumerator magazineReload()
         {
             _reloading = true;
-            
+
             yield return new WaitForSeconds(_reloadTime);
             _reloading = false;
-            
+
             _bulletsLeft = _magazineSize;
+        }
+
+        private IEnumerator incrementReload() 
+        {
+            _reloading = true;
+            while(_bulletsLeft < _magazineSize && _reloading) {
+                yield return new WaitForSeconds(_reloadTime / _magazineSize);
+                // Ensure that we are still reloading before we load a bullet
+                if (_reloading) 
+                {
+                    _bulletsLeft++;
+                    Debug.Log("Bullet loaded: " + _bulletsLeft + "/" + _magazineSize);
+                }
+            }
+            _reloading = false;
         }
     }
 }
