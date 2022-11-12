@@ -252,7 +252,8 @@ MonoBehaviour:
   editorPosition: {x: 300.00003, y: 593.49506}
   desiredDistanceMax: 6
   desiredDistanceMin: 4
-  moveAwayRandomRotation: 0.15
+  moveAwayRandomRotation: 15
+  moveAwayValid: 1
 --- !u!114 &8891976815155368856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,4 +274,5 @@ MonoBehaviour:
   editorPosition: {x: 685, y: 410}
   desiredDistanceMax: 7
   desiredDistanceMin: 6
-  moveAwayRandomRotation: 0.15
+  moveAwayRandomRotation: 15
+  moveAwayValid: 1
