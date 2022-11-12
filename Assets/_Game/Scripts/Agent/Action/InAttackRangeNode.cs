@@ -14,8 +14,8 @@ namespace Game.Enemy.Action
 
         protected override State OnUpdate()
         {
-            float distanceSQ = (Blackboard.target.position - Blackboard.transform.position).sqrMagnitude;
-            return distanceSQ < attackRange * attackRange ? State.Success : State.Failure;
+            float _distance = Vector3.Distance(Blackboard.transform.position, Blackboard.target.position);
+            return _distance < attackRange ? State.Success : State.Failure;
         }
     }
 }

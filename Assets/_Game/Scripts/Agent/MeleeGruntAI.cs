@@ -17,14 +17,14 @@ namespace Game.Agent
             var rootNode = ScriptableObject.CreateInstance<RootNode>();
             tree.RootNode = rootNode;
 
-            var sequencer = ScriptableObject.CreateInstance<SequencerNode>();
-            rootNode.Child = sequencer;
+            var sequencer1 = ScriptableObject.CreateInstance<SequencerNode>();
+            rootNode.Child = sequencer1;
 
             var setTargetToPlayer = ScriptableObject.CreateInstance<SetTargetToPlayerNode>();
             var repeat = ScriptableObject.CreateInstance<RepeatNode>();
 
-            sequencer.Children.Add(setTargetToPlayer);
-            sequencer.Children.Add(repeat);
+            sequencer1.Children.Add(setTargetToPlayer);
+            sequencer1.Children.Add(repeat);
 
             var ifElse = ScriptableObject.CreateInstance<IfElseNode>();
             repeat.child = ifElse;
@@ -32,20 +32,31 @@ namespace Game.Agent
             var andNode = ScriptableObject.CreateInstance<LogicAndNode>();
 
             var inAttackRange = ScriptableObject.CreateInstance<InAttackRangeNode>();
-            inAttackRange.attackRange = 10;
+            inAttackRange.attackRange = 2.1f;
             var inLineOfSight = ScriptableObject.CreateInstance<InLineOfSightNode>();
-            inLineOfSight.range = 100;
+            inLineOfSight.range = 2.5f;
 
             andNode.Children.Add(inAttackRange);
             andNode.Children.Add(inLineOfSight);
 
+            var sequencer2 = ScriptableObject.CreateInstance<SequencerNode>();
+            var look1 = ScriptableObject.CreateInstance<FaceTargetNode>();
             var attack = ScriptableObject.CreateInstance<AttackNode>();
+
+            sequencer2.Children.Add(look1);
+            sequencer2.Children.Add(attack);
+
+            var ifNode = ScriptableObject.CreateInstance<IfNode>();
             var follow = ScriptableObject.CreateInstance<FollowTargetNode>();
-            follow.desiredDistance = 9;
+            follow.desiredDistance = 2f;
+            var look2 = ScriptableObject.CreateInstance<FaceTargetNode>();
+
+            ifNode.Children.Add(follow);
+            ifNode.Children.Add(look2);
 
             ifElse.Children.Add(andNode);
-            ifElse.Children.Add(attack);
-            ifElse.Children.Add(follow);
+            ifElse.Children.Add(sequencer2);
+            ifElse.Children.Add(ifNode);
 
             return tree;
         }

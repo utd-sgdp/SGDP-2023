@@ -15,6 +15,7 @@ namespace Game.Enemy.Action
         protected override State OnUpdate()
         {
             Ray ray = new(Blackboard.transform.position, Blackboard.transform.forward);
+            //Ray ray = new(Blackboard.transform.position, Blackboard.target.position - Blackboard.transform.position);
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo, range))
             {
