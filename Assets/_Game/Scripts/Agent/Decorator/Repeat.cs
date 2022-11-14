@@ -5,12 +5,11 @@ using Game.Agent.Tree;
 using Game.Utility;
 using UnityEngine;
 
-namespace Game.Enemy.Decorator
+namespace Game.Agent.Decorator
 {
-    public class RepeatNode : DecoratorNode
+    public class Repeat : DecoratorNode
     {
-        [HideInInspector]
-        public Optional<int> LoopAmount = new(0);
+        public Optional<int> LoopAmount = new();
         
         [SerializeField, ReadOnly]
         int _loopsDone;

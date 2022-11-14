@@ -13,7 +13,7 @@ namespace Game.Agent.Tree
     {
         [HideInInspector] public Node RootNode;
         [HideInInspector] public State TreeState = State.Running;
-        [HideInInspector] public Blackboard Blackboard = new Blackboard();
+        [HideInInspector] public Blackboard Blackboard = new();
         [HideInInspector] public List<Node> nodes = new();
 
         public State Update()

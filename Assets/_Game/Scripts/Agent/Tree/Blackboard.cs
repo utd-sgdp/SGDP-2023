@@ -8,8 +8,8 @@ namespace Game.Agent.Tree
     {
         public Transform target;
 
-        [NonSerialized] public GameObject gameObject;
-        [NonSerialized] public Transform transform;
+        public GameObject gameObject { get; private set; }
+        public Transform transform { get; private set; }
 
         /// <summary>
         /// Initialize required information/references collected at runtime.

@@ -1,25 +1,24 @@
 using Game.Agent.Tree;
-using UnityEngine;
 
-namespace Game.Enemy.Action
+namespace Game.Agent.Action
 {
-    public class DebugLogNode : ActionNode
+    public class DebugLog : ActionNode
     {
         public string Message;
         
         protected override void OnStart()
         {
-            Debug.Log($"OnStart{ Message }");
+            print($"OnStart{ Message }");
         }
 
         protected override void OnStop()
         {
-            Debug.Log($"OnStop{ Message }");
+            print($"OnStop{ Message }");
         }
 
         protected override State OnUpdate()
         {
-            Debug.Log($"OnUpdate{ Message }");
+            print($"OnUpdate{ Message }");
             return State.Success;
         }
     }

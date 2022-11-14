@@ -21,7 +21,7 @@ namespace GameEditor.Agent
         {
             // Store reference and title to be displayed
             Node = node;
-            title = node.name;
+            title = ObjectNames.NicifyVariableName(node.name);
             viewDataKey = node.guid;
 
             // Set UI element's position to match the node's position

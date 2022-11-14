@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,6 @@ namespace Game.Agent.Tree
         [HideInInspector] public string guid;
         [HideInInspector] public Blackboard Blackboard;
         [HideInInspector] public Vector2 editorPosition;
-        
 
         // ReSharper disable Unity.PerformanceAnalysis
         public State Update()
@@ -71,5 +71,21 @@ namespace Game.Agent.Tree
         {
             return Instantiate(this);
         }
+
+        public virtual IReadOnlyCollection<string> GetDependencies() => new string[] { };
+
+        #region MonoBehaviour Wrappers
+        protected static void print(object message) => Debug.Log(message);
+        
+        protected T GetComponent<T>() => Blackboard.gameObject.GetComponent<T>();
+        protected Component GetComponent(Type type) => Blackboard.gameObject.GetComponent(type);
+        protected Component GetComponent(string type) => Blackboard.gameObject.GetComponent(type);
+        
+        protected T GetComponentInChildren<T>(bool includeInactive=false) => Blackboard.gameObject.GetComponentInChildren<T>(includeInactive);
+        protected Component GetComponentInChildren(Type type, bool includeInactive=false) => Blackboard.gameObject.GetComponentInChildren(type, includeInactive);
+        
+        protected T[] GetComponentsInChildren<T>(bool includeInactive=false) => Blackboard.gameObject.GetComponentsInChildren<T>(includeInactive);
+        protected Component[] GetComponentsInChildren(Type type, bool includeInactive=false) => Blackboard.gameObject.GetComponentsInChildren(type, includeInactive);
+        #endregion
     }
 }

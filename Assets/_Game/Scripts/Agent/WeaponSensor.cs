@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Weapons;
 using UnityEngine;
 
-namespace Game.Weapons
+namespace Game.Agent
 {
-    public class WeaponHolder : MonoBehaviour
+    public class WeaponSensor : MonoBehaviour
     {
         public WeaponBase Value => _weapon;
         [SerializeField] WeaponBase _weapon;
