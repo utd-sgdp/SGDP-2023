@@ -48,6 +48,8 @@ namespace GameEditor.Agent
 
         internal void PopulateView(BehaviourTree tree)
         {
+            if (tree == null) return;
+            
             _tree = tree;
 
             // Ignore events from graphView
@@ -141,21 +143,21 @@ namespace GameEditor.Agent
             var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
 
             // show decorator nodes
             types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
 
             // show composite nodes
             types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
         }
 

@@ -1,13 +1,15 @@
 using System;
-using Codice.Client.BaseCommands.Differences;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Agent.Tree;
 using UnityEngine;
 
-namespace Game.Enemy.Composite
+namespace Game.Agent.Composite
 {
-    public class SequencerNode : CompositeNode
+    /// <summary>
+    /// Runs <see cref="CompositeNode.Children"/> one-at-a-time, in order.
+    /// </summary>
+    public class Sequencer : CompositeNode
     {
         [SerializeField, ReadOnly]
         int _current;

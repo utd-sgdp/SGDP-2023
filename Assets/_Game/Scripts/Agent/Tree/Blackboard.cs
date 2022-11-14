@@ -6,8 +6,10 @@ namespace Game.Agent.Tree
     [System.Serializable]
     public class Blackboard
     {
-        [NonSerialized] public GameObject gameObject;
-        [NonSerialized] public Transform transform;
+        public Transform target;
+
+        public GameObject gameObject { get; private set; }
+        public Transform transform { get; private set; }
 
         /// <summary>
         /// Initialize required information/references collected at runtime.

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Game.Agent.Tree;
 using UnityEngine;
 
-namespace Game.Enemy.Action
+namespace Game.Agent.Action
 {
-    public class WaitNode : ActionNode
+    public class Wait : ActionNode
     {
         [Min(0)]
         public float _duration = 1f;
@@ -19,10 +19,7 @@ namespace Game.Enemy.Action
         protected override State OnUpdate()
         {
             float elapsed = _elapsedTime;
-            
-            // update elapsed time (for the next frame)
             _elapsedTime += Time.deltaTime;
-            
             return elapsed >= _duration ? State.Success : State.Running;
         }
     }

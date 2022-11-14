@@ -11,7 +11,12 @@ namespace Game.Agent.Tree
         protected override void OnStop() { }
         protected override State OnUpdate() => child.Update();
 
-        public override List<Node> GetChildren() => new() { child };
+        public override List<Node> GetChildren()
+        {
+            var list = new List<Node>();
+            if (child) list.Add(child);
+            return list;
+        }
 
         public override Tree.Node Clone()
         {
