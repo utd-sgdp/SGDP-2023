@@ -7,7 +7,12 @@ namespace Game.Agent.Tree
     {
         public Node child;
 
-        public sealed override List<Node> GetChildren() => new() { child };
+        public sealed override List<Node> GetChildren()
+        {
+            var list = new List<Node>();
+            if (child) list.Add(child);
+            return list;
+        }
 
         public override Node Clone()
         {
