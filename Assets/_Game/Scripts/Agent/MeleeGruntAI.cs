@@ -18,7 +18,7 @@ namespace Game.Agent
             tree.RootNode = rootNode;
 
             var sequencer1 = ScriptableObject.CreateInstance<SequencerNode>();
-            rootNode.Child = sequencer1;
+            rootNode.child = sequencer1;
 
             var setTargetToPlayer = ScriptableObject.CreateInstance<SetTargetToPlayerNode>();
             var repeat = ScriptableObject.CreateInstance<RepeatNode>();
