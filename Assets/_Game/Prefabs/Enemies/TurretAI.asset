@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 0, y: 0}
+  editorPosition: {x: 977, y: 482}
 --- !u!114 &-5588232544082382212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     target: {fileID: 0}
     movementReference: {fileID: 0}
   editorPosition: {x: 461, y: 247}
-  range: 0
+  range: 100
 --- !u!114 &-3631855447795760810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 268, y: 247}
+  editorPosition: {x: 258, y: 247}
 --- !u!114 &-1595142762966399258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,11 +132,11 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 531, y: 119}
+  editorPosition: {x: 531, y: 118}
   Children:
-  - {fileID: -5588232544082382212}
   - {fileID: -3631855447795760810}
   - {fileID: -4868774234043108526}
+  - {fileID: -5588232544082382212}
   _current: 0
 --- !u!114 &-687664887811691151
 MonoBehaviour:
@@ -158,8 +158,9 @@ MonoBehaviour:
   editorPosition: {x: 662, y: 356}
   Children:
   - {fileID: 2263179865462775915}
-  - {fileID: 6824874850791836643}
   - {fileID: -1595142762966399258}
+  - {fileID: 6824874850791836643}
+  - {fileID: -7561731134006678724}
   _current: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -207,7 +208,7 @@ MonoBehaviour:
     target: {fileID: 0}
     movementReference: {fileID: 0}
   editorPosition: {x: 444, y: 482}
-  range: 0
+  range: 100
 --- !u!114 &6824874850791836643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,4 +227,4 @@ MonoBehaviour:
     target: {fileID: 0}
     movementReference: {fileID: 0}
   editorPosition: {x: 812, y: 481.99997}
-  range: 0
+  range: 100
