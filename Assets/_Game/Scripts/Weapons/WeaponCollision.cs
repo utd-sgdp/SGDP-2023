@@ -28,8 +28,8 @@ namespace Game.Weapons
             if (!target) return;
             
             // deal damage
-            target.Hurt(_weapon.Damage);
-            print($"{_weapon.name} hit {other.gameObject.name} for {_weapon.Damage} points.");
+            target.Hurt(_weapon.Damage * _weapon.Multiplier);
+            print($"{_weapon.name} hit {other.gameObject.name} for {_weapon.Damage * _weapon.Multiplier} points.");
         }
     }
 }
