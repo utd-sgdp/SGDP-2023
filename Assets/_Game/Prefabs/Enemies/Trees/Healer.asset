@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -122, y: 603}
+  editorPosition: {x: -122.00007, y: 450.9125}
   _range: {x: 4, y: 6}
   moveAwayRotation: 30
   moveAwayDistance: 5
@@ -38,7 +38,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -1, y: 302}
+  editorPosition: {x: -1.0000484, y: 149.9125}
   Children:
   - {fileID: 8596692011825407353}
   - {fileID: 8815794088585749379}
@@ -61,7 +61,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 75, y: 603}
+  editorPosition: {x: 74.99993, y: 450.9125}
 --- !u!114 &-5627697004733660636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +80,11 @@ MonoBehaviour:
     target: {fileID: 0}
     movementReference: {fileID: 0}
   editorPosition: {x: -1, y: -2.6799774}
-  child: {fileID: -3193084528265445361}
+  child: {fileID: -5880683147053634656}
+  LoopAmount:
+    _enabled: 0
+    _value: 0
+  _loopsDone: 0
 --- !u!114 &-4141444684627047798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,31 +102,8 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 150, y: 454}
+  editorPosition: {x: 149.99994, y: 301.91254}
   _interval: 10
---- !u!114 &-3193084528265445361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f132988352f964180db8331b1f0aba, type: 3}
-  m_Name: Repeat
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: fb139bcda2032064aa6429c10971cccf
-  Blackboard:
-    target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: -1, y: 147}
-  child: {fileID: -5880683147053634656}
-  LoopAmount:
-    _enabled: 0
-    _value: 0
-  _loopsDone: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +123,6 @@ MonoBehaviour:
     movementReference: {fileID: 0}
   nodes:
   - {fileID: -5627697004733660636}
-  - {fileID: -3193084528265445361}
   - {fileID: -5880683147053634656}
   - {fileID: 8596692011825407353}
   - {fileID: 8815794088585749379}
@@ -166,7 +146,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -159, y: 454}
+  editorPosition: {x: -159.00006, y: 301.91254}
 --- !u!114 &8815794088585749379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +164,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -1, y: 454}
+  editorPosition: {x: -1.0000484, y: 301.91254}
   Children:
   - {fileID: -5696198238404539409}
   - {fileID: -6043324314150294173}

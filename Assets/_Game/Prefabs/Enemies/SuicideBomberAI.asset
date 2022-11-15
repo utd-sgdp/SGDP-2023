@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 555, y: 617}
+  editorPosition: {x: -50.000088, y: 599.9125}
   desiredDistance: 2.5
 --- !u!114 &-8274323031702945192
 MonoBehaviour:
@@ -36,7 +36,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 837, y: 491}
+  editorPosition: {x: 175.9999, y: 451.91248}
   Children:
   - {fileID: -2617192591890265890}
   - {fileID: -8749516923826528154}
@@ -61,7 +61,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 611, y: 261}
+  editorPosition: {x: 0.99990594, y: 148.91249}
   Children:
   - {fileID: 742940444551753468}
   - {fileID: 1245571798210024622}
@@ -85,7 +85,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 1119, y: 617}
+  editorPosition: {x: 400.9999, y: 599.9125}
 --- !u!114 &-6155592515642662874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 837, y: 387}
+  editorPosition: {x: 175.9999, y: 299.91248}
   child: {fileID: -8274323031702945192}
   LoopAmount:
     _enabled: 0
@@ -126,8 +126,12 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 611, y: 63}
-  child: {fileID: 2472058900797194172}
+  editorPosition: {x: 1, y: 1}
+  child: {fileID: -8195234639516464480}
+  LoopAmount:
+    _enabled: 0
+    _value: 0
+  _loopsDone: 0
 --- !u!114 &-2617192591890265890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +149,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 749, y: 617}
+  editorPosition: {x: 99.99996, y: 599.9125}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +170,6 @@ MonoBehaviour:
   nodes:
   - {fileID: -5627697004733660636}
   - {fileID: 742940444551753468}
-  - {fileID: 2472058900797194172}
   - {fileID: -8195234639516464480}
   - {fileID: 1245571798210024622}
   - {fileID: -6155592515642662874}
@@ -192,7 +195,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 410, y: 387}
+  editorPosition: {x: -215.00008, y: 299.91248}
 --- !u!114 &1245571798210024622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +213,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 611, y: 387}
+  editorPosition: {x: -25.000057, y: 299.91248}
   range: 100
 --- !u!114 &1360878826516970725
 MonoBehaviour:
@@ -229,29 +232,6 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 937, y: 617}
+  editorPosition: {x: 250.99991, y: 599.9125}
   _duration: 1
   _elapsedTime: 0
---- !u!114 &2472058900797194172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f132988352f964180db8331b1f0aba, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: 723fd94b57597194b89f064054d3c5b5
-  Blackboard:
-    target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: 611, y: 162}
-  child: {fileID: -8195234639516464480}
-  LoopAmount:
-    _enabled: 0
-    _value: 0
-  _loopsDone: 0
