@@ -15,7 +15,8 @@ namespace Game.Level
 
         [SerializeField] protected float _breakingThreshold = 1f;
         [SerializeField] protected float _physicsDisableDelay = 5f;
-        [SerializeField] protected float _despawnDelay = 30f;
+        [SerializeField] protected float _despawnDelay = 20f;
+        [SerializeField] protected float _despawnTime = 1.5f;
 
         [Header("Events")]
         public UnityEvent<TransformData> OnBreak;
@@ -47,7 +48,7 @@ namespace Game.Level
 
             if (_despawnDelay >= 0)
             {
-                StartCoroutine(Coroutines.WaitThen(_despawnDelay, DespawnPieces));
+                StartCoroutine(DespawnPieces(_despawnTime, _despawnDelay));
             }
         }
 
@@ -60,8 +61,22 @@ namespace Game.Level
             }
         }
 
-        void DespawnPieces()
+        //Despawn objects after moving below the floor
+        IEnumerator DespawnPieces(float duration, float delay)
         {
+            yield return new WaitForSeconds(delay);
+
+            float timeElapsed = 0;
+            Vector3 startPosition = transform.position;
+            Vector3 despawnPosition = startPosition + new Vector3(0, -10, 0);
+
+            while (timeElapsed < duration)
+            {
+                transform.position = Vector3.Lerp(startPosition, despawnPosition, timeElapsed / duration);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
             Destroy(_unbrokenObject);
             Destroy(_brokenObject);
         }
