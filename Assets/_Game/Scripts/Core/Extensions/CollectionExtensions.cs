@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Game
 {
@@ -19,6 +18,17 @@ namespace Game
             }
             
             return result;
+        }
+    }
+
+    public static class StackExtensions
+    {
+        public static void Push<T>(this Stack<T> stack, IEnumerable<T> data)
+        {
+            foreach (var item in data)
+            {
+                stack.Push(item);
+            }
         }
     }
 }
