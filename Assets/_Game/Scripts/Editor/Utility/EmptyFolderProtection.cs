@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Game;
 
 namespace GameEditor.Utility
 {
