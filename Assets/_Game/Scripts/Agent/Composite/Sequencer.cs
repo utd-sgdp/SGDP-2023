@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game.Agent.Tree;
 using UnityEngine;
 
@@ -11,6 +9,9 @@ namespace Game.Agent.Composite
     /// </summary>
     public class Sequencer : CompositeNode
     {
+        [SerializeField]
+        bool _completeActionBeforeIncrement = true;
+        
         [SerializeField, ReadOnly]
         int _current;
         
@@ -23,7 +24,8 @@ namespace Game.Agent.Composite
             switch (child.Update())
             {
                 case State.Running:
-                    return State.Running;
+                    if (_completeActionBeforeIncrement) return State.Running;
+                    goto case State.Success;
                 
                 case State.Success:
                     // this child is finished
@@ -31,9 +33,11 @@ namespace Game.Agent.Composite
                     _current++;
                     break;
                 
-                default:
                 case State.Failure:
                     return State.Failure;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             
             // If reached end of children list, return success, if not return running

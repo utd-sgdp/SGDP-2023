@@ -198,6 +198,30 @@ namespace Game.Agent.Tree
             }
         }
 
+        public List<Node> GetChildren(Node parent)
+        {
+            List<Node> children = new List<Node>();
+            DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator && decorator.child != null)
+            {
+                children.Add(decorator.child);
+            }
+
+            RootNode root = parent as RootNode;
+            if (root && root.child != null)
+            {
+                children.Add(root.child);
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                return composite.Children;
+            }
+
+            return children;
+        }
+
         /// <summary>
         /// Creates deep copy of this <see cref="BehaviourTree"/>. Useful to clone at runtime to prevent errors caused by
         /// multiple agents using the same tree.

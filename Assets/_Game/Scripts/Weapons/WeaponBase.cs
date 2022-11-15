@@ -90,7 +90,6 @@ namespace Game.Weapons
 
         public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
-            
             switch(fireMode)
             {
                 case FireMode.SemiAuto:

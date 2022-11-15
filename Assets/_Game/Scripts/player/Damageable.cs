@@ -7,13 +7,15 @@ namespace Game
 {
     public class Damageable : MonoBehaviour
     {
+        public bool AtMaxHealth => Mathf.Approximately(_health, _maxHealth);
+        
         [Header("Data")]
         [SerializeField, ReadOnly]
-        float _health = 100f;
+        public float _health = 100f;
         
         [SerializeField]
         [Min(0)]
-        float _maxHealth = 100f;
+        public float _maxHealth = 100f;
 
         [Header("Events")]
         public UnityEvent<float> OnChange;
@@ -22,6 +24,7 @@ namespace Game
         public UnityEvent<float> OnMaxHeal;
         public UnityEvent<float> OnKill;
 
+        [Button]
         public void Hurt(float amount)
         {
             _health = Mathf.Max(_health - amount, 0);
@@ -35,6 +38,7 @@ namespace Game
             OnChange?.Invoke(_health);
         }
         
+        [Button]
         public void Heal(float amount)
         {
             OnHeal?.Invoke(amount);

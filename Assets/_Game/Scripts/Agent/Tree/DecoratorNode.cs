@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Game.Agent.Tree
 {
     public abstract class DecoratorNode : Node
     {
-        [HideInInspector] public Node child;
+        public Node child;
 
         public sealed override List<Node> GetChildren()
         {

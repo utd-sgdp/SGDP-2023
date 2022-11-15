@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Game.Agent.Tree;
 using Game.Weapons;
@@ -26,6 +25,8 @@ namespace Game.Agent.Action
         }
 
         bool _isAttacking;
+        
+        // TODO: add field to idle till attack is ready
 
         protected override void OnStart()
         {
