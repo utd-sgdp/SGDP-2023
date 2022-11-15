@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Game.Utility;
 using UnityEngine;
 
 namespace Game.Agent.Tree
@@ -75,7 +77,14 @@ namespace Game.Agent.Tree
         public virtual IReadOnlyCollection<string> GetDependencies() => new string[] { };
 
         #region MonoBehaviour Wrappers
+        protected GameObject gameObject => Blackboard.gameObject;
+        protected Transform transform => Blackboard.transform;
+        
         protected static void print(object message) => Debug.Log(message);
+
+        protected Coroutine StartCoroutine(IEnumerator enumerator) => Blackboard.aiAgent.StartCoroutine(enumerator);
+        protected void StopCoroutine(Coroutine routine) => Blackboard.aiAgent.StopCoroutine(routine);
+        protected void StopAllCoroutines() => Blackboard.aiAgent.StopAllCoroutines();
         
         protected T GetComponent<T>() => Blackboard.gameObject.GetComponent<T>();
         protected Component GetComponent(Type type) => Blackboard.gameObject.GetComponent(type);

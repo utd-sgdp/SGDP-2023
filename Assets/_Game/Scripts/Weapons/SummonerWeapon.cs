@@ -19,7 +19,7 @@ namespace Game.Weapons
         protected override void OnAttack()
         {
             attackDuration = 5f;
-            var summonerBlackboard = GetComponentInParent<AIAgent>()._tree.Blackboard;
+            var summonerBlackboard = GetComponentInParent<AIAgent>().Tree.Blackboard;
             if (summonerBlackboard.transform.childCount < 5)
             {
                 Vector3 summonerLocation = summonerBlackboard.transform.position;

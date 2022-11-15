@@ -16,7 +16,7 @@ MonoBehaviour:
   guid: a442342e80849b347b812aa2c44d7ba4
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 555, y: 617}
   desiredDistance: 2.5
 --- !u!114 &-8274323031702945192
@@ -35,13 +35,14 @@ MonoBehaviour:
   guid: 32f8e3fc013d9ec4895bfd681e7772c9
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 837, y: 491}
   Children:
-  - {fileID: -8749516923826528154}
   - {fileID: -2617192591890265890}
+  - {fileID: -8749516923826528154}
   - {fileID: 1360878826516970725}
   - {fileID: -6309709574727166671}
+  _completeActionBeforeIncrement: 1
   _current: 0
 --- !u!114 &-8195234639516464480
 MonoBehaviour:
@@ -59,12 +60,13 @@ MonoBehaviour:
   guid: 9e08b0586d56eca47865fed2ba9208e9
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 611, y: 261}
   Children:
   - {fileID: 742940444551753468}
   - {fileID: 1245571798210024622}
   - {fileID: -6155592515642662874}
+  _completeActionBeforeIncrement: 1
   _current: 0
 --- !u!114 &-6309709574727166671
 MonoBehaviour:
@@ -82,7 +84,7 @@ MonoBehaviour:
   guid: a43b93650c2f7a240b8be8a56c41a6ad
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 1119, y: 617}
 --- !u!114 &-6155592515642662874
 MonoBehaviour:
@@ -100,7 +102,7 @@ MonoBehaviour:
   guid: d99870e66d1046d43b5b7dda3628f14a
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 837, y: 387}
   child: {fileID: -8274323031702945192}
   LoopAmount:
@@ -123,7 +125,7 @@ MonoBehaviour:
   guid: c0ad30dc7554fc7408dc022a74b49dee
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 611, y: 63}
   child: {fileID: 2472058900797194172}
 --- !u!114 &-2617192591890265890
@@ -142,7 +144,7 @@ MonoBehaviour:
   guid: b7bfef3a68d5fe44eac0445914132694
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 749, y: 617}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -160,7 +162,7 @@ MonoBehaviour:
   TreeState: 0
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   nodes:
   - {fileID: -5627697004733660636}
   - {fileID: 742940444551753468}
@@ -189,7 +191,7 @@ MonoBehaviour:
   guid: a97359191e7878b42b5a70ff70bccaa0
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 410, y: 387}
 --- !u!114 &1245571798210024622
 MonoBehaviour:
@@ -207,7 +209,7 @@ MonoBehaviour:
   guid: 18962dd263d83254c87e00e64278ae61
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 611, y: 387}
   range: 100
 --- !u!114 &1360878826516970725
@@ -226,7 +228,7 @@ MonoBehaviour:
   guid: df658f56c5a85bf40b8a19a20be75a00
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 937, y: 617}
   _duration: 1
   _elapsedTime: 0
@@ -246,7 +248,7 @@ MonoBehaviour:
   guid: 723fd94b57597194b89f064054d3c5b5
   Blackboard:
     target: {fileID: 0}
-    originalLocation: {x: 0, y: 0, z: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 611, y: 162}
   child: {fileID: -8195234639516464480}
   LoopAmount:

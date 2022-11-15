@@ -11,6 +11,7 @@ namespace Game.Agent.Tree
 
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }
+        public AIAgent aiAgent { get; private set; }
 
         /// <summary>
         /// Initialize required information/references collected at runtime.
@@ -19,6 +20,7 @@ namespace Game.Agent.Tree
         {
             gameObject = go;
             transform = trans;
+            aiAgent = go.GetComponent<AIAgent>();
         }
     }
 }

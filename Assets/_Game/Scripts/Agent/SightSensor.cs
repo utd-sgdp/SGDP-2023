@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Agent
@@ -38,6 +40,25 @@ namespace Game.Agent
             Component t = hitinfo.rigidbody ? hitinfo.rigidbody : hitinfo.collider;
             return t.CompareTag(target);
         }
+
+        static IEnumerable<Collider> GetCollidersInRange(Vector3 position, float range)
+        {
+            Collider[] colliders = new Collider[20];
+            Physics.OverlapSphereNonAlloc(position, range, colliders);
+            return colliders;
+        }
+
+        public IEnumerable<T> GetObjectsInRange<T>(Vector3 position, float range)
+        {
+            return from collider in GetCollidersInRange(position, range < 0 ? _sightRange : range)
+                where collider != null
+                select collider.GetComponent<T>()
+                    into component
+                    where component != null 
+                    select component;
+        }
+
+        public IEnumerable<T> GetObjectsInSightRange<T>(Vector3 position) => GetObjectsInRange<T>(position, _sightRange);
 
         /// <summary>
         /// Simple distance check between <see cref="obj1"/> and <see cref="obj2"/>.

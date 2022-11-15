@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Agent.Tree;
+using UnityEngine;
 
 namespace Game.Agent.Composite
 {
@@ -10,18 +11,28 @@ namespace Game.Agent.Composite
     /// </summary>
     public class IfElse : CompositeNode
     {
-        protected override void OnStart() { }
+        [SerializeField]
+        bool _completeActionBeforeReevaluating;
+        
+        bool _evaluated;
+        State _result;
+
+        protected override void OnStart() => _result = Children[0].Update(); 
         protected override void OnStop() { }
 
         protected override State OnUpdate()
         {
-            return Children[0].Update() switch
+            if (!_completeActionBeforeReevaluating)
             {
-                State.Running => State.Running,
-                State.Success => Children[1].Update(),
-                State.Failure => Children[2].Update(),
-                _ => throw new ArgumentOutOfRangeException(),
-            };
+                _result = Children[0].Update();
+            }
+            
+            // condition was met, perform operation
+            if (_result == State.Success) return Children[1].Update();
+            if (_result == State.Failure) return Children[2].Update();
+            
+            // propagate condition results
+            return _result;
         }
     }
 }

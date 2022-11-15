@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6524651773480106500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739394a30e6fba444ae7915113acc425, type: 3}
-  m_Name: If
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: 40345e88f39be4848867539273777c9b
-  Blackboard:
-    target: {fileID: 0}
-  editorPosition: {x: 451.99997, y: 599.35504}
-  Children:
-  - {fileID: 606661277583154265}
-  - {fileID: 7681696897594223658}
 --- !u!114 &-4822694775605169721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,6 +16,7 @@ MonoBehaviour:
   guid: 9dce8532aed374142a33e67fe59a8f02
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: -300.00006, y: 599.35504}
   Children:
   - {fileID: -1835659466987140784}
@@ -56,6 +37,7 @@ MonoBehaviour:
   guid: 191c58a6f9de3a84c90e094cace68024
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 0, y: 151}
   Children:
   - {fileID: 5254817312670691938}
@@ -76,6 +58,7 @@ MonoBehaviour:
   guid: 47642b39333b6bd4b9d5991923a8fb7c
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: -375.00003, y: 748.35504}
 --- !u!114 &-1797975234322688745
 MonoBehaviour:
@@ -93,6 +76,7 @@ MonoBehaviour:
   guid: 446e07a5eeddc184b96f251258f421f4
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 75.00006, y: 304.0975}
   child: {fileID: 3918983163934840084}
   LoopAmount:
@@ -115,6 +99,7 @@ MonoBehaviour:
   TreeState: 0
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   nodes:
   - {fileID: 7478110320851554433}
   - {fileID: -1797975234322688745}
@@ -126,9 +111,7 @@ MonoBehaviour:
   - {fileID: 8677085907471215373}
   - {fileID: 1616860068698188738}
   - {fileID: 1360697394473324296}
-  - {fileID: -6524651773480106500}
   - {fileID: 606661277583154265}
-  - {fileID: 7681696897594223658}
   - {fileID: -4768998138264230209}
 --- !u!114 &522194239274083832
 MonoBehaviour:
@@ -146,6 +129,7 @@ MonoBehaviour:
   guid: f9f5c0a6481ebc542a9650a67293b741
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: -225, y: 748.35504}
 --- !u!114 &606661277583154265
 MonoBehaviour:
@@ -163,7 +147,8 @@ MonoBehaviour:
   guid: bec291348ab2e5f4fa04d20742645af4
   Blackboard:
     target: {fileID: 0}
-  editorPosition: {x: 376.99997, y: 748.35504}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 380.45007, y: 599.0001}
   desiredDistance: 2
 --- !u!114 &1360697394473324296
 MonoBehaviour:
@@ -181,6 +166,7 @@ MonoBehaviour:
   guid: a52e1b5676ebc9342bd0363348f11006
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 149.99994, y: 748.35504}
 --- !u!114 &1616860068698188738
 MonoBehaviour:
@@ -198,6 +184,7 @@ MonoBehaviour:
   guid: 2a001c4945ebcff4bb0f2a43ac2defdd
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 0, y: 748}
 --- !u!114 &3918983163934840084
 MonoBehaviour:
@@ -215,11 +202,13 @@ MonoBehaviour:
   guid: 8b6160026e9901c4caf32e32cc86ade0
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 74.99996, y: 451.35507}
   Children:
   - {fileID: -4822694775605169721}
   - {fileID: 8677085907471215373}
-  - {fileID: -6524651773480106500}
+  - {fileID: 606661277583154265}
+  _completeActionBeforeReevaluating: 0
 --- !u!114 &5254817312670691938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +225,7 @@ MonoBehaviour:
   guid: ccc94ba7db8373f4aa9ec87da77b138f
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: -75, y: 304}
 --- !u!114 &7478110320851554433
 MonoBehaviour:
@@ -253,25 +243,9 @@ MonoBehaviour:
   guid: 1403060d877965a4481f81c4c8eff0fa
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 0, y: 0}
   child: {fileID: -4768998138264230209}
---- !u!114 &7681696897594223658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4572db79a3caf47a71149f9f42b3cc, type: 3}
-  m_Name: FaceTarget
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: 3707f313d4671f145b66ddc3d6e699f5
-  Blackboard:
-    target: {fileID: 0}
-  editorPosition: {x: 527.00006, y: 748}
 --- !u!114 &8677085907471215373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +262,7 @@ MonoBehaviour:
   guid: ff88318bec55b954bab8e918e9f9df31
   Blackboard:
     target: {fileID: 0}
+    movementReference: {fileID: 0}
   editorPosition: {x: 74.99996, y: 599.35504}
   Children:
   - {fileID: 1616860068698188738}

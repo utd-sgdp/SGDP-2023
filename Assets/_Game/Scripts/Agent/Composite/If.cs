@@ -1,6 +1,7 @@
 using Game.Agent.Tree;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game
 {
@@ -9,18 +10,27 @@ namespace Game
     /// </summary>
     public class If : CompositeNode
     {
-        protected override void OnStart() { }
+        [SerializeField]
+        bool _completeActionBeforeReevaluating;
+        
+        bool _evaluated;
+        State _result;
+
+        protected override void OnStart() => _result = Children[0].Update(); 
         protected override void OnStop() { }
 
         protected override State OnUpdate()
         {
-            State condition = Children[0].Update();
+            if (!_completeActionBeforeReevaluating)
+            {
+                _result = Children[0].Update();
+            }
             
             // condition was met, perform operation
-            if (condition == State.Success) return Children[1].Update();
+            if (_result == State.Success) return Children[1].Update();
             
             // propagate condition results
-            return condition;
+            return _result;
         }
     }
 }

@@ -1,70 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Game.Agent.Tree;
-using System.Data;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Game.Agent.Action
 {
     public class FindDamagedEnemy : ActionNode
     {
-        protected override void OnStart()
+        SightSensor _sensor
         {
+            get
+            {
+                if (!b_sensor)
+                {
+                    b_sensor = GetComponent<SightSensor>();
+                }
 
+                return b_sensor;
+            }
         }
-
-        protected override void OnStop()
+        SightSensor b_sensor;
+        
+        Damageable _self
         {
+            get
+            {
+                if (!b_self)
+                {
+                    b_self = GetComponentInChildren<Damageable>();
+                }
 
+                return b_self;
+            }
         }
+        Damageable b_self;
+        
+        protected override void OnStart() { }
+        protected override void OnStop() { }
 
         protected override State OnUpdate()
         {
-            Blackboard.movementReference = GameObject.FindGameObjectWithTag("Player").transform;
-            //Run away from player if no enemies are healable or target has died
-            if (Blackboard.target == null || Blackboard.target == GameObject.FindGameObjectWithTag("Player").transform)
-            {
-                var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            List<Damageable> damageables = _sensor.GetObjectsInSightRange<Damageable>(transform.position).ToList();
+            damageables.Remove(_self);
+            
+            Damageable[] allies = damageables.Where(damageable => damageable.gameObject.layer == gameObject.layer).ToArray();
 
-                foreach (GameObject enemy in enemies)
+            // follow ally
+            if (allies.Length > 0)
+            {
+                // prioritize a damaged ally
+                Damageable[] damagedAllies = allies.Where(damageable => !damageable.AtMaxHealth).ToArray();
+                if (damagedAllies.Length > 0)
                 {
-                    Damageable test = enemy.GetComponent<Damageable>();
-                    if (test._health < test._maxHealth && enemy != Blackboard.gameObject)
-                    {
-                        Blackboard.target = enemy.GetComponent<Transform>();
-                        return State.Success;
-                    }
+                    // TODO: pick closest ally?
+                    allies = damagedAllies;
                 }
-                Blackboard.target = GameObject.FindGameObjectWithTag("Player").transform;
-                Blackboard.movementReference = null;
-                //Prevent setting current to null object
+                
+                Blackboard.target = allies[Random.Range(0, damagedAllies.Length)].transform;
+                return State.Success;
+            }
+            
+            // run from enemy
+            Damageable[] enemies = damageables.Where(damageable => damageable.gameObject.layer != gameObject.layer).ToArray();
+
+            // there are no enemies :/
+            if (enemies.Length == 0)
+            {
+                Blackboard.target = null;
                 return State.Failure;
             }
-            Damageable current = Blackboard.target.GetComponent<Damageable>();
-            if (current._health < current._maxHealth)
-            {
-                return State.Success;
-            }
-            else if (current._health == current._maxHealth)
-            {
-                var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-                foreach (GameObject enemy in enemies)
-                {
-                    Damageable test = enemy.GetComponent<Damageable>();
-                    if (test._health < test._maxHealth && enemy != Blackboard.gameObject)
-                    {
-                        Blackboard.target = enemy.GetComponent<Transform>();
-                        return State.Success;
-                    }
-                }
-                return State.Success;
-            }
-            Blackboard.movementReference = null;
+            
+            Blackboard.target = enemies[Random.Range(0, enemies.Length)].transform;
             return State.Failure;
         }
 
+        public override IReadOnlyCollection<string> GetDependencies() => new[] { typeof(SightSensor).AssemblyQualifiedName };
     }
 }
 

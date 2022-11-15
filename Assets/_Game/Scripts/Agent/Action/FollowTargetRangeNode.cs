@@ -29,7 +29,6 @@ namespace Game.Enemy.Action
         
         protected override void OnStart()
         {
-            
             s_agent.isStopped = false;
         }
 
