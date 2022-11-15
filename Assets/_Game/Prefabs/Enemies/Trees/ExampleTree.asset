@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -371.85004, y: 447.05005}
+  editorPosition: {x: -374, y: 447}
   Message: Hello2
 --- !u!114 &-8498534357806431848
 MonoBehaviour:
@@ -36,7 +36,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 230.14996, y: 295.05}
+  editorPosition: {x: 228, y: 295}
   Children:
   - {fileID: -7558842011245932146}
   - {fileID: 896519321507055730}
@@ -60,7 +60,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 230.14996, y: 447.05005}
+  editorPosition: {x: 228, y: 447}
   _duration: 1
   _elapsedTime: 0
 --- !u!114 &-7558842011245932146
@@ -80,7 +80,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 380.15002, y: 447.05005}
+  editorPosition: {x: 378, y: 447}
   Message: node21
 --- !u!114 &-5627697004733660636
 MonoBehaviour:
@@ -99,7 +99,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 3.1500244, y: -2.9500122}
+  editorPosition: {x: 1, y: -3}
   child: {fileID: 3806014328866398681}
   LoopAmount:
     _enabled: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -221.84998, y: 447.05005}
+  editorPosition: {x: -224, y: 447}
   _duration: 1
   _elapsedTime: 0
 --- !u!114 &11400000
@@ -172,7 +172,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 80.14996, y: 447.05005}
+  editorPosition: {x: 78, y: 447}
   Message: node2
 --- !u!114 &1084806766535901039
 MonoBehaviour:
@@ -191,7 +191,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -71.849976, y: 447.05005}
+  editorPosition: {x: -74, y: 447}
   Message: Hello3
 --- !u!114 &2104907435468281412
 MonoBehaviour:
@@ -210,7 +210,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -671.85004, y: 447.05005}
+  editorPosition: {x: -674, y: 447}
   Message: Hello1
 --- !u!114 &3806014328866398681
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 3.1500244, y: 148.05}
+  editorPosition: {x: 1, y: 148}
   Children:
   - {fileID: 7690322128829050806}
   - {fileID: -8498534357806431848}
@@ -252,7 +252,7 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -521.85004, y: 447.05005}
+  editorPosition: {x: -524, y: 447}
   _duration: 1
   _elapsedTime: 0
 --- !u!114 &7690322128829050806
@@ -272,12 +272,12 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: -374.85004, y: 295.05}
+  editorPosition: {x: -377, y: 295}
   Children:
-  - {fileID: 1084806766535901039}
-  - {fileID: -593659549037985764}
-  - {fileID: -8692011616662062409}
-  - {fileID: 6473618924309010134}
   - {fileID: 2104907435468281412}
+  - {fileID: 6473618924309010134}
+  - {fileID: -8692011616662062409}
+  - {fileID: -593659549037985764}
+  - {fileID: 1084806766535901039}
   _completeActionBeforeIncrement: 1
   _current: 0

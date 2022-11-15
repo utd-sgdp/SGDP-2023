@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7561731134006678724
+--- !u!114 &-5778115939103243418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,15 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 826685ef8c47d6e4ba50e5c802a8ca51, type: 3}
-  m_Name: AttackNode
+  m_Script: {fileID: 11500000, guid: 67f068ad332f4682b4dc354ff0f50215, type: 3}
+  m_Name: InitializeAndUpdate
   m_EditorClassIdentifier: 
   Description: 
-  guid: be1f417f85d12c548a16b6b64a91a9a8
+  guid: d6e5fd23599c63842ae1bd18b38d7b74
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 977, y: 482}
+  editorPosition: {x: 0, y: 0}
+  Children:
+  - {fileID: -3631855447795760810}
+  - {fileID: -5588232544082382212}
 --- !u!114 &-5588232544082382212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,8 +38,8 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 662, y: 247}
-  child: {fileID: -687664887811691151}
+  editorPosition: {x: 75, y: 153.00003}
+  child: {fileID: -2077761195207822090}
   LoopAmount:
     _enabled: 0
     _value: 0
@@ -58,27 +61,12 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 531, y: 10}
-  child: {fileID: -736103107422664722}
---- !u!114 &-4868774234043108526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23c06b6e353338428df6ac5a71b63ec, type: 3}
-  m_Name: InLineOfSightNodeHealer
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: 54f3192a2d4885844b817f15c8cd00a7
-  Blackboard:
-    target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: 461, y: 247}
-  range: 100
+  editorPosition: {x: 0, y: -151.00002}
+  child: {fileID: -5778115939103243418}
+  LoopAmount:
+    _enabled: 1
+    _value: 1
+  _loopsDone: 0
 --- !u!114 &-3631855447795760810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,26 +84,8 @@ MonoBehaviour:
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 258, y: 247}
---- !u!114 &-1595142762966399258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e345aba2f9afd74dbec3a494e9eac68, type: 3}
-  m_Name: FaceTargetNode
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: b8a6f0c96f7eb324b964f4d8cee1c659
-  Blackboard:
-    target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: 645, y: 482}
---- !u!114 &-736103107422664722
+  editorPosition: {x: -115.00008, y: 153.00003}
+--- !u!114 &-2077761195207822090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,42 +95,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25207f1e3e85f54ba21d468aa0ff0bb, type: 3}
-  m_Name: SequencerNode
+  m_Name: Sequencer
   m_EditorClassIdentifier: 
   Description: 
-  guid: fbd13e1d911a6a64caef730326834cfb
+  guid: bd75037541b10904b85e4079b203d478
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 531, y: 118}
+  editorPosition: {x: 77, y: 303}
   Children:
-  - {fileID: -3631855447795760810}
-  - {fileID: -4868774234043108526}
-  - {fileID: -5588232544082382212}
-  _current: 0
---- !u!114 &-687664887811691151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25207f1e3e85f54ba21d468aa0ff0bb, type: 3}
-  m_Name: SequencerNode
-  m_EditorClassIdentifier: 
-  Description: 
-  guid: b1655905ebe951148975364805b911ad
-  Blackboard:
-    target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: 662, y: 356}
-  Children:
-  - {fileID: 2263179865462775915}
-  - {fileID: -1595142762966399258}
-  - {fileID: 6824874850791836643}
-  - {fileID: -7561731134006678724}
+  - {fileID: 7484631913695542551}
+  - {fileID: 8942180950155859139}
+  _completeActionBeforeIncrement: 1
   _current: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -172,7 +118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5336819df5dea5247ab1a1309005db68, type: 3}
-  m_Name: TurretAI
+  m_Name: Turret
   m_EditorClassIdentifier: 
   RootNode: {fileID: -5317675945141419527}
   TreeState: 0
@@ -181,16 +127,13 @@ MonoBehaviour:
     movementReference: {fileID: 0}
   nodes:
   - {fileID: -5317675945141419527}
-  - {fileID: -736103107422664722}
   - {fileID: -3631855447795760810}
-  - {fileID: -4868774234043108526}
   - {fileID: -5588232544082382212}
-  - {fileID: -687664887811691151}
-  - {fileID: 2263179865462775915}
-  - {fileID: -1595142762966399258}
-  - {fileID: 6824874850791836643}
-  - {fileID: -7561731134006678724}
---- !u!114 &2263179865462775915
+  - {fileID: -5778115939103243418}
+  - {fileID: 7484631913695542551}
+  - {fileID: 8942180950155859139}
+  - {fileID: -2077761195207822090}
+--- !u!114 &7484631913695542551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,17 +142,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23c06b6e353338428df6ac5a71b63ec, type: 3}
-  m_Name: InLineOfSightNodeHealer
+  m_Script: {fileID: 11500000, guid: 7f4572db79a3caf47a71149f9f42b3cc, type: 3}
+  m_Name: FaceTarget
   m_EditorClassIdentifier: 
   Description: 
-  guid: 93c0e951b6bdcda4ea2bd37baaf540d7
+  guid: 2be4fa635b169c6418fc67be67185a0b
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 444, y: 482}
-  range: 100
---- !u!114 &6824874850791836643
+  editorPosition: {x: 0, y: 450}
+  _lookSpeed: 130
+  _lookThreshold: 10
+--- !u!114 &8942180950155859139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,13 +162,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc82c320b00c88344a9d2a2e2f5aaf2e, type: 3}
-  m_Name: InLineOfSightNode
+  m_Script: {fileID: 11500000, guid: 826685ef8c47d6e4ba50e5c802a8ca51, type: 3}
+  m_Name: Attack
   m_EditorClassIdentifier: 
   Description: 
-  guid: 7568afe89e598f74cbce6cf0da6fec26
+  guid: 23ef5910c6642b0448ef11a0a067f658
   Blackboard:
     target: {fileID: 0}
     movementReference: {fileID: 0}
-  editorPosition: {x: 812, y: 481.99997}
-  range: 100
+  editorPosition: {x: 152, y: 450}

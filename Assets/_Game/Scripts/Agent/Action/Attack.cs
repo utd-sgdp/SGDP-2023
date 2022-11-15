@@ -26,6 +26,8 @@ namespace Game.Agent.Action
         }
 
         bool _isAttacking;
+        
+        // TODO: add field to idle till attack is ready
 
         protected override void OnStart()
         {

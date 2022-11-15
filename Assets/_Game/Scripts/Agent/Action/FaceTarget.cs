@@ -3,6 +3,7 @@
 using Game.Agent.Tree;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,35 +15,29 @@ namespace Game
     /// </summary>
     public class FaceTarget : ActionNode
     {
-        NavMeshAgent _agent
-        {
-            get
-            {
-                if (!b_agent)
-                {
-                    b_agent = GetComponent<NavMeshAgent>();
-                }
+        [SerializeField]
+        [Min(0)]
+        float _lookSpeed = 120f;
+        
+        [SerializeField]
+        float _lookThreshold = 10f;
 
-                return b_agent;
-            }
-        }
-        NavMeshAgent b_agent;
+        float _normalizedSpeed => _lookSpeed * Time.deltaTime;
         
         protected override void OnStart() { }
         protected override void OnStop() { }
 
         protected override State OnUpdate()
         {
-            Vector3 dirVector = (Blackboard.target.position - Blackboard.transform.position).normalized;
-            float speed = _agent.angularSpeed * Time.deltaTime;
-            Quaternion direction = Quaternion.LookRotation(new Vector3(dirVector.x, 0, dirVector.z));
+            Vector3 dirVector = (Blackboard.target.position - transform.position).normalized;
+            dirVector.y = 0;
+            Quaternion direction = Quaternion.LookRotation(dirVector);
             
-            direction = Quaternion.RotateTowards(Blackboard.transform.rotation, direction, speed);
-            Blackboard.transform.rotation = direction;
+            direction = Quaternion.RotateTowards(transform.rotation, direction, _normalizedSpeed);
+            float angle = Vector3.Angle(dirVector, transform.forward);
 
-            return State.Success;
+            transform.rotation = direction;
+            return angle < _lookThreshold ? State.Success : State.Running;
         }
-        
-        public override IReadOnlyCollection<string> GetDependencies() => new[] { typeof(NavMeshAgent).AssemblyQualifiedName };
     }
 }

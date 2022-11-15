@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4981168435230209114}
   - component: {fileID: 2208097479656669365}
   m_Layer: 0
-  m_Name: Summoner_Weapon
+  m_Name: Summoner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5def753202c9bf4ea87318988db88d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplier: 1
   damage: 10
   attackDuration: 5
   cooldownDuration: 0
-  Looping: 0
+  fireMode: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -63,5 +64,5 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
-  summonedEnemy: {fileID: 1409907412189628548, guid: ee06037ee403cd74cbc81712539c957b,
+  _summonPrefab: {fileID: 1409907412189628548, guid: ee06037ee403cd74cbc81712539c957b,
     type: 3}

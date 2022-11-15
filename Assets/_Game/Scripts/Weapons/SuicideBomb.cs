@@ -14,15 +14,14 @@ namespace Game.Weapons
         /// </summary>
         protected override void OnAttack()
         {
-            _explosionRadius = 3f;
-            _bombDamage = 50f;
             foreach (var damageable in DamageablesInRange())
             {                
-                damageable.Hurt(_bombDamage);
+                damageable.Hurt(Damage);
             }
 
-            if (gameObject != null) {
-                gameObject.GetComponentInParent<Damageable>().Hurt(100);
+            if (gameObject != null)
+            {
+                gameObject.GetComponentInParent<Damageable>().Kill();
             }
         }
 
