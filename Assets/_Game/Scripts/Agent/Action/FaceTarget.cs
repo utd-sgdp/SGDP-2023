@@ -1,13 +1,10 @@
 // This code based on code from Brackeys Enemy AI video (https://youtu.be/xppompv1DBg?t=420)
 
 using Game.Agent.Tree;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Game
+namespace Game.Agent.Action
 {
     /// <summary>
     /// Turns the <see cref="NavMeshAgent"/> to face <see cref="Blackboard.target"/> at a speed proportional

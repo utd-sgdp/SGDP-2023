@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game.Agent.Tree
@@ -7,7 +6,6 @@ namespace Game.Agent.Tree
     public class Blackboard
     {
         public Transform target;
-        public Transform movementReference;
 
         public GameObject gameObject { get; private set; }
         public Transform transform { get; private set; }

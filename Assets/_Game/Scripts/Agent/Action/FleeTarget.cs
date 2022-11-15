@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Game.Agent;
 using Game.Agent.Tree;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Game._Game.Scripts.Agent.Action
+namespace Game.Agent.Action
 {
     public class FleeTarget : ActionNode
     {

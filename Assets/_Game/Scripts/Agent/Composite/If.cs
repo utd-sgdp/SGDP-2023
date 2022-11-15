@@ -1,9 +1,7 @@
 using Game.Agent.Tree;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Game.Agent.Composite
 {
     /// <summary>
     /// Perform operation (second child) while condition is met (first child)

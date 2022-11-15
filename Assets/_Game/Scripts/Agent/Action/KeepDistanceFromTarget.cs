@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Game.Agent.Tree;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Game.Agent.Action
 {
@@ -51,7 +49,7 @@ namespace Game.Agent.Action
                 (false, false) => MoveDirection.MaintainDistance,
                 (true, false) => MoveDirection.AwayFromTarget,
                 (false, true) => MoveDirection.TowardsTarget,
-                (true, true) => throw new ArgumentOutOfRangeException(),
+                (true, true) => throw new System.ArgumentOutOfRangeException(),
             };
 
             switch (result)
@@ -77,7 +75,7 @@ namespace Game.Agent.Action
                     return State.Success;
                 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new System.ArgumentOutOfRangeException();
             }
         }
 

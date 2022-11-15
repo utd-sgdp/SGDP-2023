@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game.Agent.Tree;
-using Game.Items.Statistics;
 using UnityEngine;
 
 namespace Game.Agent.Composite
