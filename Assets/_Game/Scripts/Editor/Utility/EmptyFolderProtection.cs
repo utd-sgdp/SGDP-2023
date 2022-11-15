@@ -56,8 +56,6 @@ namespace GameEditor.Utility
                 File.Delete(emptydir);
             }
         }
-
-        static void print(object message) => Debug.Log(message);
     }
 }
 #endif
