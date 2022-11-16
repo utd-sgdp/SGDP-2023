@@ -61,7 +61,10 @@ namespace Game.Agent.Tree
             
             // ReSharper disable once PossibleNullReferenceException
             node.name = type.Name;
+            
+#if UNITY_EDITOR
             node.guid = GUID.Generate().ToString();
+#endif
 
             #if UNITY_EDITOR
             // Set name to appear in inspector

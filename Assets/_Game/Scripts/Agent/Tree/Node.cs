@@ -16,9 +16,12 @@ namespace Game.Agent.Tree
         public bool Started { get; protected set; }
         
         [TextArea(3, 8)] public string Description;
-        [HideInInspector] public string guid;
         [HideInInspector] public Blackboard Blackboard;
         [HideInInspector] public Vector2 editorPosition;
+        
+#if UNITY_EDITOR
+        [HideInInspector] public string guid;
+#endif
 
         // ReSharper disable Unity.PerformanceAnalysis
         public State Update()
