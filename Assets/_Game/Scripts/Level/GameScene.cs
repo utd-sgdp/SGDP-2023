@@ -1,3 +1,4 @@
+using Game.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +15,13 @@ namespace Game.Level
 
         public static void Load(SceneIndex nextScene)
         {
-            LoadOperation = SceneManager.LoadSceneAsync((int)nextScene);
-            LoadOperation.allowSceneActivation = false;
             SceneManager.LoadScene(1);
+
+            Coroutines.Dummy.StartCoroutine(Coroutines.WaitFrame(() =>
+            {
+                LoadOperation = SceneManager.LoadSceneAsync((int) nextScene);
+                LoadOperation.allowSceneActivation = false;
+            }));
         }
     }
 }

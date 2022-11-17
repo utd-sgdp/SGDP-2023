@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Level;
 using Game.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,12 +26,12 @@ public class EndMenu : MonoBehaviour
 
    public void RestartRun()
    {
-       GameScene.Load(Level.Game);
+       GameScene.Load(SceneIndex.Game);
    }
 
    public void ReturnToHUB()
    {
-       GameScene.Load(Level.Start);
+       GameScene.Load(SceneIndex.Start);
    }
 }  
 
