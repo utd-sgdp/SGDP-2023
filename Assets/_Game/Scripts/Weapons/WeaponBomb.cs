@@ -8,11 +8,8 @@ namespace Game.Weapons
     public class WeaponBomb : WeaponBase
     {
         [SerializeField]
-        float _explosionRadius = 5f;
+        public float _explosionRadius = 5f;
         
-        [SerializeField]
-        float _bombDamage = 50f;
-
         /// <summary>
         /// Applies damage to all <see cref="Damageable"/>'s in range.
         /// </summary>
@@ -20,7 +17,7 @@ namespace Game.Weapons
         {
             foreach (var damageable in DamageablesInRange())
             {                
-                damageable.Hurt(_bombDamage * Multiplier);
+                damageable.Hurt(Damage * Multiplier);
             }
         }
 
@@ -34,7 +31,7 @@ namespace Game.Weapons
         /// </code></example>
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Damageable> DamageablesInRange()
+        public IEnumerable<Damageable> DamageablesInRange()
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
             foreach (Collider hit in colliders)

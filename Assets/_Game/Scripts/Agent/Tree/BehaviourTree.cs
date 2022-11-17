@@ -13,7 +13,7 @@ namespace Game.Agent.Tree
     {
         [HideInInspector] public Node RootNode;
         [HideInInspector] public State TreeState = State.Running;
-        [HideInInspector] public Blackboard Blackboard;
+        [HideInInspector] public Blackboard Blackboard = new();
         [HideInInspector] public List<Node> nodes = new();
 
         public State Update()
@@ -61,7 +61,10 @@ namespace Game.Agent.Tree
             
             // ReSharper disable once PossibleNullReferenceException
             node.name = type.Name;
+            
+#if UNITY_EDITOR
             node.guid = GUID.Generate().ToString();
+#endif
 
             #if UNITY_EDITOR
             // Set name to appear in inspector
@@ -196,6 +199,30 @@ namespace Game.Agent.Tree
                 EditorUtility.SetDirty(composite);
                 #endif
             }
+        }
+
+        public List<Node> GetChildren(Node parent)
+        {
+            List<Node> children = new List<Node>();
+            DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator && decorator.child != null)
+            {
+                children.Add(decorator.child);
+            }
+
+            RootNode root = parent as RootNode;
+            if (root && root.child != null)
+            {
+                children.Add(root.child);
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                return composite.Children;
+            }
+
+            return children;
         }
 
         /// <summary>

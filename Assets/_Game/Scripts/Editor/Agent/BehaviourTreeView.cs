@@ -6,12 +6,13 @@ using UnityEditor.Experimental.GraphView;
 using System;
 using System.Linq;
 using Game.Agent.Tree;
+using UnityEngine;
 
 namespace GameEditor.Agent
 {
     public class BehaviourTreeView : GraphView
     {
-        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
 
         BehaviourTree _tree;
         public Action<NodeView> OnNodeSelected;
@@ -48,6 +49,8 @@ namespace GameEditor.Agent
 
         internal void PopulateView(BehaviourTree tree)
         {
+            if (tree == null) return;
+            
             _tree = tree;
 
             // Ignore events from graphView
@@ -71,7 +74,7 @@ namespace GameEditor.Agent
             // render node edges
             foreach (var node in tree.nodes)
             {
-                var children = node.GetChildren();
+                var children = tree.GetChildren(node); 
                 foreach (var child in children)
                 {
                     NodeView parentView = FindNodeView(node);
@@ -141,21 +144,21 @@ namespace GameEditor.Agent
             var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
 
             // show decorator nodes
             types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
 
             // show composite nodes
             types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ => CreateNode(type));
+                evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
             }
         }
 

@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Game.Level
 {
     public class Breakable : MonoBehaviour
     {
         [SerializeField, HighlightIfNull]
-        protected GameObject _brokenObject;
+        protected GameObject _unbrokenObject;
 
         [SerializeField, HighlightIfNull]
-        protected GameObject _unbrokenObject;
+        protected GameObject _brokenObject;
 
         [SerializeField] protected float _breakingThreshold = 1f;
         [SerializeField] protected float _physicsDisableDelay = 5f;
@@ -23,8 +27,8 @@ namespace Game.Level
 
         void Start()
         {
-            _brokenObject.SetActive(true);
-            _unbrokenObject.SetActive(false);
+            _unbrokenObject.SetActive(true);
+            _brokenObject.SetActive(false);
         }
 
         void OnCollisionEnter(Collision collision)
@@ -36,8 +40,8 @@ namespace Game.Level
             Destroy(GetComponent<Rigidbody>());
             
             // swap broken/unbroken
-            _brokenObject.SetActive(false);
-            _unbrokenObject.SetActive(true);
+            _unbrokenObject.SetActive(false);
+            _brokenObject.SetActive(true);
             
             OnBreak?.Invoke(transform);
 
@@ -54,7 +58,7 @@ namespace Game.Level
 
         void StopPhysics()
         {
-            foreach (Transform child in _unbrokenObject.transform)
+            foreach (Transform child in _brokenObject.transform)
             {
                 var rb = child.gameObject.GetComponent<Rigidbody>(); 
                 Destroy(rb);
@@ -77,8 +81,37 @@ namespace Game.Level
                 yield return null;
             }
 
-            Destroy(_unbrokenObject);
             Destroy(_brokenObject);
+            Destroy(_unbrokenObject);
         }
+        
+        #if UNITY_EDITOR
+        [Button(Label = "Add Rigidbodies")]
+        public void AddRigidbodies()
+        {
+            Undo.RecordObject(gameObject, "Breakable (Add Rigidbodies)");
+            foreach (var piece in _brokenObject.GetComponentsInChildren<MeshFilter>())
+            {
+                Rigidbody rb = piece.GetComponent<Rigidbody>();
+                if (rb) continue;
+
+                Undo.AddComponent<Rigidbody>(piece.gameObject);
+            }
+        }
+
+        [Button(Label = "Add Mesh Colliders")]
+        public void AddColliders()
+        {
+            Undo.RecordObject(gameObject, "Breakable (Add Mesh Colliders)");
+            foreach (var piece in _brokenObject.GetComponentsInChildren<MeshFilter>())
+            {
+                Collider col = piece.GetComponent<Collider>();
+                if (col) continue;
+
+                MeshCollider m = Undo.AddComponent<MeshCollider>(piece.gameObject);
+                m.sharedMesh = piece.sharedMesh;
+            }
+        }
+        #endif
     }
 }
