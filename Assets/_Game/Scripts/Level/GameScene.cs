@@ -16,6 +16,7 @@ namespace Game.Level
         {
             LoadOperation = SceneManager.LoadSceneAsync((int)nextScene);
             LoadOperation.allowSceneActivation = false;
+            SceneManager.LoadScene(1);
         }
     }
 }

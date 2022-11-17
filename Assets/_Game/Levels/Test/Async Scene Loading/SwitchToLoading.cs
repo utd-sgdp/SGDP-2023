@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Game.Level;
 
 public class SwitchToLoading : MonoBehaviour
 {
@@ -14,6 +13,6 @@ public class SwitchToLoading : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("Loading", LoadSceneMode.Single);
+        GameScene.Load(SceneIndex.Game);
     }
 }

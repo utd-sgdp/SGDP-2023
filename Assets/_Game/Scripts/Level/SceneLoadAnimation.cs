@@ -16,10 +16,6 @@ namespace Game.Level
         #endif
         float currentValue;
         
-        void Start()
-        {
-            GameScene.Load(SceneIndex.Game);
-        }
         
         void Update() => UpdateLoadBar();
         void UpdateLoadBar()
