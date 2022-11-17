@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using Game.Utility.Editor;
 using System.Text.RegularExpressions;
+using Game;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine.SceneManagement;
@@ -156,7 +157,7 @@ namespace GameEditor.Utility
 
         static void DeleteComponentFromScene(List<GameObject> gameObjects)
         {
-            TraverseGameObjects(gameObjects, go =>
+            gameObjects.Traverse(go =>
             {
                 MDDocumentation md = go.GetComponent<MDDocumentation>();
                 if (!md) return;
@@ -164,25 +165,6 @@ namespace GameEditor.Utility
                 // delete component
                 Object.DestroyImmediate(md);
             });
-        }
-
-        static void TraverseGameObjects(List<GameObject> objects, System.Action<GameObject> callback)
-        {
-            while (objects.Count > 0)
-            {
-                // get current gameobject
-                GameObject go = objects[0];
-                objects.RemoveAt(0);
-
-                // add children to search list
-                objects.AddRange(
-                    from Transform child in go.transform
-                    select child.gameObject
-                );
-                
-                // perform callbacks
-                callback?.Invoke(go);
-            }
         }
     }
 }

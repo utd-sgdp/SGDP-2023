@@ -87,6 +87,17 @@ namespace Game.Utility
         #region Type Pooling
         static Dictionary<Type, PoolData> s_pools;
 
+        public static GameObject CheckOutGameObject()
+        {
+            PoolData data = GetPoolData<GameObject>();
+            ConcurrentBag<GameObject> pool = data.Pool;
+            GameObject item = pool.TryTake(out GameObject go) ? go : GenerateGameObject(data.Scene);
+            item.SetActive(true);
+            return item;
+        }
+
+        public static void CheckInGameObject(GameObject go) => CheckIn<GameObject>(go);
+
         /// <summary>
         /// Get empty <see cref="GameObject"/> with <typeparamref name="T"/> component
         /// attached.
@@ -165,8 +176,14 @@ namespace Game.Utility
 
         static GameObject GenerateObject<T>(Scene scene) where T : Behaviour
         {
-            GameObject go = new GameObject(typeof(T).Name);
+            GameObject go = GenerateGameObject(scene, typeof(T).Name);
             go.AddComponent<T>();
+            return go;
+        }
+
+        static GameObject GenerateGameObject(Scene scene, string name = "Game Object")
+        {
+            GameObject go = new GameObject(name);
             SceneManager.MoveGameObjectToScene(go, scene);
             return go;
         }
