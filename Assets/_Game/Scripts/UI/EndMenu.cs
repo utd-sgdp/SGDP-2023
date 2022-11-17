@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class EndMenu : MonoBehaviour
 {
