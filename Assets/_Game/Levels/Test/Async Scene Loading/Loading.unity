@@ -183,7 +183,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 3
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &368860390
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -212,7 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7a1ded4297c7d40a82dd8baf6dea74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadBar: {fileID: 368860389}
+  loadBar: {fileID: 368860389}
+  speed: 0.5
+  currentValue: 0
 --- !u!1 &477269869
 GameObject:
   m_ObjectHideFlags: 0

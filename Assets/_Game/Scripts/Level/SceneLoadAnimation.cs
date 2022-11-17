@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,31 +6,32 @@ namespace Game.Level
     public class SceneLoadAnimation : MonoBehaviour
     {
         [SerializeField]
-        public Image LoadBar;
+        Image loadBar;
 
-        private float currentValue;
+        [SerializeField]
+        float speed = 1f;
 
-        private void Start()
+        #if UNITY_EDITOR
+        [SerializeField, ReadOnly]
+        #endif
+        float currentValue;
+        
+        void Start()
         {
-            LoadBar.fillAmount = 0;
-
-            //tell the GameScene script to load the scene
             GameScene.Load(SceneIndex.Game);
-
-            //prevent the GameScene from switching to the new scene once it's loaded
-            GameScene.LoadOperation.allowSceneActivation = false;
         }
+        
         void Update() => UpdateLoadBar();
         void UpdateLoadBar()
         {
-            //get the loading progress
-            currentValue = GameScene.LoadOperation.progress / .9f;
-            print(currentValue);
+            // get load progress
+            float loadProgress = GameScene.LoadOperation.progress / .9f;
+            currentValue = Mathf.MoveTowards(currentValue, loadProgress, speed * Time.deltaTime);
 
-            //set the bar's fill amount to the loading progress
-            LoadBar.fillAmount = currentValue;
+            // update load bar
+            loadBar.fillAmount = currentValue;
 
-            //if it has loaded, allow the GameScene to switch to the scene
+            // if done, open the next scene
             if (Mathf.Approximately(currentValue, 1))
             {
                 GameScene.LoadOperation.allowSceneActivation = true;
