@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Game/Levels/Test/Async Scene Loading/Start.unity
+    guid: 32927e5f7b4f26642803cd2a4786aaf1
+  - enabled: 1
+    path: Assets/_Game/Levels/Test/Async Scene Loading/Loading.unity
+    guid: 9a09c167e89b7104eb49cf48fbd78f80
+  - enabled: 1
+    path: Assets/_Game/Levels/Test/Async Scene Loading/Game.unity
+    guid: 39124a872a11c1b4783753b53cae7fab
   m_configObjects: {}
