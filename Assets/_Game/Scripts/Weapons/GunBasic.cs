@@ -50,6 +50,10 @@ namespace Game.Weapons
                 return;
             }
             
+        }
+
+        public void FireBullet()
+        {
             _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
             _bulletsLeft--;
         }

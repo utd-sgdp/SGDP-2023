@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Game.Agent;
+using Game.Animation;
 using Game.Items.Statistics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +9,14 @@ using UnityEngine.InputSystem;
 namespace Game.Player
 {
     [RequireComponent(typeof(PlayerInput), typeof(Rigidbody))]
-    public class PlayerMovement : MonoBehaviour, IStatTarget
+    public class PlayerMovement : MonoBehaviour, IStatTarget, IMovementProvider
     {
+        #region Events
+        public Action<Vector2> OnMove;
+        public void SubscribeToOnMove(Action<Vector2> callback) => OnMove += callback;
+        public void UnsubscribeToOnMove(Action<Vector2> callback) => OnMove -= callback;
+        #endregion
+        
         #region Inspector Variables
         [Header("Movement")]
         [SerializeField]
@@ -23,6 +31,9 @@ namespace Game.Player
         float _timeToMaxVelocity = 0.25f;
 
         public float Multiplier = 1f;
+
+        [SerializeField, ReadOnly]
+        Vector3 _movement;
 
         [Header("Dash")]
         [SerializeField]
@@ -41,9 +52,6 @@ namespace Game.Player
         [SerializeField]
         [Range(0, 1)]
         float  _lookDeadZone = .1f;
-        
-        [Header("Animation")]
-        [SerializeField] Animator _anim;
         #endregion
 
         #region Private Variables
@@ -67,8 +75,6 @@ namespace Game.Player
         const float VELOCITY_MARGIN_SQ = VELOCITY_MARGIN * VELOCITY_MARGIN;
 
         static Plane s_groundPlane = new (Vector3.up, Vector3.zero);
-        static readonly int FLOAT_VELOCITY_Z = Animator.StringToHash("Velocity Z");
-        static readonly int FLOAT_VELOCITY_X = Animator.StringToHash("Velocity X");
         #endregion
 
         #region MonoBehaviour
@@ -76,8 +82,6 @@ namespace Game.Player
         {
             _body = GetComponent<Rigidbody>();
             InitializeMoveData();
-            
-            if (!_anim) Debug.LogWarning($"{name} has no player Animator.");
         }
 
         void OnEnable()
@@ -147,23 +151,14 @@ namespace Game.Player
                     nVelocity = CalculateConstVelocity(direction);
                     break;
             }
-            
+
             _body.velocity = nVelocity * Multiplier;
-            UpdateAnimation(nVelocity);
-        }
-        
-        void UpdateAnimation(Vector3 move)
-        {
-            // exit, there is no animator to update
-            if (!_anim) return;
             
             // calculate movement relative to the direction we are facing
-            move = Quaternion.Euler(0, -transform.rotation.eulerAngles.y, 0) * move;
-            
-            _anim.SetFloat(FLOAT_VELOCITY_X, move.x);
-            _anim.SetFloat(FLOAT_VELOCITY_Z, move.z);
+            nVelocity = Quaternion.Euler(0, -transform.rotation.eulerAngles.y, 0) * nVelocity;
+            OnMove?.Invoke(new Vector2(nVelocity.x, nVelocity.z));
         }
-
+        
         /// <summary>
         /// Velocity is calculated with no acceleration.
         /// </summary>

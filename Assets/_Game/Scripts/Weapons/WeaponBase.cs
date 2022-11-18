@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Animation;
 using Game.Items.Statistics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,8 @@ namespace Game.Weapons
     
     public abstract class WeaponBase : MonoBehaviour, IStatTarget
     {
+        public Action<ActionType> OnAction;
+        
         public float Damage => damage;
 
         public float Multiplier = 1f;
@@ -122,6 +125,7 @@ namespace Game.Weapons
         void Attack(System.Action AfterAttack, System.Action AfterCooldown)
         {
             OnAttack();
+            OnAction?.Invoke(ActionType.Attack);
             StartCoroutine(AttackDelay(AfterAttack, AfterCooldown));
         }
 
