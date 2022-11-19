@@ -1,0 +1,19 @@
+0.) Copy the github repository onto your computer. Make sure you create a branch off of "level design" and label it "yourname-level". Work on that branch.
+1.) Create floors in seperate scenes. You can copy the scene I already created for a starting point, if you so choose. Rename the scene the same as the branch. I suggest deleting most of the geometry, except the elevator room.
+1.5). Do the same for boss scenes, but name it "yourname-bosslevel". You can still start with my scene.
+2). Utilize probuilder to create the geometry for the level. If you can't find the window, go tools > probuilder > probuilder window. I typically dock it behind my inspector window.
+3.) Make sure gridsnapping is on- its a magnet icon towards the top of the sceneview. This will make it a lot easier for you to whitebox cleanly. It doesn't really matter if geometry overlaps.
+4.) Utilize the images in the Assets/Prefabs/LevelDesign folder created by Ross and Kenny for your level. Connect the room in an interesting and complex way, and feel free to create your own rooms while you're at it.
+
+4.) Boss floors are a seperate floor, and therefore a seperate scene.
+6.) Make boss stage look like a gameshow. Include a long hallway leading up to the level. Boss floors shouldn't be complex, only elevator and elevator room, hallway, and boss room.
+7.) Create buffer areas between combat rooms on regular floors.
+8.) Elevator is the starting point and should be contained within a larger room. You can see this in my example scene.
+9.) Make sure the regular floor level loops back on itself to the elevator room.
+
+In the end, you should create one regular floor and one boss floor. Both should have an elevator in a larger room. The regular floor should be a looping layout of combat rooms, hallways, and chest rooms, and the boss floor should be the elevator room, a hallway, and a gameshow stage. Please let me know if you have any questions.
+
+Some things I forgot to mention!************
+
+1.) There is a player prefab in this folder. Drag it in and make sure it's y position is correct.
+2.) There is a trigger prefab. Drag it in and resize it to fit the rooms. It may take some fiddling to make it work correctly, as it controls the camera.
