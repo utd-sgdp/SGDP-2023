@@ -23,7 +23,6 @@ namespace Game
         {
             HideMenu();
             previousMenu.SetActive(true);
-
         }
 
     }

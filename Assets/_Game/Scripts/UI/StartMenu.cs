@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 namespace Game
 {
     public class StartMenu : MonoBehaviour
     {
         public OptionsMenu options;
+        static Scene _currentScene => SceneManager.GetActiveScene();
 
         void Start()
         {
