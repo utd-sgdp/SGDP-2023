@@ -7,7 +7,12 @@ namespace Game
     public class OptionsMenu : MonoBehaviour
     {
         GameObject previousMenu;
-        
+
+        void Start()
+        {
+            HideMenu();
+        }
+
         public void HideMenu()
         {
             gameObject.SetActive(false);
