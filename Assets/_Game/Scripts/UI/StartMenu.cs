@@ -8,7 +8,6 @@ namespace Game
     public class StartMenu : MonoBehaviour
     {
         public OptionsMenu options;
-        static Scene _currentScene => SceneManager.GetActiveScene();
 
         void Start()
         {
@@ -28,7 +27,6 @@ namespace Game
         public void startGame()
         {
             HideMenu();
-            //Send to choose character screen.
         }
 
         public void callOptions()
