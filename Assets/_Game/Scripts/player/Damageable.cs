@@ -9,11 +9,11 @@ namespace Game
     {
         [Header("Data")]
         [SerializeField, ReadOnly]
-        float _health = 100f;
+        public float _health = 100f;
         
         [SerializeField]
         [Min(0)]
-        float _maxHealth = 100f;
+        public float _maxHealth = 100f;
 
         [Header("Events")]
         public UnityEvent<float> OnChange;
