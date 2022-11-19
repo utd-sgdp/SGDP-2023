@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Camera;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -10,7 +11,6 @@ using UnityEditor;
 
 namespace Game.Level
 {
-    [RequireComponent(typeof(BoxCollider))]
     public class Room : MonoBehaviour
     {
         [Header("Meta Data")]
@@ -18,26 +18,34 @@ namespace Game.Level
         [Tooltip("Meta data about the type of room.")]
         RoomTag _tags;
 
+        [Header("References")]
         [SerializeField]
-        [Tooltip("The room's bounding box.")]
-        BoxCollider _footprint;
-
-        [Header("Doors")]
+        RoomTrigger _trigger;
+        
         [SerializeField]
         [NonReorderable]
         RoomDoor[] _doors;
 
         bool _hasEntered;
-
-        void Awake()
+        
+        #if UNITY_EDITOR
+        void OnValidate()
         {
-            if (_footprint != null)
-            {
-                _footprint.enabled = false;
-            }
+            _trigger = GetComponentInChildren<RoomTrigger>();
+        }
+        #endif
+
+        void OnEnable()
+        {
+            _trigger.OnRoomEnter.AddListener(OnEnter);
         }
 
-        [Button(Label="Auto Detect Doors")]
+        void OnDisable()
+        {
+            _trigger.OnRoomEnter.RemoveListener(OnEnter);
+        }
+
+        [Button(Label="Collect Doors")]
         void DetectDoors()
         {
             #if UNITY_EDITOR
@@ -54,46 +62,38 @@ namespace Game.Level
 
         static void SortDoors(IEnumerable<RoomDoor> doors)
         {
-            List<RoomDoor> list = doors.ToList();
+            // List<RoomDoor> list = doors.ToList();
             
             // west
-            list.Sort((a, b) => a.door.transform.position.x.CompareTo(b.door.transform.position.x));
-            if (list[0].direction == DoorDirection.Null)
-            {
-                list[0].direction = DoorDirection.West;
-            }
-            
-            // east
-            list.Sort((a, b) => -a.door.transform.position.x.CompareTo(b.door.transform.position.x));
-            if (list[0].direction == DoorDirection.Null)
-            {
-                list[0].direction = DoorDirection.East;
-            }
-            
-            // south
-            list.Sort((a, b) => a.door.transform.position.z.CompareTo(b.door.transform.position.z));
-            if (list[0].direction == DoorDirection.Null)
-            {
-                list[0].direction = DoorDirection.South;
-            }
-            
-            // north
-            list.Sort((a, b) => -a.door.transform.position.z.CompareTo(b.door.transform.position.z));
-            if (list[0].direction == DoorDirection.Null)
-            {
-                list[0].direction = DoorDirection.North;
-            }
+            // list.Sort((a, b) => a.door.transform.position.x.CompareTo(b.door.transform.position.x));
+            // if (list[0].direction == DoorDirection.Null)
+            // {
+            //     list[0].direction = DoorDirection.North;
+            //     list[0].direction = DoorDirection.West;
+            // }
+            //
+            // // east
+            // list.Sort((a, b) => -a.door.transform.position.x.CompareTo(b.door.transform.position.x));
+            // if (list[0].direction == DoorDirection.Null)
+            // {
+            //     list[0].direction = DoorDirection.East;
+            // }
+            //
+            // // south
+            // list.Sort((a, b) => a.door.transform.position.z.CompareTo(b.door.transform.position.z));
+            // if (list[0].direction == DoorDirection.Null)
+            // {
+            // }
+            //
+            // // north
+            // list.Sort((a, b) => -a.door.transform.position.z.CompareTo(b.door.transform.position.z));
+            // if (list[0].direction == DoorDirection.Null)
+            // {
+            //     list[0].direction = DoorDirection.South;
+            // }
         }
 
         #region Entrance Behaviour
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                OnEnter();
-            }
-        }
-
         void OnEnter()
         {
             // exit, this room has already been entered
