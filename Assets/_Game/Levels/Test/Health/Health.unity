@@ -532,6 +532,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 3940449752894061668, guid: ab8b3d3fc03b4b647adfa5984deb66d0,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940449752894061668, guid: ab8b3d3fc03b4b647adfa5984deb66d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3940449752894061668, guid: ab8b3d3fc03b4b647adfa5984deb66d0,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940449752894061668, guid: ab8b3d3fc03b4b647adfa5984deb66d0,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7564355273334494081, guid: ab8b3d3fc03b4b647adfa5984deb66d0,
         type: 3}
       propertyPath: m_Pivot.x
