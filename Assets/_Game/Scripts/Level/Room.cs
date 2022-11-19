@@ -62,35 +62,27 @@ namespace Game.Level
 
         static void SortDoors(IEnumerable<RoomDoor> doors)
         {
-            // List<RoomDoor> list = doors.ToList();
+            Vector3 center = Vector3.zero;
+            var doorsList = doors.ToList();
+
+            // exit, there are no doors
+            if (doorsList.Count == 0) return;
             
-            // west
-            // list.Sort((a, b) => a.door.transform.position.x.CompareTo(b.door.transform.position.x));
-            // if (list[0].direction == DoorDirection.Null)
-            // {
-            //     list[0].direction = DoorDirection.North;
-            //     list[0].direction = DoorDirection.West;
-            // }
-            //
-            // // east
-            // list.Sort((a, b) => -a.door.transform.position.x.CompareTo(b.door.transform.position.x));
-            // if (list[0].direction == DoorDirection.Null)
-            // {
-            //     list[0].direction = DoorDirection.East;
-            // }
-            //
-            // // south
-            // list.Sort((a, b) => a.door.transform.position.z.CompareTo(b.door.transform.position.z));
-            // if (list[0].direction == DoorDirection.Null)
-            // {
-            // }
-            //
-            // // north
-            // list.Sort((a, b) => -a.door.transform.position.z.CompareTo(b.door.transform.position.z));
-            // if (list[0].direction == DoorDirection.Null)
-            // {
-            //     list[0].direction = DoorDirection.South;
-            // }
+            // calculate room center
+            doorsList.ForEach(door => center += door.door.transform.position);
+            center /= doorsList.Count;
+            
+            // decipher direction foreach door
+            foreach (RoomDoor data in doorsList)
+            {
+                Vector3 position = data.door.transform.position - center;
+                bool isNorth = !float.IsNegative(position.z);
+                bool isEast = !float.IsNegative(position.x);
+
+                data.direction = Mathf.Abs(position.x) > Mathf.Abs(position.z) ?
+                    isEast ? DoorDirection.East : DoorDirection.West :
+                    isNorth ? DoorDirection.North : DoorDirection.South;
+            }
         }
 
         #region Entrance Behaviour
