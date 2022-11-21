@@ -47,14 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a784451447ad94c843d04a10c441db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brokenObject: {fileID: 3079018378924827931}
-  _unbrokenObject: {fileID: 638880075799360830}
+  _unbrokenObject: {fileID: 3079018378924827931}
+  _brokenObject: {fileID: 638880075799360830}
   _breakingThreshold: 1
-  _physicsDisableDelay: 5
   _despawnDelay: 30
+  _despawnTime: 1.5
   OnBreak:
     m_PersistentCalls:
       m_Calls: []
+  _piecesWithPhysics: []
+  _noPiecesHavePhysics: 0
+  _allPiecesHavePhysics: 0
 --- !u!54 &4527749031209221330
 Rigidbody:
   m_ObjectHideFlags: 0
