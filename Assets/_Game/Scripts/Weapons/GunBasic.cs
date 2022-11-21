@@ -66,7 +66,12 @@ namespace Game.Weapons
             // reload cancel
             if (_reloading)
             {
-                Debug.Log("The gun is still reloading...");
+                if (_reloadMode == reloadMode.incrementReload)
+                {
+                    _reloading = false;
+                    return true;
+                }
+                
                 return false;
             }
 
