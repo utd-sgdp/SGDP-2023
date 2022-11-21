@@ -4,7 +4,7 @@ using UnityEngine;
 using Game.Player;
 using UnityEngine.Events;
 
-namespace Game.Items
+namespace Game.Play.Items
 {
     public abstract class ItemBase : MonoBehaviour
     {

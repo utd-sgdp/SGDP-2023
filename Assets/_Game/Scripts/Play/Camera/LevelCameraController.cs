@@ -5,7 +5,7 @@ using UnityEngine;
 using Cinemachine;
 using Game.Utility.Patterns;
 
-namespace Game.Camera
+namespace Game.Play.Camera
 {
     public class LevelCameraController : LazySingleton<LevelCameraController>
     {

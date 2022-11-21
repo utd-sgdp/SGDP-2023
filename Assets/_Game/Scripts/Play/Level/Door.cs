@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Level
+namespace Game.Play.Level
 {
     public class Door : MonoBehaviour
     {

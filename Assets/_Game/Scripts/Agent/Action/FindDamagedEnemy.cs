@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Game.Agent.Tree;
+using Game.Play.Level;
+using Game.Play;
 
 namespace Game.Agent.Action
 {

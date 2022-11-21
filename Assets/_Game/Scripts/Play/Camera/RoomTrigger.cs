@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.Camera
+namespace Game.Play.Camera
 {
     [RequireComponent(typeof(Collider))]
     public class RoomTrigger : MonoBehaviour

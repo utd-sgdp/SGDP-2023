@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game.Items.Statistics;
+using Game.Play.Items.Statistics;
 using UnityEngine;
 using Game.Player;
+using Game.Weapons;
 
-namespace Game.Items
+namespace Game.Play.Items
 {
-    public class SpeedUpItem : ItemBase
+    public class DamageUpItem : ItemBase
     {
         [SerializeField]
         StatModifier _modifier;
@@ -14,7 +15,7 @@ namespace Game.Items
         protected override void Pickup(PlayerStats player)
         {
             base.Pickup(player);
-            player.Speed.AddModifier(_modifier);
+            player.Damage.AddModifier(_modifier);
         }
     }
 }

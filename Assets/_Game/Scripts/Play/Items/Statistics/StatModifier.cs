@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Game.Items.Statistics
+namespace Game.Play.Items.Statistics
 {
 	public enum StatModType
 	{

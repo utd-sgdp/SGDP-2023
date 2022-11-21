@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-namespace Game.Level
+namespace Game.Play
 {
     public class Breakable : MonoBehaviour
     {
