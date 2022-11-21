@@ -17,3 +17,6 @@ Some things I forgot to mention!************
 
 1.) There is a player prefab in this folder. Drag it in and make sure it's y position is correct.
 2.) There is a trigger prefab. Drag it in and resize it to fit the rooms. It may take some fiddling to make it work correctly, as it controls the camera.
+3.) Doors cannot act as doors for multiple rooms. Place hallways in between rooms so exit and entrance doors are seperate.
+3.5.) Drag door script onto a collider and drag a room script onto the room empty. Then click autodetect doors.
+4.) Make sure to keep the hierarchy clean! This is very important. It makes programming's lives a lot easier!
