@@ -31,4 +31,15 @@ namespace Game
             }
         }
     }
+
+    public static class IEnumerableExtensions
+    {
+        public static void ForEach<T>(this IEnumerable<T> enumerable, System.Action<T> callback)
+        {
+            foreach (var item in enumerable)
+            {
+                callback?.Invoke(item);
+            }
+        }
+    }
 }
