@@ -86,7 +86,7 @@ namespace Game.Weapons
                 return false;
             }
             
-            Debug.Log(hit.transform.name+" was hit at "+hit.point);
+            Debug.Log(hit.transform.name + " was hit at " + hit.point);
             return true;
         }
 
@@ -97,9 +97,7 @@ namespace Game.Weapons
                 return direction;
             }
             
-            // TODO: apply random rotation proportional to spread
-            
-            return direction;
+            return direction.Randomize(new Vector3(spread, spread, 0));
         }
 
         const float HIT_SCAN_MAX_DIST = 100f;
