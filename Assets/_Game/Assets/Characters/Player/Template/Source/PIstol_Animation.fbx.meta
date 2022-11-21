@@ -5,28 +5,43 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -4791504522942941401
-    second: Idle
+    second: Armature|Armature|mixamo.com|Layer0
   - first:
-      74: 8692827651552835829
-    second: Walk Forward
+      74: -3100369314251171874
+    second: pistolIdleRoam
   - first:
-      74: -7783227237824937128
-    second: Walk Backward
+      74: -288720650219659650
+    second: pistolForwardWalk
   - first:
-      74: -4153299246785717871
-    second: Walk Left
+      74: 2352872860516275255
+    second: pistolBackWalk
   - first:
-      74: -53318096677749615
-    second: Walk Right
+      74: 6877937172645534444
+    second: pistolLeftWalk
   - first:
-      74: 6130527428295603074
-    second: Firing
+      74: -6474435492529509773
+    second: pistolRightWalk
   - first:
-      74: 6033199597511308148
-    second: Reload
+      74: -275957711214989483
+    second: pistolCombat_Idle
   - first:
-      74: -643137676460747808
-    second: AttackIdle
+      74: 234890714261198126
+    second: pistolCombat_Forward
+  - first:
+      74: -7878338560361532765
+    second: PistolCombat_Backward
+  - first:
+      74: -271865067909455334
+    second: pistolCombat_Right
+  - first:
+      74: 7712815370718275593
+    second: pistolCombat_Left
+  - first:
+      74: 2451502963807535876
+    second: pistolFire
+  - first:
+      74: -1139650443834347001
+    second: pistolReload
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -57,11 +72,40 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Armature|Armature|mixamo.com|Layer0
+      takeName: Armature|Armature|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 689
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pistolIdleRoam
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 1
-      lastFrame: 81
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -86,7 +130,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk Forward
+      name: pistolForwardWalk
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 150
@@ -115,7 +159,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk Backward
+      name: pistolBackWalk
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 85
@@ -144,7 +188,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk Left
+      name: pistolLeftWalk
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 195
@@ -173,7 +217,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk Right
+      name: pistolRightWalk
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
       firstFrame: 235
@@ -202,18 +246,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Firing
+      name: pistolCombat_Idle
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
-      firstFrame: 290
-      lastFrame: 305
+      firstFrame: 420
+      lastFrame: 499
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -225,24 +269,133 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: FireBullet
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Reload
+      name: pistolCombat_Forward
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
-      firstFrame: 310
-      lastFrame: 399
+      firstFrame: 569
+      lastFrame: 611
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: PistolCombat_Backward
+      takeName: Armature|Armature|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 504
+      lastFrame: 564
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pistolCombat_Right
+      takeName: Armature|Armature|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 614
+      lastFrame: 647
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pistolCombat_Left
+      takeName: Armature|Armature|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 654
+      lastFrame: 689
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: pistolFire
+      takeName: Armature|Armature|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 290
+      lastFrame: 302
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -262,23 +415,181 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Elbow_IK_L
+        weight: 1
+      - path: Armature/Elbow_IK_L/Elbow_IK_L_end
+        weight: 1
+      - path: Armature/Elbow_IK_R
+        weight: 1
+      - path: Armature/Elbow_IK_R/Elbow_IK_R_end
+        weight: 1
+      - path: Armature/Hand_IK_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L/mixamorig:RightHandIndex3_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L/mixamorig:RightHandIndex3_L/mixamorig:RightHandIndex3_L_end
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L/mixamorig:RightHandMiddle3_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L/mixamorig:RightHandMiddle3_L/mixamorig:RightHandMiddle3_L_end
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L
+        weight: 1
+      - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L/mixamorig:RightHandThumb3_L_end
+        weight: 1
+      - path: Armature/Hand_IK_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R/mixamorig:RightHandIndex3_R_end
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R/mixamorig:RightHandMiddle3_R_end
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R
+        weight: 0
+      - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R/mixamorig:RightHandThumb3_R_end
+        weight: 0
+      - path: Armature/Heel-IK_L
+        weight: 0
+      - path: Armature/Heel-IK_L/mixamorig:RightFoot_L
+        weight: 0
+      - path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L
+        weight: 0
+      - path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L/mixamorig:RightToe_End_L
+        weight: 0
+      - path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L/mixamorig:RightToe_End_L/mixamorig:RightToe_End_L_end
+        weight: 0
+      - path: Armature/Heel-IK_R
+        weight: 0
+      - path: Armature/Heel-IK_R/mixamorig:RightFoot_R
+        weight: 0
+      - path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R
+        weight: 0
+      - path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R/mixamorig:RightToe_End_R
+        weight: 0
+      - path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R/mixamorig:RightToe_End_R/mixamorig:RightToe_End_R_end
+        weight: 0
+      - path: Armature/Knee-IK_L
+        weight: 0
+      - path: Armature/Knee-IK_L/Knee-IK_L_end
+        weight: 0
+      - path: Armature/Knee-IK_R
+        weight: 0
+      - path: Armature/Knee-IK_R/Knee-IK_R_end
+        weight: 0
+      - path: Armature/mixamorig:Hips
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L/mixamorig:RightLeg_L
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L/mixamorig:RightLeg_L/mixamorig:RightLeg_L_end
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R/mixamorig:RightLeg_R_end
+        weight: 0
+      - path: Armature/mixamorig:Hips/mixamorig:Spine
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L/mixamorig:RightForeArm_L
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L/mixamorig:RightForeArm_L/mixamorig:RightForeArm_L_end
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R
+        weight: 1
+      - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R/mixamorig:RightForeArm_R_end
+        weight: 1
+      - path: Armature/Pistol
+        weight: 1
+      - path: Armature/Pistol/Clip
+        weight: 0
+      - path: Armature/Pistol/Clip/Clip_end
+        weight: 0
+      - path: Armature/Pistol/Slide
+        weight: 0
+      - path: Armature/Pistol/Slide/Slide_end
+        weight: 0
+      - path: Armature/Pistol/Trigger
+        weight: 0
+      - path: Armature/Pistol/Trigger/Trigger_end
+        weight: 0
+      - path: Basic Pistol
+        weight: 0
+      - path: Template
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 3d986509fca58ab43b30c4d869dfee89, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackIdle
+      name: pistolReload
       takeName: Armature|Armature|mixamo.com|Layer0
       internalID: 0
-      firstFrame: 304
-      lastFrame: 305
+      firstFrame: 305
+      lastFrame: 399
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -352,7 +663,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: mixamorig:Hips
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -360,7 +671,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

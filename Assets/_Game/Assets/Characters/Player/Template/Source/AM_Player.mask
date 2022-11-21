@@ -50,33 +50,33 @@ AvatarMask:
   - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L/mixamorig:RightHandThumb3_L_end
     m_Weight: 1
   - m_Path: Armature/Hand_IK_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R/mixamorig:RightHandIndex3_R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R/mixamorig:RightHandMiddle3_R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R/mixamorig:RightHandThumb3_R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Heel-IK_L
     m_Weight: 0
   - m_Path: Armature/Heel-IK_L/mixamorig:RightFoot_L
@@ -106,7 +106,7 @@ AvatarMask:
   - m_Path: Armature/Knee-IK_R/Knee-IK_R_end
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L/mixamorig:RightLeg_L
@@ -120,15 +120,15 @@ AvatarMask:
   - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R/mixamorig:RightLeg_R_end
     m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
@@ -152,18 +152,18 @@ AvatarMask:
   - m_Path: Armature/Pistol
     m_Weight: 1
   - m_Path: Armature/Pistol/Clip
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Pistol/Clip/Clip_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Pistol/Slide
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Pistol/Slide/Slide_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Pistol/Trigger
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Pistol/Trigger/Trigger_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Basic Pistol
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Template
     m_Weight: 0
