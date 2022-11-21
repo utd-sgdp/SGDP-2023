@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Utility;
 using UnityEngine;
 
 namespace Game.Weapons
@@ -12,13 +13,19 @@ namespace Game.Weapons
         
         [Header("Stats")]
         [SerializeField]
-        int _magazineSize;
+        protected Optional<float> _spread = new();
         
         [SerializeField]
-        float _reloadTime;
+        protected int _magazineSize;
+        
+        [SerializeField]
+        protected float _reloadTime;
+        
+        [SerializeField]
+        protected bool _hitScan;
         
         [SerializeField, ReadOnly]
-        int _bulletsLeft;
+        protected int _bulletsLeft;
 
         [Header("References")]
         [SerializeField, HighlightIfNull]
@@ -38,20 +45,40 @@ namespace Game.Weapons
         
         protected override void OnAttack()
         {
+            Fire();
+            _bulletsLeft--;
+        }
+
+        public override bool CanAttack()
+        {
+            // propagate attack duration from WeaponBase
+            if (!base.CanAttack()) return false;
+            
             if (_reloading)
             {
                 Debug.Log("The gun is still reloading...");
-                return;
+                return false;
             }
 
             if (_bulletsLeft <= 0)
             {
                 StartCoroutine(reload());
+                return false;
+            }
+
+            return true;
+        }
+
+        protected void Fire()
+        {
+            float spread = _spread.Enabled ? _spread.Value : 0;
+            if (_hitScan)
+            {
+                bool hit = BulletBasic.HitScan(_gunTip.position, _gunTip.rotation, spread);
                 return;
             }
             
-            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
-            _bulletsLeft--;
+            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation, spread);
         }
 
         IEnumerator reload()

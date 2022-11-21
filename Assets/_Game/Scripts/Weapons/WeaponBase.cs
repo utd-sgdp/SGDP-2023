@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Game.Items.Statistics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -90,7 +89,18 @@ namespace Game.Weapons
 
         public bool AttemptAttack(bool loop = false, System.Action AfterAttack = null, System.Action AfterCooldown = null)
         {
-            switch(fireMode)
+            bool canAttack = CanAttack();
+            if (!canAttack) return false;
+            
+            Looping = loop;
+
+            Attack(AfterAttack, AfterCooldown);
+            return true;
+        }
+
+        public virtual bool CanAttack()
+        {
+            switch (fireMode)
             {
                 case FireMode.SemiAuto:
                 {
@@ -110,10 +120,7 @@ namespace Game.Weapons
                     break;
                 }
             }
-            
-            Looping = loop;
 
-            Attack(AfterAttack, AfterCooldown);
             return true;
         }
 
