@@ -2,6 +2,10 @@ using Game.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Game.Level
 {
     public enum SceneIndex
@@ -22,6 +26,15 @@ namespace Game.Level
                 LoadOperation = SceneManager.LoadSceneAsync((int) nextScene);
                 LoadOperation.allowSceneActivation = false;
             }));
+        }
+
+        public static void Quit()
+        {
+            #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+            #else
+            Application.Quit();
+            #endif
         }
     }
 }
