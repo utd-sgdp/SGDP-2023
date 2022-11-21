@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using Game.Utility.Editor;
 using System.Text.RegularExpressions;
+using Game;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+using UnityEngine.SceneManagement;
 
 namespace GameEditor.Utility
 {
@@ -131,6 +136,35 @@ namespace GameEditor.Utility
         {
             public string Text;
             public int Bold;
+        }
+    }
+    
+    class MDDocumentationBuildProcessor : IProcessSceneWithReport
+    {
+        public int callbackOrder => 0;
+        public void OnProcessScene(Scene scene, BuildReport report)
+        {
+            // don't run when in editor play mode
+#if UNITY_EDITOR
+            return;
+#endif
+
+#pragma warning disable CS0162
+            // ReSharper disable once HeuristicUnreachableCode
+            DeleteComponentFromScene(scene.GetRootGameObjects().ToList());
+#pragma warning restore CS0162
+        }
+
+        static void DeleteComponentFromScene(List<GameObject> gameObjects)
+        {
+            gameObjects.Traverse(go =>
+            {
+                MDDocumentation md = go.GetComponent<MDDocumentation>();
+                if (!md) return;
+                
+                // delete component
+                Object.DestroyImmediate(md);
+            });
         }
     }
 }

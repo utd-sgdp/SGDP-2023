@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7918440405580408335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f2b0f57845f843b71a08fd0744f6f, type: 3}
+  m_Name: FollowTarget
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: 6da735ff285aa51439e29457ffc483c6
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 0, y: 300}
+  desiredDistance: 5
+--- !u!114 &-5979807907048097113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25207f1e3e85f54ba21d468aa0ff0bb, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: 8692a7fae328893468d1d4267cf05ed3
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 0, y: 152}
+  Children:
+  - {fileID: 6994109126658307096}
+  - {fileID: -7918440405580408335}
+  - {fileID: 7127261962052032892}
+  _completeActionBeforeIncrement: 1
+  _current: 0
+--- !u!114 &-3682749991103944927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846e422121444ec3ac88070cbcd187ed, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: 03d781813de26b84b8a21ff5d985f3a8
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 0, y: 0}
+  child: {fileID: -5979807907048097113}
+  LoopAmount:
+    _enabled: 1
+    _value: 1
+  _loopsDone: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5336819df5dea5247ab1a1309005db68, type: 3}
+  m_Name: Bomber
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: -3682749991103944927}
+  TreeState: 0
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  nodes:
+  - {fileID: -3682749991103944927}
+  - {fileID: -5979807907048097113}
+  - {fileID: 6994109126658307096}
+  - {fileID: -7918440405580408335}
+  - {fileID: 7127261962052032892}
+--- !u!114 &6994109126658307096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8e5b859de7a0a49b7112bf3d125087, type: 3}
+  m_Name: SetTargetToPlayer
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: 7ece4c22df6a1bf47a57f687ffb4d8cd
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: -150, y: 300}
+--- !u!114 &7127261962052032892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826685ef8c47d6e4ba50e5c802a8ca51, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  Description: 
+  guid: 627fa6d0aa53283429e149107e89345a
+  Blackboard:
+    target: {fileID: 0}
+    movementReference: {fileID: 0}
+  editorPosition: {x: 150, y: 300}

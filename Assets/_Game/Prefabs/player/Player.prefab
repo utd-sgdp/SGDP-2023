@@ -101,6 +101,7 @@ MonoBehaviour:
   _movementType: 0
   _maxVelocity: 6.5
   _timeToMaxVelocity: 0.3
+  Multiplier: 1
   _dashLength: 3.5
   _dashDuration: 0.05
   _dashCoolDown: 0.5
@@ -131,11 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338bbcea04fe30b4d83500cf8bac91c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageTarget: {fileID: 1009887628074192101}
   Damage:
     BaseValue: 1
     _value: 0
-  SpeedTarget: {fileID: 2389105605677970659}
   Speed:
     BaseValue: 1
     _value: 0
@@ -149,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6527197261991132058}
   - component: {fileID: 3716590011246359192}
+  - component: {fileID: 3609712841117602995}
   m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
@@ -185,6 +185,35 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3609712841117602995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7981443220640743542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7745b22f291244c8203f3ce3ec2d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _maxHealth: 100
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3860163971390001244
 PrefabInstance:
   m_ObjectHideFlags: 0
