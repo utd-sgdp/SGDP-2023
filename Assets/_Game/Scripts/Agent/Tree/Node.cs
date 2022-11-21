@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,10 +16,12 @@ namespace Game.Agent.Tree
         public bool Started { get; protected set; }
         
         [TextArea(3, 8)] public string Description;
-        [HideInInspector] public string guid;
         [HideInInspector] public Blackboard Blackboard;
         [HideInInspector] public Vector2 editorPosition;
         
+#if UNITY_EDITOR
+        [HideInInspector] public string guid;
+#endif
 
         // ReSharper disable Unity.PerformanceAnalysis
         public State Update()
@@ -71,5 +75,28 @@ namespace Game.Agent.Tree
         {
             return Instantiate(this);
         }
+
+        public virtual IReadOnlyCollection<string> GetDependencies() => new string[] { };
+
+        #region MonoBehaviour Wrappers
+        protected GameObject gameObject => Blackboard.gameObject;
+        protected Transform transform => Blackboard.transform;
+        
+        protected static void print(object message) => Debug.Log(message);
+
+        protected Coroutine StartCoroutine(IEnumerator enumerator) => Blackboard.aiAgent.StartCoroutine(enumerator);
+        protected void StopCoroutine(Coroutine routine) => Blackboard.aiAgent.StopCoroutine(routine);
+        protected void StopAllCoroutines() => Blackboard.aiAgent.StopAllCoroutines();
+        
+        protected T GetComponent<T>() => Blackboard.gameObject.GetComponent<T>();
+        protected Component GetComponent(Type type) => Blackboard.gameObject.GetComponent(type);
+        protected Component GetComponent(string type) => Blackboard.gameObject.GetComponent(type);
+        
+        protected T GetComponentInChildren<T>(bool includeInactive=false) => Blackboard.gameObject.GetComponentInChildren<T>(includeInactive);
+        protected Component GetComponentInChildren(Type type, bool includeInactive=false) => Blackboard.gameObject.GetComponentInChildren(type, includeInactive);
+        
+        protected T[] GetComponentsInChildren<T>(bool includeInactive=false) => Blackboard.gameObject.GetComponentsInChildren<T>(includeInactive);
+        protected Component[] GetComponentsInChildren(Type type, bool includeInactive=false) => Blackboard.gameObject.GetComponentsInChildren(type, includeInactive);
+        #endregion
     }
 }

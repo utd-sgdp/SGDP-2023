@@ -62,10 +62,44 @@ namespace Game.Weapons
         /// </summary>
         /// <param name="position"> World-Space position </param>
         /// <param name="rotation"> World-Space rotation </param>
+        /// <param name="spread"> Random rotation applied to bullet </param>
         /// <returns> Reference to this instance. </returns>
-        public virtual BulletBasic Spawn(Vector3 position, Quaternion rotation)
+        public virtual BulletBasic Spawn(Vector3 position, Quaternion rotation, float spread=0)
         {
-            return Instantiate(this, position, rotation);
+            BulletBasic bullet = Instantiate(this, position, rotation);
+            Transform trans = bullet.transform;
+
+            if (spread != 0)
+            {
+                trans.rotation = ApplySpread(rotation, spread);
+            }
+            
+            return bullet;
         }
+
+        public static bool HitScan(Vector3 position, Quaternion rotation, float spread=0)
+        {
+            Vector3 direction = ApplySpread(rotation, spread) * Vector3.forward;
+            
+            if (!Physics.Raycast(position, direction, out var hit, HIT_SCAN_MAX_DIST))
+            {
+                return false;
+            }
+            
+            Debug.Log(hit.transform.name + " was hit at " + hit.point);
+            return true;
+        }
+
+        static Quaternion ApplySpread(Quaternion direction, float spread)
+        {
+            if (spread == 0)
+            {
+                return direction;
+            }
+            
+            return direction.Randomize(new Vector3(spread, spread, 0));
+        }
+
+        const float HIT_SCAN_MAX_DIST = 100f;
     }
 }

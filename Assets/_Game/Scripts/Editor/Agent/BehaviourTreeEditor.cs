@@ -104,17 +104,21 @@ namespace GameEditor.Agent
                 if (Selection.activeGameObject)
                 {
                     AIAgent runner = Selection.activeGameObject.GetComponent<AIAgent>();
+                    if (runner)
+                    {
+                        tree = runner.Tree;
+                    }
                 }
             }
 
             if (Application.isPlaying)
             {
-                if (!tree) return;
+                if (!tree || treeView == null) return;
                 treeView.PopulateView(tree);
             }
             else
             {
-                if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+                if (tree && treeView != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
                 {
                     treeView.PopulateView(tree);
                 }

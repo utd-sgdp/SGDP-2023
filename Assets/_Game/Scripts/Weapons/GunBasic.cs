@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Utility;
 using UnityEngine;
 
 namespace Game.Weapons
@@ -13,19 +14,21 @@ namespace Game.Weapons
        protected enum reloadMode 
         {
             magazineReload,
-            incrementReload
+            incrementReload,
         }
         
         [Header("Stats")]
         [SerializeField]
-        protected int _magazineSize;
+        protected Optional<float> _spread = new();
+        
         [SerializeField]
-        protected float _range = 100f;
-
+        protected int _magazineSize;
+        
         [SerializeField]
         protected float _reloadTime;
+        
         [SerializeField]
-        protected bool _hitScan = false;
+        protected bool _hitScan;
 
         [SerializeField]
         protected reloadMode _reloadMode;
@@ -40,7 +43,7 @@ namespace Game.Weapons
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
         
-        protected bool _reloading;
+        bool _reloading;
 
         protected override void Awake()
         {
@@ -51,78 +54,92 @@ namespace Game.Weapons
         
         protected override void OnAttack()
         {
+            Fire();
+            _bulletsLeft--;
+        }
+
+        public override bool CanAttack()
+        {
+            // propagate attack duration from WeaponBase
+            if (!base.CanAttack()) return false;
+            
+            // reload cancel
             if (_reloading)
             {
-                if (_reloadMode == reloadMode.incrementReload)
-                {
-                    Debug.Log("Reload interrupted!");
-                    _reloading = false;
-                }
-                else if(_reloadMode == reloadMode.magazineReload) 
-                {
-                    Debug.Log("Currently reloading...");
-                    return;
-                }
+                Debug.Log("The gun is still reloading...");
+                return false;
             }
 
+            // start reloading
             if (_bulletsLeft <= 0)
             {
-                reload();
-                return;
+                Reload();
+                return false;
             }
 
+            return true;
+        }
+
+        protected void Fire()
+        {
+            float spread = _spread.Enabled ? _spread.Value : 0;
             if (_hitScan)
             {
-                RaycastHit hit;
-                if(Physics.Raycast(_gunTip.position, _gunTip.forward, out hit, _range))
-                {
-                    Debug.Log(hit.transform.name+" was hit at "+hit.point);
-                }
-                _bulletsLeft--;
+                bool hit = BulletBasic.HitScan(_gunTip.position, _gunTip.rotation, spread);
+                
+                // TODO: apply damage to whatever was hit
+                
                 return;
             }
-
-            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
-            _bulletsLeft--;
+            
+            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation, spread);
         }
 
         /// <summary>
         /// Reload method encapsulating the separate implementations of the reload functions
         /// </summary>
-        void reload()
+        void Reload()
         {
-            if(_reloadMode == reloadMode.magazineReload)
+            switch (_reloadMode)
             {
-               StartCoroutine(magazineReload());
-            }
-            else if(_reloadMode == reloadMode.incrementReload) 
-            {
-               StartCoroutine(incrementReload());
+                default:
+                case reloadMode.magazineReload:
+                    StartCoroutine(magazineReload());
+                    break;
+                
+                case reloadMode.incrementReload:
+                    StartCoroutine(incrementReload());
+                    break;
             }
         }
 
-        private IEnumerator magazineReload()
+        IEnumerator magazineReload()
         {
             _reloading = true;
 
             yield return new WaitForSeconds(_reloadTime);
-            _reloading = false;
 
+            // reload was cancelled
+            if (!_reloading) yield break;
+            
+            _reloading = false;
             _bulletsLeft = _magazineSize;
         }
 
-        private IEnumerator incrementReload() 
+        IEnumerator incrementReload() 
         {
             _reloading = true;
-            while(_bulletsLeft < _magazineSize && _reloading) {
+            while (_bulletsLeft < _magazineSize && _reloading)
+            {
                 yield return new WaitForSeconds(_reloadTime / _magazineSize);
-                // Ensure that we are still reloading before we load a bullet
-                if (_reloading) 
-                {
-                    _bulletsLeft++;
-                    Debug.Log("Bullet loaded: " + _bulletsLeft + "/" + _magazineSize);
-                }
+                
+                // reload was cancelled
+                if (!_reloading) yield break;
+                
+                // continue reload
+                _bulletsLeft++;
             }
+            
             _reloading = false;
         }
     }
