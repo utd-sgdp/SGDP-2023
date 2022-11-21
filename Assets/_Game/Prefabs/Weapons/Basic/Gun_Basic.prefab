@@ -133,7 +133,7 @@ MonoBehaviour:
   damage: 10
   attackDuration: 0
   cooldownDuration: 0
-  Looping: 0
+  fireMode: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -149,6 +149,9 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
+  _magazineSize: 10
+  _reloadTime: 2
+  _bulletsLeft: 0
   _bulletPrefab: {fileID: 9033473416695831239, guid: ea9269551d8a51145a45bf930cb4e7f2,
     type: 3}
   _gunTip: {fileID: 6066618544118744548}

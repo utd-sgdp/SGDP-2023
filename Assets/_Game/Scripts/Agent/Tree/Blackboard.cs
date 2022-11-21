@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Game.Agent.Tree
@@ -6,8 +5,11 @@ namespace Game.Agent.Tree
     [System.Serializable]
     public class Blackboard
     {
-        [NonSerialized] public GameObject gameObject;
-        [NonSerialized] public Transform transform;
+        public Transform target;
+
+        public GameObject gameObject { get; private set; }
+        public Transform transform { get; private set; }
+        public AIAgent aiAgent { get; private set; }
 
         /// <summary>
         /// Initialize required information/references collected at runtime.
@@ -16,6 +18,7 @@ namespace Game.Agent.Tree
         {
             gameObject = go;
             transform = trans;
+            aiAgent = go.GetComponent<AIAgent>();
         }
     }
 }
