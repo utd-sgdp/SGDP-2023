@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Level;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,7 +27,7 @@ namespace Game
 
         public void startGame()
         {
-            HideMenu();
+            GameScene.Load(SceneIndex.Game);
         }
 
         public void callOptions()
@@ -35,7 +36,7 @@ namespace Game
             options.ShowMenu(previousMenu: gameObject);
         }
 
-        public void QuitGame() => Application.Quit();
+        public void QuitGame() => GameScene.Quit();
 
     }
 }
