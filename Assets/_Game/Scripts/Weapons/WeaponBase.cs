@@ -100,7 +100,7 @@ namespace Game.Weapons
 
         public virtual bool CanAttack()
         {
-            switch(fireMode)
+            switch (fireMode)
             {
                 case FireMode.SemiAuto:
                 {

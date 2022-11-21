@@ -9,14 +9,14 @@ namespace GameEditor.Utility
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            var valueProperty = property.FindPropertyRelative("_value");
-            return EditorGUI.GetPropertyHeight(valueProperty);
+            var valueProperty = property.FindPropertyRelative(nameof(Optional<object>._enabled));
+            return valueProperty == null ? 0 : EditorGUI.GetPropertyHeight(valueProperty);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var valueProperty = property.FindPropertyRelative("_value");
-            var enabledProperty = property.FindPropertyRelative("_enabled");
+            var valueProperty = property.FindPropertyRelative(nameof(Optional<object>._value));
+            var enabledProperty = property.FindPropertyRelative(nameof(Optional<object>._enabled));
 
             EditorGUI.BeginProperty(position, label, property);
             

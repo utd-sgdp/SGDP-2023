@@ -27,10 +27,10 @@ namespace Game.Utility
         public bool Enabled => _enabled;
         public T Value => _value;
 
-        public Optional(T initialValue)
+        public Optional(bool enabled = false, T value = default)
         {
-            _enabled = false;
-            _value = initialValue;
+            _enabled = enabled;
+            _value = value;
         }
 
         public Optional()
