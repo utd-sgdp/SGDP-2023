@@ -10,6 +10,12 @@ namespace Game.Weapons
     {
         public int MagazineSize => _magazineSize;
         public int BulletsLeft => _bulletsLeft;
+
+       protected enum reloadMode 
+        {
+            magazineReload,
+            incrementReload,
+        }
         
         [Header("Stats")]
         [SerializeField]
@@ -23,6 +29,9 @@ namespace Game.Weapons
         
         [SerializeField]
         protected bool _hitScan;
+
+        [SerializeField]
+        protected reloadMode _reloadMode;
         
         [SerializeField, ReadOnly]
         protected int _bulletsLeft;
@@ -54,15 +63,22 @@ namespace Game.Weapons
             // propagate attack duration from WeaponBase
             if (!base.CanAttack()) return false;
             
+            // reload cancel
             if (_reloading)
             {
-                Debug.Log("The gun is still reloading...");
+                if (_reloadMode == reloadMode.incrementReload)
+                {
+                    _reloading = false;
+                    return true;
+                }
+                
                 return false;
             }
 
+            // start reloading
             if (_bulletsLeft <= 0)
             {
-                StartCoroutine(reload());
+                Reload();
                 return false;
             }
 
@@ -75,20 +91,61 @@ namespace Game.Weapons
             if (_hitScan)
             {
                 bool hit = BulletBasic.HitScan(_gunTip.position, _gunTip.rotation, spread);
+                
+                // TODO: apply damage to whatever was hit
+                
                 return;
             }
             
             _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation, spread);
         }
 
-        IEnumerator reload()
+        /// <summary>
+        /// Reload method encapsulating the separate implementations of the reload functions
+        /// </summary>
+        void Reload()
+        {
+            switch (_reloadMode)
+            {
+                default:
+                case reloadMode.magazineReload:
+                    StartCoroutine(magazineReload());
+                    break;
+                
+                case reloadMode.incrementReload:
+                    StartCoroutine(incrementReload());
+                    break;
+            }
+        }
+
+        IEnumerator magazineReload()
         {
             _reloading = true;
-            
+
             yield return new WaitForSeconds(_reloadTime);
-            _reloading = false;
+
+            // reload was cancelled
+            if (!_reloading) yield break;
             
+            _reloading = false;
             _bulletsLeft = _magazineSize;
+        }
+
+        IEnumerator incrementReload() 
+        {
+            _reloading = true;
+            while (_bulletsLeft < _magazineSize && _reloading)
+            {
+                yield return new WaitForSeconds(_reloadTime / _magazineSize);
+                
+                // reload was cancelled
+                if (!_reloading) yield break;
+                
+                // continue reload
+                _bulletsLeft++;
+            }
+            
+            _reloading = false;
         }
     }
 }
