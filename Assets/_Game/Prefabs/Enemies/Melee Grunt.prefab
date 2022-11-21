@@ -142,6 +142,8 @@ GameObject:
   - component: {fileID: 7065632463751411828}
   - component: {fileID: 5684387812393919721}
   - component: {fileID: 6882867456330459186}
+  - component: {fileID: -3412027824064005043}
+  - component: {fileID: 5974299121288938289}
   m_Layer: 7
   m_Name: Melee Grunt
   m_TagString: Enemy
@@ -247,6 +249,37 @@ MonoBehaviour:
   _eyes: {fileID: 6387111178895194153}
   _range: 2.1
   _sightRange: 2.5
+--- !u!114 &-3412027824064005043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45061adb16374fa2a7312a211c869b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplier: 1
+--- !u!114 &5974299121288938289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b183745d42604622b3af52203dd7dd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    BaseValue: 1
+    _value: 0
+  Speed:
+    BaseValue: 1
+    _value: 0
 --- !u!1 &2965518707407240373
 GameObject:
   m_ObjectHideFlags: 0

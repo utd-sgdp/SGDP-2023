@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Play.Items.Statistics;
-using Game.Play.Level;
 using Game.Play;
-using Game.Player;
-using Game.Weapons;
 using UnityEngine;
 
 namespace Game.Player

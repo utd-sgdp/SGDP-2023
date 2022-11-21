@@ -235,6 +235,8 @@ GameObject:
   - component: {fileID: 903509905565244298}
   - component: {fileID: -8247612286690549273}
   - component: {fileID: 7460113296001587809}
+  - component: {fileID: -4315820604452220063}
+  - component: {fileID: -8716493321942028936}
   m_Layer: 7
   m_Name: Healer
   m_TagString: Enemy
@@ -340,6 +342,37 @@ MonoBehaviour:
   _eyes: {fileID: 6387111178895194153}
   _range: 5
   _sightRange: 30
+--- !u!114 &-4315820604452220063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45061adb16374fa2a7312a211c869b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplier: 1
+--- !u!114 &-8716493321942028936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b183745d42604622b3af52203dd7dd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    BaseValue: 1
+    _value: 0
+  Speed:
+    BaseValue: 1
+    _value: 0
 --- !u!1001 &5426800016823820934
 PrefabInstance:
   m_ObjectHideFlags: 0
