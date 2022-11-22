@@ -257,7 +257,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -425,9 +425,9 @@ ModelImporter:
       - path: Armature/Elbow_IK_L/Elbow_IK_L_end
         weight: 1
       - path: Armature/Elbow_IK_R
-        weight: 0
+        weight: 1
       - path: Armature/Elbow_IK_R/Elbow_IK_R_end
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_L
         weight: 1
       - path: Armature/Hand_IK_L/mixamorig:_L
@@ -457,33 +457,33 @@ ModelImporter:
       - path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L/mixamorig:RightHandThumb3_L_end
         weight: 1
       - path: Armature/Hand_IK_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R/mixamorig:RightHandIndex3_R_end
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R/mixamorig:RightHandMiddle3_R_end
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R
-        weight: 0
+        weight: 1
       - path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R/mixamorig:RightHandThumb3_R_end
-        weight: 0
+        weight: 1
       - path: Armature/Heel-IK_L
         weight: 0
       - path: Armature/Heel-IK_L/mixamorig:RightFoot_L
@@ -527,19 +527,19 @@ ModelImporter:
       - path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R/mixamorig:RightLeg_R_end
         weight: 0
       - path: Armature/mixamorig:Hips/mixamorig:Spine
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L
         weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L
@@ -549,13 +549,13 @@ ModelImporter:
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L/mixamorig:RightForeArm_L/mixamorig:RightForeArm_L_end
         weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R
-        weight: 0
+        weight: 1
       - path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R/mixamorig:RightForeArm_R_end
-        weight: 0
+        weight: 1
       - path: Armature/Pistol
         weight: 1
       - path: Armature/Pistol/Clip
