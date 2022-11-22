@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Game.Level;
+using Game.Play.Level;
 
 public class SwitchToLoading : MonoBehaviour
 {

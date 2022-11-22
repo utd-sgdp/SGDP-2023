@@ -1,4 +1,4 @@
-﻿namespace Game.Items.Statistics
+﻿namespace Game.Play.Items.Statistics
 {
     public interface IStatTarget
     {

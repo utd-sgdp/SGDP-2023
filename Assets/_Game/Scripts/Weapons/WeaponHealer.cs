@@ -1,4 +1,6 @@
 using Game.Agent.Tree;
+using Game.Play.Level;
+using Game.Play;
 
 namespace Game.Weapons
 {

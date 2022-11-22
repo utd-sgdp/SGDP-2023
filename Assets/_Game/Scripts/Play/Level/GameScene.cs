@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-namespace Game.Level
+namespace Game.Play.Level
 {
     public enum SceneIndex
     {

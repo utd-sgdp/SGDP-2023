@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 4962054286657943315}
   - component: {fileID: -3970844971931542533}
   - component: {fileID: -4934542885367763239}
+  - component: {fileID: -8097101606936993305}
+  - component: {fileID: -2755472426078925535}
   m_Layer: 7
   m_Name: Bomber
   m_TagString: Enemy
@@ -117,6 +119,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 2699461564846858393}
+--- !u!114 &-8097101606936993305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45061adb16374fa2a7312a211c869b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplier: 1
+--- !u!114 &-2755472426078925535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b183745d42604622b3af52203dd7dd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    BaseValue: 1
+    _value: 0
+  Speed:
+    BaseValue: 1
+    _value: 0
 --- !u!1 &5470125855171398138
 GameObject:
   m_ObjectHideFlags: 0

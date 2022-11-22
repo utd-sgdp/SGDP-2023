@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Level
+namespace Game.Play.Level
 {
     public class SceneLoadAnimation : MonoBehaviour
     {

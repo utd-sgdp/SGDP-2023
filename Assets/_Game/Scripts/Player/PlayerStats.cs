@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Items.Statistics;
-using Game.Player;
-using Game.Weapons;
+using Game.Play.Items.Statistics;
+using Game.Play;
 using UnityEngine;
 
-namespace Game
+namespace Game.Player
 {
     [RequireComponent(typeof(PlayerWeapon), typeof(PlayerMovement))]
     public class PlayerStats : MonoBehaviour

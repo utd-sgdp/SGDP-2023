@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace Game.Items.Statistics
+namespace Game.Play.Items.Statistics
 {
 	[Serializable]
 	public class Stat

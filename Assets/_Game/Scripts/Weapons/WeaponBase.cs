@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Game.Items.Statistics;
+using Game.Play.Items.Statistics;
 using UnityEngine;
 using UnityEngine.Events;
 
