@@ -50,6 +50,7 @@ namespace Game.Weapons
                 return;
             }
             
+            FireBullet();
         }
 
         public void FireBullet()

@@ -1223,7 +1223,7 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
-  _magazineSize: 0
+  _magazineSize: 10
   _reloadTime: 0
   _bulletsLeft: 0
   _bulletPrefab: {fileID: 9033473416695831239, guid: ea9269551d8a51145a45bf930cb4e7f2,
