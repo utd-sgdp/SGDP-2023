@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Game.Play;
 using Game.Utility;
 using UnityEngine;
 
@@ -38,19 +40,34 @@ namespace Game.Weapons
 
         [Header("References")]
         [SerializeField, HighlightIfNull]
-        protected BulletBasic _bulletPrefab;
+        protected Pool _bulletPool;
         
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
         
         bool _reloading;
+        [SerializeField, HideInInspector] Collider[] _colliders;
 
+        #region MonoBehaviour
         protected override void Awake()
         {
             base.Awake();
             
             _bulletsLeft = _magazineSize;
         }
+        
+        #if UNITY_EDITOR
+        void OnValidate()
+        {
+            _colliders = _colliders.Where(col => col).ToArray();
+            
+            Rigidbody rb = GetComponentInParent<Rigidbody>();
+            if (!rb) return;
+            
+            _colliders = rb.GetComponentsInChildren<Collider>();
+        }
+        #endif
+        #endregion
         
         protected override void OnAttack()
         {
@@ -88,16 +105,25 @@ namespace Game.Weapons
         protected void Fire()
         {
             float spread = _spread.Enabled ? _spread.Value : 0;
-            if (_hitScan)
-            {
-                bool hit = BulletBasic.HitScan(_gunTip.position, _gunTip.rotation, spread);
-                
-                // TODO: apply damage to whatever was hit
-                
-                return;
-            }
             
-            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation, spread);
+            if (_hitScan) HitScan(spread);
+
+            GameObject go = _bulletPool.CheckOut();
+            BulletBasic bullet = go.GetComponent<BulletBasic>();
+            bullet.Configure(_gunTip, _colliders, Damage, spread, _bulletPool);
+        }
+
+        protected void HitScan(float spread)
+        {
+            // perform ray cast
+            bool hit = BulletBasic.HitScan(_gunTip, out RaycastHit hitinfo, spread);
+            if (!hit) return;
+            
+            // exit, target cannot be damaged
+            Damageable target = Damageable.Find(hitinfo.collider);
+            if (!target) return;
+         
+            target.Hurt(Damage);
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace Game.Agent.Tree
         protected virtual BehaviourTree CreateTree() => null;
         
         #if UNITY_EDITOR
-        [Button]
+        [Button(Spacing = 15)]
         public void ValidateDependencies()
         {
             bool isValid = true;

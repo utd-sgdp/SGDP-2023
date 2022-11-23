@@ -26,7 +26,7 @@ namespace Game.Weapons
             // ignore collision, other object is not on our target layer
             if (!_targetLayer.Includes(other.gameObject.layer)) return;
             
-            Damageable target = other.gameObject.GetComponentInChildren<Damageable>();
+            Damageable target = Damageable.Find(other);
             if (!target) return;
             
             // deal damage

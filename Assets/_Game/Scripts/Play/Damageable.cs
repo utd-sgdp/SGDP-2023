@@ -25,7 +25,7 @@ namespace Game.Play
         public UnityEvent<float> OnMaxHeal;
         public UnityEvent<float> OnKill;
 
-        [Button]
+        [Button(Spacing = 25)]
         public void Hurt(float amount)
         {
             _health = Mathf.Max(_health - amount, 0);
@@ -62,6 +62,13 @@ namespace Game.Play
             OnKill?.Invoke(_health);
 
             Destroy(gameObject);
+        }
+
+        public static Damageable Find(Collider collider)
+        {
+            return collider.attachedRigidbody
+                       ? collider.attachedRigidbody.GetComponent<Damageable>()
+                       : collider.GetComponent<Damageable>();
         }
     }
 }

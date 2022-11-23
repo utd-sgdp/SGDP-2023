@@ -1,3 +1,4 @@
+using System;
 using Game.Play;
 using Game.Play.Items.Statistics;
 using UnityEngine;
@@ -6,32 +7,37 @@ namespace Game.Agent
 {
     public class AgentStats : MonoBehaviour
     {
+        [SerializeField, HideInInspector]
         WeaponSensor DamageTarget;
-        public Stat Damage = new();
         
-        IStatTarget SpeedTarget;
-        public Stat Speed = new();
+        [SerializeField, ShowIf(nameof(DamageTarget))]
+        Stat _damage = new();
         
-        public Damageable Damageable { get; private set; }
+        [SerializeField, HideInInspector]
+        MovementSensor SpeedTarget;
         
-        void Awake()
+        [SerializeField, ShowIf(nameof(SpeedTarget))]
+        Stat _speed = new();
+        
+        #if UNITY_EDITOR
+        void OnValidate()
         {
             DamageTarget = GetComponent<WeaponSensor>();
             SpeedTarget = GetComponent<MovementSensor>();
-            Damageable = GetComponentInChildren<Damageable>();
         }
-
+        #endif
+        
         // connect stat object to game behaviours
         void OnEnable()
         {
-            Damage.OnChange += DamageTarget.Value.OnStatChange;
-            if (SpeedTarget != null) Speed.OnChange += SpeedTarget.OnStatChange;
+            if (DamageTarget != null) _damage.OnChange += DamageTarget.Value.OnStatChange;
+            if (SpeedTarget != null) _speed.OnChange += SpeedTarget.OnStatChange;
         }
 
         void OnDisable()
         {
-            Damage.OnChange += DamageTarget.Value.OnStatChange;
-            if (SpeedTarget != null) Speed.OnChange  -= SpeedTarget.OnStatChange;
+            if (DamageTarget != null) _damage.OnChange += DamageTarget.Value.OnStatChange;
+            if (SpeedTarget != null) _speed.OnChange  -= SpeedTarget.OnStatChange;
         }
     }
 }
