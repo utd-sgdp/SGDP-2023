@@ -280,6 +280,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun_Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 6066618542823214000, guid: 1338ad4e7c81db7428c12779c37b199c,
+        type: 3}
+      propertyPath: fireMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066618542823214000, guid: 1338ad4e7c81db7428c12779c37b199c,
+        type: 3}
+      propertyPath: _magazineSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066618542823214000, guid: 1338ad4e7c81db7428c12779c37b199c,
+        type: 3}
+      propertyPath: cooldownDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6066618542823214001, guid: 1338ad4e7c81db7428c12779c37b199c,
         type: 3}
       propertyPath: m_RootOrder
