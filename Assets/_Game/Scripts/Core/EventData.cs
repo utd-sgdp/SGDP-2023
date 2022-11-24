@@ -20,17 +20,20 @@ namespace Game
         public Vector3 LocalPosition = Vector3.zero;
         public Quaternion LocalRotation = Quaternion.identity;
         public Vector3 LocalScale = Vector3.one;
-        
 
+        public Transform Transform;
+        
         public TransformData() { }
-        public TransformData(Vector3 position, Quaternion rotation, Vector3 scale)
+        public TransformData(Vector3 position, Quaternion rotation, Vector3 scale, Transform transform=null)
         {
             Position = position;
             Rotation = rotation;
             Scale = scale;
+            
+            Transform = transform;
         }
         
-        public TransformData(Vector3 position, Quaternion rotation, Vector3 scale, Vector3 localPosition, Quaternion localRotation, Vector3 localScale)
+        public TransformData(Vector3 position, Quaternion rotation, Vector3 scale, Vector3 localPosition, Quaternion localRotation, Vector3 localScale, Transform transform=null)
         {
             Position = position;
             Rotation = rotation;
@@ -39,13 +42,15 @@ namespace Game
             LocalPosition = localPosition;
             LocalRotation = localRotation;
             LocalScale = localScale;
+
+            Transform = transform;
         }
 
         public static implicit operator TransformData(Transform trans)
         {
             return new TransformData(
                 trans.position, trans.rotation, trans.lossyScale,
-                trans.localPosition, trans.localRotation, trans.localScale
+                trans.localPosition, trans.localRotation, trans.localScale, trans
             );
         }
 

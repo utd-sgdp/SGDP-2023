@@ -4,6 +4,7 @@ using System.Linq;
 using Game.Play;
 using Game.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Weapons
 {
@@ -43,7 +44,9 @@ namespace Game.Weapons
         
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
-        
+
+        public UnityEvent<TransformData> OnFire;
+
         bool _reloading;
         [SerializeField, HideInInspector] Collider[] _colliders = Array.Empty<Collider>();
 
@@ -116,6 +119,8 @@ namespace Game.Weapons
             {
                 trail.Clear();
             }
+            
+            OnFire?.Invoke(_gunTip);
         }
 
         protected void HitScan(float spread)

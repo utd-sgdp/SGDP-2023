@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 9069116431375990531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.365, z: 0.815}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9069116431271988328}
@@ -335,6 +335,21 @@ MonoBehaviour:
   _bulletsLeft: 0
   _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}
   _gunTip: {fileID: 9069116431375990530}
+  OnFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e73c9f711e8931546822a44d3c487074, type: 2}
+        m_TargetAssemblyTypeName: Game.Utility.Pool, Game
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _colliders:
   - {fileID: 9069116431469359271}
 --- !u!4 &8813896474369550377 stripped

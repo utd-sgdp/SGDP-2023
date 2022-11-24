@@ -51,6 +51,12 @@ namespace Game.Utility
 
             return newName;
         }
+
+        public void Spawn(TransformData transform)
+        {
+            GameObject go = CheckOut();
+            go.SendMessage("OnSpawn", new PoolAndTransform { Pool = this, TransformData = transform }, SendMessageOptions.DontRequireReceiver);
+        }
         
         /// <summary>
         /// Gets instance of <see cref="_prefab"/>. It will be active in the scene, but no
@@ -69,10 +75,16 @@ namespace Game.Utility
         /// Return instance of <see cref="_prefab"/> retrieved by <see cref="CheckOut"/>.
         /// </summary>
         /// <param name="go"></param>
-        public void CheckIn(GameObject go)
+        public void CheckIn(GameObject go, bool moveToScene=false)
         {
             go.SetActive(false);
             _pool.Add(go);
+
+            if (moveToScene)
+            {
+                go.transform.SetParent(null);
+                SceneManager.MoveGameObjectToScene(go, _scene);
+            }
         }
 
         GameObject GenerateObject()
@@ -96,7 +108,7 @@ namespace Game.Utility
             return item;
         }
 
-        public static void CheckInGameObject(GameObject go) => CheckIn<GameObject>(go);
+        public static void CheckInGameObject(GameObject go, bool moveToScene=false) => CheckIn<GameObject>(go, moveToScene);
 
         /// <summary>
         /// Get empty <see cref="GameObject"/> with <typeparamref name="T"/> component
@@ -121,14 +133,21 @@ namespace Game.Utility
         /// </summary>
         /// <param name="go"></param>
         /// <typeparam name="T"></typeparam>
-        public static void CheckIn<T>(GameObject go)
+        public static void CheckIn<T>(GameObject go, bool moveToScene=false)
         {
             // no GameObject was provided :(
             if (!go) return;
-            
-            ConcurrentBag<GameObject> pool = GetPoolData<T>().Pool;
+
+            PoolData data = GetPoolData<T>();
+            ConcurrentBag<GameObject> pool = data.Pool;
             go.SetActive(false);
             pool.Add(go);
+            
+            if (moveToScene)
+            {
+                go.transform.SetParent(null);
+                SceneManager.MoveGameObjectToScene(go, data.Scene);
+            }
         }
 
         static PoolData GetPoolData<T>()
@@ -194,5 +213,11 @@ namespace Game.Utility
             public ConcurrentBag<GameObject> Pool;
         }
         #endregion
+    }
+
+    public struct PoolAndTransform
+    {
+        public Pool Pool;
+        public TransformData TransformData;
     }
 }

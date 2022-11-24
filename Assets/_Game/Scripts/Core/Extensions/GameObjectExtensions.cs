@@ -25,4 +25,26 @@ namespace Game
             }
         }
     }
+
+    public static class TransformExtensions
+    {
+        public static void SetWorldScale(this Transform transform, Vector3 value)
+        {
+            Vector3 factor = Vector3.one;
+            Transform ancestor = transform.parent;
+            while (ancestor != null)
+            {
+                Vector3 local = ancestor.localScale;
+                local.x = 1 / local.x;
+                local.y = 1 / local.y;
+                local.z = 1 / local.z;
+                
+                factor.Scale(local);
+                ancestor = ancestor.parent;
+            }
+            
+            value.Scale(factor);
+            transform.localScale = value;
+        }
+    }
 }
