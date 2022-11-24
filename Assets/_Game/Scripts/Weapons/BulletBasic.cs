@@ -36,7 +36,6 @@ namespace Game.Weapons
         {
             _collider = GetComponentInChildren<Collider>();
             _rb = GetComponent<Rigidbody>();
-            _rb.isKinematic = true;
         }
         #endif
 

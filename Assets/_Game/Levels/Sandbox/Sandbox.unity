@@ -598,6 +598,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber
       objectReference: {fileID: 0}
+    - target: {fileID: 1409907412189628548, guid: 8f25c11d50a6ea24ab2a09445545876c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5568983418705688382, guid: 8f25c11d50a6ea24ab2a09445545876c,
         type: 3}
       propertyPath: m_RootOrder
@@ -667,6 +672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Healer
       objectReference: {fileID: 0}
+    - target: {fileID: 1409907412189628548, guid: b2e69d0a3805b8749aa482174c3893f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5568983418705688382, guid: b2e69d0a3805b8749aa482174c3893f8,
         type: 3}
       propertyPath: m_RootOrder
@@ -735,6 +745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Melee Grunt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007638659168082327, guid: ee06037ee403cd74cbc81712539c957b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007638659168083567, guid: ee06037ee403cd74cbc81712539c957b,
         type: 3}
@@ -859,6 +874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069116431271988332, guid: c09122c4d8338a44e808cfa3cd7db460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09122c4d8338a44e808cfa3cd7db460, type: 3}
