@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using Game.Play;
@@ -44,7 +45,7 @@ namespace Game.Weapons
         protected Transform _gunTip;
         
         bool _reloading;
-        [SerializeField, HideInInspector] Collider[] _colliders;
+        [SerializeField, HideInInspector] Collider[] _colliders = Array.Empty<Collider>();
 
         #region MonoBehaviour
         protected override void Awake()
@@ -109,6 +110,12 @@ namespace Game.Weapons
             GameObject go = _bulletPool.CheckOut();
             BulletBasic bullet = go.GetComponent<BulletBasic>();
             bullet.Configure(_gunTip, _colliders, Damage, spread, _bulletPool);
+            
+            // prevent artifacts in the trail renderer caused by object pooling
+            foreach (var trail in go.GetComponentsInChildren<TrailRenderer>())
+            {
+                trail.Clear();
+            }
         }
 
         protected void HitScan(float spread)

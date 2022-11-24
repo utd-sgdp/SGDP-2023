@@ -1242,12 +1242,18 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
+  _spread:
+    _enabled: 0
+    _value: 0
   _magazineSize: 10
   _reloadTime: 0
+  _hitScan: 0
+  _reloadMode: 0
   _bulletsLeft: 0
-  _bulletPrefab: {fileID: 9033473416695831239, guid: ea9269551d8a51145a45bf930cb4e7f2,
-    type: 3}
+  _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}
   _gunTip: {fileID: 1196956338324816339}
+  _colliders:
+  - {fileID: 3716590011246359192}
 --- !u!4 &8315157029453208889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5113645981615836517, guid: 4d2007bd0e60a7340a123cb432eff48d,
