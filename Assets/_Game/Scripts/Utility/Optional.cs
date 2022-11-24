@@ -32,5 +32,10 @@ namespace Game.Utility
             _enabled = enabled;
             _value = value;
         }
+
+        public Optional()
+        {
+            _enabled = false;
+        }
     }
 }

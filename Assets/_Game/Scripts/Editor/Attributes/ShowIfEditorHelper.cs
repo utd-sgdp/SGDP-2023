@@ -1,8 +1,10 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 
 namespace GameEditor.Attributes
 {
@@ -15,11 +17,21 @@ namespace GameEditor.Attributes
             {
                 bool not = fieldName.StartsWith("!");
                 FieldInfo conditionField = GetField(target, not ? fieldName[1..] : fieldName);
-                if (conditionField != null && conditionField.FieldType == typeof(bool))
+
+                if (conditionField == null) continue;
+                
+                if (conditionField.FieldType == typeof(bool))
                 {
                     bool value = (bool)conditionField.GetValue(target);
                     if (not) value = !value;
                     show &= value;
+                    continue;
+                }
+                
+                if (conditionField.FieldType.IsSubclassOf(typeof(object)))
+                {
+                    object value = conditionField.GetValue(target);
+                    show &= value != null;
                 }
             }
             return show;

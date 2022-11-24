@@ -10,28 +10,22 @@ namespace GameEditor.Attributes
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            if (!ShouldShow(property)) return 0;
-            return base.GetPropertyHeight(property, label);
+            return ShouldShow(property) ? EditorGUI.GetPropertyHeight(property, label, true) : 0;
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (ShouldShow(property))
-            {
-                EditorGUI.PropertyField(position, property, label, true);
-            }
+            if (!ShouldShow(property)) return;
+            EditorGUI.PropertyField(position, property, label, true);
         }
 
-        private bool ShouldShow(SerializedProperty property)
+        bool ShouldShow(SerializedProperty property)
         {
-            if (attribute is ShowIfAttribute attr)
-            {
-                var target = property.serializedObject.targetObject;
-                return ShowIfEditorHelper.ShouldShow(target, attr.Targets);
-            }
-            return true;
-        }
+            if (attribute is not ShowIfAttribute attr) return true;
 
+            var target = property.serializedObject.targetObject;
+            return ShowIfEditorHelper.ShouldShow(target, attr.Targets);
+        }
     }
 }
 #endif

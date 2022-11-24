@@ -149,12 +149,18 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
+  _spread:
+    _enabled: 0
+    _value: 0
   _magazineSize: 10
   _reloadTime: 2
+  _hitScan: 0
+  _reloadMode: 0
   _bulletsLeft: 0
-  _bulletPrefab: {fileID: 9033473416695831239, guid: ea9269551d8a51145a45bf930cb4e7f2,
-    type: 3}
+  _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}
   _gunTip: {fileID: 6066618544118744548}
+  _colliders:
+  - {fileID: 0}
 --- !u!1 &6066618544118744547
 GameObject:
   m_ObjectHideFlags: 0

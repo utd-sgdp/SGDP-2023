@@ -1,6 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using Game.Play;
+using Game.Utility;
 using UnityEngine;
 
 namespace Game.Weapons
@@ -9,26 +10,43 @@ namespace Game.Weapons
     {
         public int MagazineSize => _magazineSize;
         public int BulletsLeft => _bulletsLeft;
+
+       protected enum reloadMode 
+        {
+            magazineReload,
+            incrementReload,
+        }
         
         [Header("Stats")]
         [SerializeField]
-        int _magazineSize;
+        protected Optional<float> _spread = new();
         
         [SerializeField]
-        float _reloadTime;
+        protected int _magazineSize;
+        
+        [SerializeField]
+        protected float _reloadTime;
+        
+        [SerializeField]
+        protected bool _hitScan;
+
+        [SerializeField]
+        protected reloadMode _reloadMode;
         
         [SerializeField, ReadOnly]
-        int _bulletsLeft;
+        protected int _bulletsLeft;
 
         [Header("References")]
         [SerializeField, HighlightIfNull]
-        protected BulletBasic _bulletPrefab;
+        protected Pool _bulletPool;
         
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
         
         bool _reloading;
+        [SerializeField, HideInInspector] Collider[] _colliders;
 
+        #region MonoBehaviour
         protected override void Awake()
         {
             base.Awake();
@@ -36,37 +54,122 @@ namespace Game.Weapons
             _bulletsLeft = _magazineSize;
         }
         
+        #if UNITY_EDITOR
+        void OnValidate()
+        {
+            _colliders = _colliders.Where(col => col).ToArray();
+            
+            Rigidbody rb = GetComponentInParent<Rigidbody>();
+            if (!rb) return;
+            
+            _colliders = rb.GetComponentsInChildren<Collider>();
+        }
+        #endif
+        #endregion
+
         protected override void OnAttack()
         {
-            if (_reloading)
-            {
-                Debug.Log("The gun is still reloading...");
-                return;
-            }
-
-            if (_bulletsLeft <= 0)
-            {
-                StartCoroutine(reload());
-                return;
-            }
-            
-            FireBullet();
-        }
-
-        public void FireBullet()
-        {
-            _bulletPrefab.Spawn(_gunTip.position, _gunTip.rotation);
+            Fire();
             _bulletsLeft--;
         }
 
-        IEnumerator reload()
+        public override bool CanAttack()
+        {
+            // propagate attack duration from WeaponBase
+            if (!base.CanAttack()) return false;
+            
+            // reload cancel
+            if (_reloading)
+            {
+                if (_reloadMode == reloadMode.incrementReload)
+                {
+                    _reloading = false;
+                    return true;
+                }
+                
+                return false;
+            }
+
+            // start reloading
+            if (_bulletsLeft <= 0)
+            {
+                Reload();
+                return false;
+            }
+
+            return true;
+        }
+
+        protected void Fire()
+        {
+            float spread = _spread.Enabled ? _spread.Value : 0;
+            
+            if (_hitScan) HitScan(spread);
+
+            GameObject go = _bulletPool.CheckOut();
+            BulletBasic bullet = go.GetComponent<BulletBasic>();
+            bullet.Configure(_gunTip, _colliders, Damage, spread, _bulletPool);
+        }
+
+        protected void HitScan(float spread)
+        {
+            // perform ray cast
+            bool hit = BulletBasic.HitScan(_gunTip, out RaycastHit hitinfo, spread);
+            if (!hit) return;
+            
+            // exit, target cannot be damaged
+            Damageable target = Damageable.Find(hitinfo.collider);
+            if (!target) return;
+         
+            target.Hurt(Damage);
+        }
+
+        /// <summary>
+        /// Reload method encapsulating the separate implementations of the reload functions
+        /// </summary>
+        void Reload()
+        {
+            switch (_reloadMode)
+            {
+                default:
+                case reloadMode.magazineReload:
+                    StartCoroutine(magazineReload());
+                    break;
+                
+                case reloadMode.incrementReload:
+                    StartCoroutine(incrementReload());
+                    break;
+            }
+        }
+
+        IEnumerator magazineReload()
         {
             _reloading = true;
-            
+
             yield return new WaitForSeconds(_reloadTime);
-            _reloading = false;
+
+            // reload was cancelled
+            if (!_reloading) yield break;
             
+            _reloading = false;
             _bulletsLeft = _magazineSize;
+        }
+
+        IEnumerator incrementReload() 
+        {
+            _reloading = true;
+            while (_bulletsLeft < _magazineSize && _reloading)
+            {
+                yield return new WaitForSeconds(_reloadTime / _magazineSize);
+                
+                // reload was cancelled
+                if (!_reloading) yield break;
+                
+                // continue reload
+                _bulletsLeft++;
+            }
+            
+            _reloading = false;
         }
     }
 }

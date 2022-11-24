@@ -64,5 +64,7 @@ MonoBehaviour:
   OnCooldownEnd:
     m_PersistentCalls:
       m_Calls: []
-  _summonPrefab: {fileID: 1409907412189628548, guid: ee06037ee403cd74cbc81712539c957b,
-    type: 3}
+  _maxSummons: 5
+  _summonRandomizer: 3
+  _summonPool: {fileID: 11400000, guid: 30aceb94522fb84498883d9770b93815, type: 2}
+  _summons: []
