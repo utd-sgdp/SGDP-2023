@@ -142,52 +142,12 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 8893737113442973789}
-    - target: {fileID: 2484751209500590746, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3473502726263112689, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3898814546947300822, guid: c9084c291ef957641b42753ae19d5e3d,
         type: 3}
       propertyPath: m_Name
       value: Cameras
       objectReference: {fileID: 0}
     - target: {fileID: 3898814546947300822, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5091429822619604431, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_CameraDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5091429822619604431, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_TrackedObjectOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263053395652079960, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15.000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263053395652079963, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: field of view
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263053395652079965, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5319049601857868319, guid: c9084c291ef957641b42753ae19d5e3d,
         type: 3}
       propertyPath: m_Layer
       value: 6
