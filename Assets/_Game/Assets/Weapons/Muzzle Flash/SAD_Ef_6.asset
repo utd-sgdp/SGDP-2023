@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e454d7483944fff88da5a4b66a63081, type: 3}
+  m_Name: SAD_Ef_6
+  m_EditorClassIdentifier: 
+  _fps: 30
+  _frames:
+  - {fileID: -2011171264, guid: 69466266b86746a48acf0e9fda772cb4, type: 3}
+  - {fileID: -1136620870, guid: 69466266b86746a48acf0e9fda772cb4, type: 3}
+  - {fileID: 1680420992, guid: 69466266b86746a48acf0e9fda772cb4, type: 3}
+  - {fileID: 559497170, guid: 69466266b86746a48acf0e9fda772cb4, type: 3}
+  _spf: 0.033333335

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7841234049755528307}
   - component: {fileID: -8661185186814637522}
+  - component: {fileID: 2767598719387701979}
   m_Layer: 6
   m_Name: Player and Camera - Simple
   m_TagString: Untagged
@@ -51,6 +52,24 @@ MonoBehaviour:
 
     Player with basic follow camera.
     The room confining logic is disabled.'
+--- !u!114 &2767598719387701979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783148669733739040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 3
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1387450661996523380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,38 +136,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 8893737113442973789}
+      objectReference: {fileID: 9213290621155556011}
     - target: {fileID: 2484751209500590746, guid: c9084c291ef957641b42753ae19d5e3d,
         type: 3}
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 8893737113442973789}
-    - target: {fileID: 3473502726263112689, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3898814546947300822, guid: c9084c291ef957641b42753ae19d5e3d,
         type: 3}
       propertyPath: m_Name
       value: Cameras
       objectReference: {fileID: 0}
     - target: {fileID: 3898814546947300822, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263053395652079960, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15.000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263053395652079965, guid: c9084c291ef957641b42753ae19d5e3d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5319049601857868319, guid: c9084c291ef957641b42753ae19d5e3d,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -279,6 +278,12 @@ PrefabInstance:
 --- !u!4 &8893737113442973789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2389105605677970661, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6506338253714328760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9213290621155556011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2708641578113021459, guid: 2d749f58b94256f4aaac0bdfb28e9c11,
     type: 3}
   m_PrefabInstance: {fileID: 6506338253714328760}
   m_PrefabAsset: {fileID: 0}

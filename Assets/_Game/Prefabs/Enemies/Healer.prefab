@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 883787178131144391}
   - component: {fileID: 6515079248424598368}
-  - component: {fileID: 5706837829995833058}
   m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
@@ -78,35 +77,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5706837829995833058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511868660584177365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c7745b22f291244c8203f3ce3ec2d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 100
-  _maxHealth: 100
-  OnChange:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHurt:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMaxHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  OnKill:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &523009976560812460
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,11 +202,12 @@ GameObject:
   - component: {fileID: 5568983418705688382}
   - component: {fileID: 4962054286657943315}
   - component: {fileID: -5104572682727655006}
+  - component: {fileID: 1696235764116160213}
   - component: {fileID: 903509905565244298}
+  - component: {fileID: -8716493321942028936}
   - component: {fileID: -8247612286690549273}
   - component: {fileID: 7460113296001587809}
-  - component: {fileID: -4315820604452220063}
-  - component: {fileID: -8716493321942028936}
+  - component: {fileID: 332608148402105883}
   m_Layer: 7
   m_Name: Healer
   m_TagString: Enemy
@@ -297,10 +268,39 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
+--- !u!114 &1696235764116160213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7745b22f291244c8203f3ce3ec2d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _maxHealth: 100
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &903509905565244298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +314,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tree: {fileID: 11400000, guid: c7f5071f4e536f44b82d7aa2c9e43fc8, type: 2}
+--- !u!114 &-8716493321942028936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409907412189628548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b183745d42604622b3af52203dd7dd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageTarget: {fileID: -8247612286690549273}
+  _damage:
+    BaseValue: 1
+    _value: 0
+  SpeedTarget: {fileID: 332608148402105883}
+  _speed:
+    BaseValue: 1
+    _value: 0
 --- !u!114 &-8247612286690549273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +362,7 @@ MonoBehaviour:
   _eyes: {fileID: 6387111178895194153}
   _range: 5
   _sightRange: 30
---- !u!114 &-4315820604452220063
+--- !u!114 &332608148402105883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,28 +371,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1409907412189628548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45061adb16374fa2a7312a211c869b21, type: 3}
+  m_Script: {fileID: 11500000, guid: e4fed14542db4a739c52c6ac2bc93568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _multiplier: 1
---- !u!114 &-8716493321942028936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409907412189628548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b183745d42604622b3af52203dd7dd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage:
-    BaseValue: 1
-    _value: 0
-  Speed:
-    BaseValue: 1
-    _value: 0
 --- !u!1001 &5426800016823820934
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using Game.Animation;
 using Game.Play;
 using Game.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Weapons
 {
@@ -22,17 +23,21 @@ namespace Game.Weapons
         [Header("Stats")]
         [SerializeField]
         protected Optional<float> _spread = new();
-        
-        [SerializeField]
-        protected int _magazineSize;
-        
-        [SerializeField]
-        protected float _reloadTime;
-        
-        [SerializeField]
-        protected bool _hitScan;
 
         [SerializeField]
+        protected bool _hitScan;
+        
+        [SerializeField]
+        bool _reloadEnabled = true;
+        
+        [SerializeField, ShowIf(nameof(_reloadEnabled))]
+        protected int _magazineSize;
+        
+        [SerializeField, ShowIf(nameof(_reloadEnabled))]
+        protected float _reloadTime;
+        
+
+        [SerializeField, ShowIf(nameof(_reloadEnabled))]
         protected reloadMode _reloadMode;
         
         [SerializeField, ReadOnly]
@@ -44,16 +49,18 @@ namespace Game.Weapons
         
         [SerializeField, HighlightIfNull]
         protected Transform _gunTip;
-        
+
+        public UnityEvent<TransformData> OnFire;
+
         bool _reloading;
-        [SerializeField, HideInInspector] Collider[] _colliders;
+        [SerializeField, HideInInspector] Collider[] _colliders = Array.Empty<Collider>();
 
         #region MonoBehaviour
         protected override void Awake()
         {
             base.Awake();
             
-            _bulletsLeft = _magazineSize;
+            _bulletsLeft = _reloadEnabled ? _magazineSize : int.MaxValue;
         }
         
         #if UNITY_EDITOR
@@ -68,7 +75,7 @@ namespace Game.Weapons
         }
         #endif
         #endregion
-        
+
         protected override void OnAttack()
         {
             Fire();
@@ -93,7 +100,7 @@ namespace Game.Weapons
             }
 
             // start reloading
-            if (_bulletsLeft <= 0)
+            if (_reloadEnabled && _bulletsLeft <= 0)
             {
                 Reload();
                 return false;
@@ -111,6 +118,8 @@ namespace Game.Weapons
             GameObject go = _bulletPool.CheckOut();
             BulletBasic bullet = go.GetComponent<BulletBasic>();
             bullet.Configure(_gunTip, _colliders, Damage, spread, _bulletPool);
+            
+            OnFire?.Invoke(_gunTip);
         }
 
         protected void HitScan(float spread)
@@ -142,6 +151,8 @@ namespace Game.Weapons
                     StartCoroutine(incrementReload());
                     break;
             }
+            
+            OnAction?.Invoke(ActionType.Reload);
         }
 
         IEnumerator magazineReload()

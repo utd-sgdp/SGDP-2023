@@ -30,16 +30,10 @@ namespace Game.Agent.Action
 
         protected override void OnStart()
         {
-            _isAttacking = true;
-            bool startedAttack = _weapon.AttemptAttack(AfterAttack: () =>
+            _isAttacking = _weapon.AttemptAttack(AfterAttack: () =>
             {
                 _isAttacking = false;
             });
-
-            if (startedAttack)
-            {
-                _isAttacking = true;
-            }
         }
 
         protected override void OnStop() { }

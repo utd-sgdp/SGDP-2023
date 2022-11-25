@@ -49,12 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unbrokenObject: {fileID: 2470289606124593815}
   _brokenObject: {fileID: 6883560077925734475}
-  _breakingThreshold: 5
-  _physicsDisableDelay: 60
+  _breakingThreshold: 1
   _despawnDelay: 10
+  _despawnTime: 1.5
   OnBreak:
     m_PersistentCalls:
       m_Calls: []
+  _piecesWithPhysics: []
+  _noPiecesHavePhysics: 0
+  _allPiecesHavePhysics: 0
 --- !u!54 &1148472192256128497
 Rigidbody:
   m_ObjectHideFlags: 0

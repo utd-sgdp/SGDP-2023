@@ -36,7 +36,6 @@ namespace Game.Weapons
         {
             _collider = GetComponentInChildren<Collider>();
             _rb = GetComponent<Rigidbody>();
-            _rb.isKinematic = true;
         }
         #endif
 
@@ -72,6 +71,12 @@ namespace Game.Weapons
             
             _initialPosition = position;
             transform.SetPositionAndRotation(position, rotation);
+            
+            // prevent artifacts in the trail renderer caused by object pooling
+            foreach (var trail in GetComponentsInChildren<TrailRenderer>())
+            {
+                trail.Clear();
+            }
         }
 
         protected virtual bool ShouldDespawn()
