@@ -1245,9 +1245,10 @@ MonoBehaviour:
   _spread:
     _enabled: 0
     _value: 0
-  _magazineSize: 10
-  _reloadTime: 0
   _hitScan: 0
+  _reloadEnabled: 1
+  _magazineSize: 10
+  _reloadTime: 1.5
   _reloadMode: 0
   _bulletsLeft: 0
   _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}

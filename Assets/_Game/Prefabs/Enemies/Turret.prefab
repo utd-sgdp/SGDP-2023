@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Multiplier: 1
   damage: 10
-  attackDuration: 0
+  attackDuration: 0.2
   cooldownDuration: 0.1
   fireMode: 0
   targetLayer:
@@ -328,9 +328,10 @@ MonoBehaviour:
   _spread:
     _enabled: 0
     _value: 0
+  _hitScan: 0
+  _reloadEnabled: 0
   _magazineSize: 5
   _reloadTime: 2
-  _hitScan: 0
   _reloadMode: 0
   _bulletsLeft: 0
   _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}

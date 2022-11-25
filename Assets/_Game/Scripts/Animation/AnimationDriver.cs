@@ -21,6 +21,7 @@ namespace Game.Animation
         
         static readonly int TRIGGER_NONE = Animator.StringToHash("Attack None");
         static readonly int TRIGGER_ATTACK = Animator.StringToHash("Attack");
+        static readonly int TRIGGER_RELOAD = Animator.StringToHash("Reload");
 
         #region MonoBehaviour
         #if UNITY_EDITOR
@@ -87,7 +88,8 @@ namespace Game.Animation
                     break;
                 
                 case ActionType.Reload:
-                    throw new NotImplementedException();
+                    _animator.SetTrigger(TRIGGER_RELOAD);
+                    break;
             }
         }
     }
