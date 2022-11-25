@@ -25,7 +25,14 @@ namespace Game.Play
         public UnityEvent<float> OnMaxHeal;
         public UnityEvent<float> OnKill;
 
-        [Button(Spacing = 25)]
+        #if UNITY_EDITOR
+        void OnValidate()
+        {
+            _health = _maxHealth;
+        }
+        #endif
+
+        [Button(Mode = ButtonMode.InPlayMode, Spacing = 25)]
         public void Hurt(float amount)
         {
             _health = Mathf.Max(_health - amount, 0);
@@ -39,7 +46,7 @@ namespace Game.Play
             OnChange?.Invoke(_health);
         }
         
-        [Button]
+        [Button(Mode = ButtonMode.InPlayMode)]
         public void Heal(float amount)
         {
             _health = Mathf.Min(_health + amount, _maxHealth);
