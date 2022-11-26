@@ -821,6 +821,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.8044205
       objectReference: {fileID: 0}
+    - target: {fileID: -3416938830172562689, guid: 4d2007bd0e60a7340a123cb432eff48d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe148bbea4d64d1489912115c1e4d907, type: 2}
+    - target: {fileID: -3416938830172562689, guid: 4d2007bd0e60a7340a123cb432eff48d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b03af5994b588864b939ad9c6a48298e, type: 2}
+    - target: {fileID: -3416938830172562689, guid: 4d2007bd0e60a7340a123cb432eff48d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5a2de37c0b23b34ab595b740edacbdc, type: 2}
     - target: {fileID: -2257373803224827208, guid: 4d2007bd0e60a7340a123cb432eff48d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1439,7 +1454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Multiplier: 1
   damage: 10
-  attackDuration: 0.24
+  attackDuration: 0.12
   cooldownDuration: 0
   fireMode: 0
   targetLayer:
@@ -1474,8 +1489,8 @@ MonoBehaviour:
     _value: 0
   _hitScan: 0
   _reloadEnabled: 1
-  _magazineSize: 10
-  _reloadTime: 1.5
+  _magazineSize: 8
+  _reloadTime: 1.7
   _reloadMode: 0
   _bulletsLeft: 0
   _bulletPool: {fileID: 11400000, guid: 52a92bb57dde6d04091031f66bc097ce, type: 2}
