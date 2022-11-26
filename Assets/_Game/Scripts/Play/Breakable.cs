@@ -225,6 +225,10 @@ namespace Game.Play
                     if (!breakable) return;
                     
                     breakable.CollectReferences();
+                    foreach (var trans in go.GetComponentsInChildren<Transform>(includeInactive: true))
+                    {
+                        trans.gameObject.layer = LayerMask.NameToLayer("Breakable");
+                    }
                 });
             }
         }

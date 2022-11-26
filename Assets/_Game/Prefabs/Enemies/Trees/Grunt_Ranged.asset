@@ -79,7 +79,7 @@ MonoBehaviour:
     _enabled: 0
     _value: 0
   _loopsDone: 0
---- !u!114 &-43239153728346338
+--- !u!114 &-433387362743931084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,16 +88,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618f0a236b216e44f874e79b163e3bf3, type: 3}
-  m_Name: HardcodedResult
+  m_Script: {fileID: 11500000, guid: 7f4572db79a3caf47a71149f9f42b3cc, type: 3}
+  m_Name: FaceTarget
   m_EditorClassIdentifier: 
-  Description: Success
+  Description: 
   Blackboard:
     target: {fileID: 0}
-  editorPosition: {x: 388, y: 599}
-  guid: 917f81783acc7e243b57d7ebb8db5697
-  child: {fileID: 606661277583154265}
-  _state: 1
+  editorPosition: {x: 523, y: 748}
+  guid: 6c99cf32c7659e948a5a5faecbb24184
+  _lookSpeed: 120
+  _lookThreshold: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5336819df5dea5247ab1a1309005db68, type: 3}
-  m_Name: Grunt_Melee
+  m_Name: Grunt_Ranged
   m_EditorClassIdentifier: 
   RootNode: {fileID: 7478110320851554433}
   TreeState: 0
@@ -125,9 +125,10 @@ MonoBehaviour:
   - {fileID: 8677085907471215373}
   - {fileID: 1616860068698188738}
   - {fileID: 1360697394473324296}
-  - {fileID: 606661277583154265}
   - {fileID: -4768998138264230209}
-  - {fileID: -43239153728346338}
+  - {fileID: 5596306964377767934}
+  - {fileID: 6031064504996099077}
+  - {fileID: -433387362743931084}
 --- !u!114 &522194239274083832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,24 +146,6 @@ MonoBehaviour:
     target: {fileID: 0}
   editorPosition: {x: -225, y: 748.35504}
   guid: f9f5c0a6481ebc542a9650a67293b741
---- !u!114 &606661277583154265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76f2b0f57845f843b71a08fd0744f6f, type: 3}
-  m_Name: FollowTarget
-  m_EditorClassIdentifier: 
-  Description: 
-  Blackboard:
-    target: {fileID: 0}
-  editorPosition: {x: 388.05, y: 747.99994}
-  guid: bec291348ab2e5f4fa04d20742645af4
-  desiredDistance: 2
 --- !u!114 &1360697394473324296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +202,7 @@ MonoBehaviour:
   Children:
   - {fileID: -4822694775605169721}
   - {fileID: 8677085907471215373}
-  - {fileID: -43239153728346338}
+  - {fileID: 6031064504996099077}
   _completeActionBeforeReevaluating: 1
 --- !u!114 &5254817312670691938
 MonoBehaviour:
@@ -238,6 +221,48 @@ MonoBehaviour:
     target: {fileID: 0}
   editorPosition: {x: -75, y: 304}
   guid: ccc94ba7db8373f4aa9ec87da77b138f
+--- !u!114 &5596306964377767934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63ed193fe1f4044a8470537e03be82e, type: 3}
+  m_Name: KeepDistanceFromTarget
+  m_EditorClassIdentifier: 
+  Description: 
+  Blackboard:
+    target: {fileID: 0}
+  editorPosition: {x: 326, y: 748}
+  guid: 5197ad8f2b26f1d46930afd426a66abe
+  _range: {x: 4, y: 6}
+  moveAwayRotation: 30
+  moveAwayDistance: 5
+--- !u!114 &6031064504996099077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25207f1e3e85f54ba21d468aa0ff0bb, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  Description: 
+  Blackboard:
+    target: {fileID: 0}
+  editorPosition: {x: 447.68, y: 599}
+  guid: d90daac51159b274b9ec901dc7f42448
+  Children:
+  - {fileID: 5596306964377767934}
+  - {fileID: -433387362743931084}
+  _completeActionBeforeIncrement: 1
+  _current: 0
 --- !u!114 &7478110320851554433
 MonoBehaviour:
   m_ObjectHideFlags: 0

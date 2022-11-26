@@ -15,6 +15,16 @@ namespace Game.Agent
         [SerializeField]
         float _sightRange;
 
+        static LayerMask s_nonBreakables
+        {
+            get
+            {
+                _nonBreakables ??= ~LayerMask.NameToLayer("Breakable");
+                return _nonBreakables.Value;
+            }
+        }
+        static LayerMask? _nonBreakables;
+
         /// <summary>
         /// Wrapper of <see cref="InRange(Game.TransformData, Game.TransformData, float)"/>.
         /// </summary>
@@ -31,7 +41,7 @@ namespace Game.Agent
         {
             // check if there are objects in front
             Ray ray = new(_eyes.position, _eyes.forward);
-            if (!Physics.Raycast(ray, out var hitinfo, _sightRange))
+            if (!Physics.Raycast(ray, out var hitinfo, _sightRange, s_nonBreakables))
             {
                 return false;
             }

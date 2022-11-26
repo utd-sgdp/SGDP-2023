@@ -55,6 +55,7 @@ namespace Game.Agent.Action
             switch (result)
             {
                 case MoveDirection.TowardsTarget:
+                    _agent.isStopped = false;
                     _agent.destination = Blackboard.target.position;
                     return State.Running;
                 
@@ -63,6 +64,7 @@ namespace Game.Agent.Action
                     return State.Success;
                 
                 case MoveDirection.AwayFromTarget:
+                    _agent.isStopped = false;
                     Vector3 position = transform.position;
                     Vector3 direction = (position - Blackboard.target.position).normalized;
                     
