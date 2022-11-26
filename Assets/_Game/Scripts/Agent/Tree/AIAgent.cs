@@ -132,6 +132,8 @@ namespace Game.Agent.Tree
         private void StopWandering()
         {
             _shouldWander = false;
+            _agent.ResetPath(); //Cancel any current path
+
             RoomTrigger.OnRoomEnter.RemoveListener(StopWandering);
         }
         
