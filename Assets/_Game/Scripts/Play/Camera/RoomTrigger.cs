@@ -13,12 +13,12 @@ namespace Game.Play.Camera
         public UnityEvent OnRoomExit; 
         
         static int s_playerLayer;
-        Collider _collider;
+        public Collider Collider { get; private set; }
         
         void Awake()
         {
             s_playerLayer = LayerMask.NameToLayer("Player");
-            _collider = GetComponent<Collider>();
+            Collider = GetComponent<Collider>();
         }
 
         void OnTriggerEnter(Collider other)
@@ -27,7 +27,7 @@ namespace Game.Play.Camera
             if (!IsTarget(other.gameObject)) return;
             
             // player entered room
-            LevelCameraController.Instance.SetConfiner(_collider);
+            LevelCameraController.Instance.SetConfiner(Collider);
             OnRoomEnter?.Invoke();
         }
 
