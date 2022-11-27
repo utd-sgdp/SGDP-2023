@@ -11,10 +11,11 @@ namespace Game.SoundSystem
 	    [SerializeField] private Slider _musicSlider;
 	    [SerializeField] private Slider _ambientSlider;
 	    [SerializeField] private Slider _sfxSlider;
-	    [SerializeField] private string _masterVolume = "MasterVolume";
-        [SerializeField] private string _musicVolume = "MusicVolume";
-	    [SerializeField] private string _ambientVolume = "AmbientVolume";
-	    [SerializeField] private string _sfxVolume = "SfxVolume";
+	    
+	    private const string _masterVolume = "MasterVolume";
+	    private const string _musicVolume = "MusicVolume";
+	    private const string _ambientVolume = "AmbientVolume";
+	    private const string _sfxVolume = "SfxVolume";
         
 	    private void Awake()
 	    {
@@ -26,11 +27,16 @@ namespace Game.SoundSystem
 	    	SetMusicVolume(_musicSlider.value);
 	    	SetAmbientVolume(_ambientSlider.value);
 	    	SetSfxVolume(_sfxSlider.value);
+	    	
+	    	_masterSlider.onValueChanged.AddListener(SetMasterVolume);
+	    	_musicSlider.onValueChanged.AddListener(SetMusicVolume);
+	    	_ambientSlider.onValueChanged.AddListener(SetAmbientVolume);
+	    	_sfxSlider.onValueChanged.AddListener(SetSfxVolume);
 	    }
 
 	    public void SetMasterVolume(float volume)
 	    {
-		    _mixer.SetFloat(_musicVolume, ConvertVolume(volume));
+		    _mixer.SetFloat(_masterVolume, ConvertVolume(volume));
 		    PlayerPrefs.SetFloat(_masterVolume, volume);
 	    }
 
