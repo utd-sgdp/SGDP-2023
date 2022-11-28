@@ -59,6 +59,11 @@ namespace Game
 			_controllerDeadzone.onValueChanged.AddListener(SetControllerDeadzone);
 		}
 		
+		private static float TryGetDefault(Slider s, string key) => PlayerPrefs.HasKey(key) ? PlayerPrefs.GetFloat(key) : s.value;
+		private static int TryGetDefault(TMP_Dropdown d, string key) => PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) : d.value;
+		private static int TryGetDefault(TMP_InputField i, string key) => PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) : int.TryParse(i.text, out int v) ? v : 0;
+		private static bool TryGetDefault(Toggle t, string key) => PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) > 0 : t.isOn;
+		
 		private void SetFov(float value)
 		{
 			_fovSlider.value = value;
@@ -138,31 +143,6 @@ namespace Game
 			_controllerDeadzone.value = value;
 			PlayerPrefs.SetFloat(ControllerDeadzone, value);
 			// TODO: Set ControllerDeadzone
-		}
-		
-		private float TryGetDefault(Slider s, string key)
-		{
-			if (PlayerPrefs.HasKey(key)) return PlayerPrefs.GetFloat(key);
-			return s.value;
-		}
-		
-		private int TryGetDefault(TMP_Dropdown d, string key)
-		{
-			if (PlayerPrefs.HasKey(key)) return PlayerPrefs.GetInt(key);
-			return d.value;
-		}
-		
-		private int TryGetDefault(TMP_InputField i, string key)
-		{
-			if (PlayerPrefs.HasKey(key)) return PlayerPrefs.GetInt(key);
-			if (int.TryParse(i.text, out int v)) return v;
-			return 0;
-		}
-		
-		private bool TryGetDefault(Toggle t, string key)
-		{
-			if (PlayerPrefs.HasKey(key)) return PlayerPrefs.GetInt(key) > 0;
-			return t.isOn;
 		}
     }
 }
