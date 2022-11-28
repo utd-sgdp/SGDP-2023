@@ -5177,7 +5177,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4488646716900694946}
   - component: {fileID: 8622954255938793111}
-  - component: {fileID: 3269139809615734922}
   m_Layer: 5
   m_Name: TogglesAndDropdowns
   m_TagString: Untagged
@@ -5234,29 +5233,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3269139809615734922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775055641383929377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5a8d2225eb1f9b419e4fb7bbbe85871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fovSlider: {fileID: 491170458771229986}
-  _brightnessSlider: {fileID: 4664655259137476787}
-  _screenShake: {fileID: 3269892253189002158}
-  _fullscreen: {fileID: 7302205488235994088}
-  _resolution: {fileID: 7273574601507963900}
-  _vSync: {fileID: 9053778189360748402}
-  _frameLimit: {fileID: 8606562588444195975}
-  _mouseSensitivity: {fileID: 6952656647024583688}
-  _controllerVibration: {fileID: 2308747152300756162}
-  _controllerSensitivity: {fileID: 8961026058531539062}
-  _controllerDeadzone: {fileID: 1413665277082777435}
 --- !u!1 &5897819515112008597
 GameObject:
   m_ObjectHideFlags: 0
@@ -8165,6 +8141,7 @@ GameObject:
   - component: {fileID: 8983484053741563281}
   - component: {fileID: 8983484053741563280}
   - component: {fileID: 7823035632251768002}
+  - component: {fileID: 4430936605929274266}
   m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
@@ -8224,6 +8201,29 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &4430936605929274266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983484053741563282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a8d2225eb1f9b419e4fb7bbbe85871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fovSlider: {fileID: 491170458771229986}
+  _brightnessSlider: {fileID: 4664655259137476787}
+  _screenShake: {fileID: 3269892253189002158}
+  _fullscreen: {fileID: 7302205488235994088}
+  _resolution: {fileID: 7273574601507963900}
+  _vSync: {fileID: 9053778189360748402}
+  _frameLimit: {fileID: 8606562588444195975}
+  _mouseSensitivity: {fileID: 6952656647024583688}
+  _controllerVibration: {fileID: 2308747152300756162}
+  _controllerSensitivity: {fileID: 8961026058531539062}
+  _controllerDeadzone: {fileID: 1413665277082777435}
 --- !u!1 &8986208293811740275
 GameObject:
   m_ObjectHideFlags: 0
