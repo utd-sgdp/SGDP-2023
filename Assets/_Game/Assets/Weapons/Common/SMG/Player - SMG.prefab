@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplier: 1
-  damage: 8
+  damage: 9
   attackDuration: 0.08
   cooldownDuration: 0
   fireMode: 1

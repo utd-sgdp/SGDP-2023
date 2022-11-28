@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7745b22f291244c8203f3ce3ec2d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
-  _maxHealth: 100
+  _health: 30
+  _maxHealth: 30
   OnChange:
     m_PersistentCalls:
       m_Calls: []
@@ -370,11 +370,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3416938830172562689, guid: 645ab25b4b6c45e479c9c46ee70b806c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
     - target: {fileID: 919132149155446097, guid: 645ab25b4b6c45e479c9c46ee70b806c,
         type: 3}
       propertyPath: m_Name
       value: Melee_Grunt
       objectReference: {fileID: 0}
+    - target: {fileID: 2291422275267107058, guid: 645ab25b4b6c45e479c9c46ee70b806c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 645ab25b4b6c45e479c9c46ee70b806c, type: 3}
 --- !u!4 &7406903264411062522 stripped

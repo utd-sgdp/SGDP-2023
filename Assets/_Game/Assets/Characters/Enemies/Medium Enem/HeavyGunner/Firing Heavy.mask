@@ -6,13 +6,23 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Firing Shotgun
+  m_Name: Firing Heavy
   m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: Armature
     m_Weight: 0
+  - m_Path: Armature/Bone
+    m_Weight: 1
+  - m_Path: Armature/Bone/Bone.001
+    m_Weight: 1
+  - m_Path: Armature/Bone/Bone.001/Bone.001_end
+    m_Weight: 1
+  - m_Path: Armature/Bone/Bone.002
+    m_Weight: 1
+  - m_Path: Armature/Bone/Bone.002/Bone.002_end
+    m_Weight: 1
   - m_Path: Armature/Elbow_IK_L
     m_Weight: 1
   - m_Path: Armature/Elbow_IK_L/Elbow_IK_L_end
@@ -20,6 +30,16 @@ AvatarMask:
   - m_Path: Armature/Elbow_IK_R
     m_Weight: 1
   - m_Path: Armature/Elbow_IK_R/Elbow_IK_R_end
+    m_Weight: 1
+  - m_Path: Armature/Gun
+    m_Weight: 1
+  - m_Path: Armature/Gun/Gun.001
+    m_Weight: 1
+  - m_Path: Armature/Gun/Gun.001/Gun.001_end
+    m_Weight: 1
+  - m_Path: Armature/Gun/Gun.002
+    m_Weight: 1
+  - m_Path: Armature/Gun/Gun.002/Gun.002_end
     m_Weight: 1
   - m_Path: Armature/Hand_IK_L
     m_Weight: 1
@@ -125,14 +145,6 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
     m_Weight: 1
-  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
-    m_Weight: 1
-  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y
-    m_Weight: 1
-  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y/mixamorig:HeadTop_End
-    m_Weight: 1
-  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
-    m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L
@@ -149,23 +161,15 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R/mixamorig:RightForeArm_R_end
     m_Weight: 1
-  - m_Path: Armature/Pistol
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/y
     m_Weight: 1
-  - m_Path: Armature/Pistol/Clip
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/y/mixamorig:Head
     m_Weight: 1
-  - m_Path: Armature/Pistol/Clip/Cylinder
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/y/mixamorig:Head/mixamorig:HeadTop_End
     m_Weight: 1
-  - m_Path: Armature/Pistol/Clip/Cylinder/Cylinder_end
-    m_Weight: 1
-  - m_Path: Armature/Pistol/Slide
-    m_Weight: 1
-  - m_Path: Armature/Pistol/Slide/Slide_end
-    m_Weight: 1
-  - m_Path: Armature/Pistol/Trigger
-    m_Weight: 1
-  - m_Path: Armature/Pistol/Trigger/Trigger_end
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/y/mixamorig:Head/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
     m_Weight: 1
   - m_Path: Basic Pistol
     m_Weight: 1
-  - m_Path: Template
+  - m_Path: heavyGunner_singleGun.004
     m_Weight: 1

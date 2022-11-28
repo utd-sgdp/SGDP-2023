@@ -238,9 +238,9 @@ MonoBehaviour:
     target: {fileID: 0}
   editorPosition: {x: 326, y: 748}
   guid: 5197ad8f2b26f1d46930afd426a66abe
-  _range: {x: 4, y: 6}
-  moveAwayRotation: 30
-  moveAwayDistance: 5
+  _range: {x: 8, y: 10}
+  moveAwayRotation: 360
+  moveAwayDistance: 7
 --- !u!114 &6031064504996099077
 MonoBehaviour:
   m_ObjectHideFlags: 0
