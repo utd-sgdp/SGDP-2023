@@ -480,7 +480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534b4146ad8fc0e4584abebbc1cb6e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useSpeed: 0
   _speed: 80
+  _force: 50000
   _maxDistance: 50
   _hurtOnCollision: 1
   _rb: {fileID: 0}

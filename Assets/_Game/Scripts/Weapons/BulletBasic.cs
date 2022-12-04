@@ -12,9 +12,17 @@ namespace Game.Weapons
     public class BulletBasic : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("Use MovePosition or AddForce.")]
+        bool _useSpeed;
+
+        [SerializeField]
         [Tooltip("Meters per second the bullet travels.")]
         float _speed;
-        
+
+        [SerializeField]
+        [Tooltip("Force applied on the bullet.")]
+        float _force;
+
         [SerializeField]
         [Tooltip("Distance from initial position this bullet may move, before being destroyed.")]
         float _maxDistance;
@@ -29,6 +37,7 @@ namespace Game.Weapons
         float _damage;
         Pool _pool;
         Vector3 _initialPosition;
+        Vector3 _initialDirection;
 
         #region MonoBehaviour
         #if UNITY_EDITOR
@@ -48,16 +57,40 @@ namespace Game.Weapons
             }
 
             // move bullet
-            Move();
-        }
+            //Move();
+            //RayCollision();
 
+            if (_useSpeed)
+                Move();
+            else
+                ForceMove();
+        }
+        void ForceMove()
+        {
+            _rb.AddForce(_initialDirection * _force * Time.deltaTime);
+        }
+        void RayCollision()
+        {
+            RaycastHit[] hits;
+            hits = (Physics.RaycastAll(transform.position, transform.TransformDirection(transform.forward), 1f));
+
+            if(hits.Length > 0)
+            {
+                foreach(var h in hits)
+                {
+                    Debug.Log("RayCollision(): " + h.transform.name);
+                    Hit(h.collider);
+                }
+            }
+        }
         void OnCollisionEnter(Collision collision)
         {
+            //Debug.LogWarning("OnCollisionEnter()");
             if (_sourceColliders.Contains(collision.collider)) return;
             Hit(collision.collider);
         }
         #endregion
-        
+
         public void Configure(TransformData origin, Collider[] sourceColliders, float damage, float spread = 0, Pool pool = null)
         {
             _sourceColliders = sourceColliders;
@@ -72,6 +105,10 @@ namespace Game.Weapons
             _initialPosition = position;
             transform.SetPositionAndRotation(position, rotation);
             
+            // reset velocity and direction
+            _initialDirection = transform.forward;
+            _rb.velocity = Vector3.zero;
+
             // prevent artifacts in the trail renderer caused by object pooling
             foreach (var trail in GetComponentsInChildren<TrailRenderer>())
             {
