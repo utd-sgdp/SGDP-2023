@@ -58,7 +58,6 @@ namespace Game.Weapons
 
             // move bullet
             //Move();
-            //RayCollision();
 
             if (_useSpeed)
                 Move();
@@ -68,20 +67,6 @@ namespace Game.Weapons
         void ForceMove()
         {
             _rb.AddForce(_initialDirection * _force * Time.deltaTime);
-        }
-        void RayCollision()
-        {
-            RaycastHit[] hits;
-            hits = (Physics.RaycastAll(transform.position, transform.TransformDirection(transform.forward), 1f));
-
-            if(hits.Length > 0)
-            {
-                foreach(var h in hits)
-                {
-                    Debug.Log("RayCollision(): " + h.transform.name);
-                    Hit(h.collider);
-                }
-            }
         }
         void OnCollisionEnter(Collision collision)
         {
