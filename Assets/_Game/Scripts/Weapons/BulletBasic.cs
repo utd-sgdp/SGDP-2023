@@ -29,7 +29,6 @@ namespace Game.Weapons
         float _damage;
         Pool _pool;
         Vector3 _initialPosition;
-        Vector3 _initialDirection;
 
         #region MonoBehaviour
         #if UNITY_EDITOR
@@ -49,8 +48,8 @@ namespace Game.Weapons
             }
 
             // move bullet
-            //Move();
             // now handled in Configure();
+            //Move();
         }
         void OnCollisionEnter(Collision collision)
         {
@@ -73,10 +72,9 @@ namespace Game.Weapons
             
             _initialPosition = position;
             transform.SetPositionAndRotation(position, rotation);
-            
-            // reset direction and velocity
-            _initialDirection = transform.forward;
-            _rb.velocity = _initialDirection * _speed;
+
+            // reset direction and velocity (this removes the need for the Move() method)
+            _rb.velocity = transform.forward * _speed;
 
             // prevent artifacts in the trail renderer caused by object pooling
             foreach (var trail in GetComponentsInChildren<TrailRenderer>())
