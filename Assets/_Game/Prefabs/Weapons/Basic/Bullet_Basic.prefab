@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useSpeed: 0
   _speed: 80
-  _force: 5000
+  _force: 80
   _maxDistance: 50
   _hurtOnCollision: 1
   _rb: {fileID: 0}

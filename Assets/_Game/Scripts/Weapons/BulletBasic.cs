@@ -12,16 +12,8 @@ namespace Game.Weapons
     public class BulletBasic : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("Use MovePosition or AddForce.")]
-        bool _useSpeed;
-
-        [SerializeField]
         [Tooltip("Meters per second the bullet travels.")]
         float _speed;
-
-        [SerializeField]
-        [Tooltip("Force applied on the bullet.")]
-        float _force;
 
         [SerializeField]
         [Tooltip("Distance from initial position this bullet may move, before being destroyed.")]
@@ -58,15 +50,7 @@ namespace Game.Weapons
 
             // move bullet
             //Move();
-
-            if (_useSpeed)
-                Move();
-            else
-                ForceMove();
-        }
-        void ForceMove()
-        {
-            _rb.AddForce(_initialDirection * _force * Time.deltaTime);
+            // now handled in Configure();
         }
         void OnCollisionEnter(Collision collision)
         {
@@ -90,9 +74,9 @@ namespace Game.Weapons
             _initialPosition = position;
             transform.SetPositionAndRotation(position, rotation);
             
-            // reset velocity and direction
+            // reset direction and velocity
             _initialDirection = transform.forward;
-            _rb.velocity = Vector3.zero;
+            _rb.velocity = _initialDirection * _speed;
 
             // prevent artifacts in the trail renderer caused by object pooling
             foreach (var trail in GetComponentsInChildren<TrailRenderer>())
