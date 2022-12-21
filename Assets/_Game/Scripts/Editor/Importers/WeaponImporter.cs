@@ -7,57 +7,49 @@ using UnityEngine;
 
 namespace GameEditor.Importers
 {
-    [ScriptedImporter(0, "tsv")]
-    public class WeaponImporter : ScriptedImporter
+    public static class WeaponImporter
     {
-        public override void OnImportAsset(AssetImportContext ctx)
+        public static void OnImportAsset(AssetImportContext ctx, string assetPath)
         {
-            // ignore tsv files that aren't weapons
-            if (!HasBasePath(assetPath)) return;
+            using StreamReader file = File.OpenText(assetPath);
+            
+            // skip headers at the top of the sheet
+            file.ReadLine();
+                
+            List<SOWeapon> weapons = new();
 
-            using (StreamReader file = File.OpenText(assetPath))
+            // parse line-by-line
+            string line = file.ReadLine();
+            while (line != null)
             {
-                // skip headers at the top of the sheet
-                file.ReadLine();
-                
-                List<SOWeapon> weapons = new();
-
-                // parse line-by-line
-                string line = file.ReadLine();
-                while (line != null)
+                string[] fields = line.Split("\t");
+                    
+                // ignore weapons without names
+                if (fields[0] == string.Empty)
                 {
-                    string[] fields = line.Split("\t");
-                    
-                    // ignore weapons without names
-                    if (fields[0] == string.Empty)
-                    {
-                        line = file.ReadLine();
-                        continue;
-                    }
-                    
-                    // parse line int weapon
-                    WeaponData data = ParseLineForWeaponData(fields);
-                    SOWeapon weapon = SOWeapon.Instantiate(data);
-                    
-                    // save weapon as sub-asset
-                    weapons.Add(weapon);
-                    ctx.AddObjectToAsset(data.Name, weapon);
-                    
-                    // increment to the next line
                     line = file.ReadLine();
+                    continue;
                 }
-                
-                // organize final assets
-                SOWeaponPool pool = SOWeaponPool.Instantiate(weapons.ToArray());
-                ctx.AddObjectToAsset("Weapon Pool", pool);
-                
-                ctx.SetMainObject(pool);
+                    
+                // parse line int weapon
+                WeaponData data = ParseLineForWeaponData(fields);
+                SOWeapon weapon = SOWeapon.Instantiate(data);
+                    
+                // save weapon as sub-asset
+                weapons.Add(weapon);
+                ctx.AddObjectToAsset(data.Name, weapon);
+                    
+                // increment to the next line
+                line = file.ReadLine();
             }
+                
+            // organize final assets
+            SOWeaponPool pool = SOWeaponPool.Instantiate(weapons.ToArray());
+            ctx.AddObjectToAsset("Weapon Pool", pool);
+                
+            ctx.SetMainObject(pool);
         }
         
-        const string BASE_PATH = "Assets/_Game/Design/Weapons";
-        static bool HasBasePath(string assetPath) => assetPath.StartsWith(BASE_PATH);
-
         static WeaponData ParseLineForWeaponData(in string[] fields)
         {
             WeaponData data = new()
@@ -78,6 +70,7 @@ namespace GameEditor.Importers
             int.TryParse(Index(fields, 10), out data.MagazineSize);
             Enum.TryParse(Index(fields, 11), out data.ReloadMode);
             int.TryParse(Index(fields, 12), out data.ReloadIncrement);
+            if (!int.TryParse(Index(fields, 13), out data.PelletCount)) data.PelletCount = 1;
 
             return data;
         }

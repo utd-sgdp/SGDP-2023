@@ -2,6 +2,11 @@
 
 namespace Game.Weapons
 {
+    public enum WeaponType
+    {
+        Ranged = 0, Melee = 1,
+    }
+    
     public abstract class SOWeapon : ScriptableObject
     {
         public string Name => _data.Name;
@@ -14,28 +19,18 @@ namespace Game.Weapons
 
         public static SOWeapon Instantiate(WeaponData data)
         {
-            return data.WeaponType switch
+            SOWeapon instance = data.WeaponType switch
             {
-                WeaponType.Melee => SOWeaponMelee.Instantiate(data),
-                WeaponType.Ranged => SOWeaponRanged.Instantiate(data),
+                WeaponType.Melee => CreateInstance<SOWeaponMelee>(),
+                WeaponType.Ranged => CreateInstance<SOWeaponRanged>(),
                 _ => throw new System.ArgumentException($"Unknown weapon type: {data.WeaponType}", nameof(data)),
             };
-        }
 
-        protected static void LoadDefaultData(SOWeapon instance, WeaponData data)
-        {
+            instance._data = data;
             instance.name = data.Name;
-            instance._data.Name = data.Name;
-            instance._data.WeaponType = data.WeaponType;
-            instance._data.Damage = data.Damage;
-            instance._data.Cooldown = data.Cooldown;
-            instance._data.FireMode = data.FireMode;
+            
+            return instance;
         }
-    }
-
-    public enum WeaponType
-    {
-        Ranged = 0, Melee = 1,
     }
 
     [System.Serializable]
@@ -55,6 +50,7 @@ namespace Game.Weapons
         public bool UseReload;
         [Min(0)] public int MagazineSize;
         public ReloadMode ReloadMode;
-        [Min(0)] public int ReloadIncrement;
+        [Min(1)] public int ReloadIncrement;
+        [Min(1)] public int PelletCount;
     }
 }
