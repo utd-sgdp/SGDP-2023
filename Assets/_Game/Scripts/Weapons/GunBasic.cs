@@ -9,17 +9,17 @@ using UnityEngine.Events;
 
 namespace Game.Weapons
 {
+    public enum ReloadMode 
+    {
+        Magazine,
+        Increment,
+    }
+    
     public class GunBasic : WeaponBase
     {
         public int MagazineSize => _magazineSize;
         public int BulletsLeft => _bulletsLeft;
 
-       protected enum reloadMode 
-        {
-            magazineReload,
-            incrementReload,
-        }
-        
         [Header("Stats")]
         [SerializeField]
         protected Optional<float> _spread = new();
@@ -38,7 +38,7 @@ namespace Game.Weapons
         
 
         [SerializeField, ShowIf(nameof(_reloadEnabled))]
-        protected reloadMode _reloadMode;
+        protected ReloadMode _reloadMode;
         
         [SerializeField, ReadOnly]
         protected int _bulletsLeft;
@@ -90,7 +90,7 @@ namespace Game.Weapons
             // reload cancel
             if (_reloading)
             {
-                if (_reloadMode == reloadMode.incrementReload)
+                if (_reloadMode == ReloadMode.Increment)
                 {
                     _reloading = false;
                     return true;
@@ -143,11 +143,11 @@ namespace Game.Weapons
             switch (_reloadMode)
             {
                 default:
-                case reloadMode.magazineReload:
+                case ReloadMode.Magazine:
                     StartCoroutine(magazineReload());
                     break;
                 
-                case reloadMode.incrementReload:
+                case ReloadMode.Increment:
                     StartCoroutine(incrementReload());
                     break;
             }
