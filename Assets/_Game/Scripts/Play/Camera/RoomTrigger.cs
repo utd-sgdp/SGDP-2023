@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,11 @@ namespace Game.Play.Camera
             // exit, collision was not player
             if (!IsTarget(other.gameObject)) return;
             
-            // player entered room
-            LevelCameraController.Instance.SetConfiner(_collider);
+            try
+            {
+                LevelCameraController.Instance.SetConfiner(_collider);
+            }
+            catch (NullReferenceException) { }
             OnRoomEnter?.Invoke();
         }
 
