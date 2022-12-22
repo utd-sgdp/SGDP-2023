@@ -14,7 +14,7 @@ namespace Game.Weapons
         [SerializeField]
         [Tooltip("Meters per second the bullet travels.")]
         float _speed;
-        
+
         [SerializeField]
         [Tooltip("Distance from initial position this bullet may move, before being destroyed.")]
         float _maxDistance;
@@ -48,16 +48,17 @@ namespace Game.Weapons
             }
 
             // move bullet
-            Move();
+            // now handled in Configure();
+            //Move();
         }
-
         void OnCollisionEnter(Collision collision)
         {
+            //Debug.LogWarning("OnCollisionEnter()");
             if (_sourceColliders.Contains(collision.collider)) return;
             Hit(collision.collider);
         }
         #endregion
-        
+
         public void Configure(TransformData origin, Collider[] sourceColliders, float damage, float spread = 0, Pool pool = null)
         {
             _sourceColliders = sourceColliders;
@@ -71,7 +72,10 @@ namespace Game.Weapons
             
             _initialPosition = position;
             transform.SetPositionAndRotation(position, rotation);
-            
+
+            // reset direction and velocity (this removes the need for the Move() method)
+            _rb.velocity = transform.forward * _speed;
+
             // prevent artifacts in the trail renderer caused by object pooling
             foreach (var trail in GetComponentsInChildren<TrailRenderer>())
             {

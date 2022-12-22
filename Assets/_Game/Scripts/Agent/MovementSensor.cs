@@ -33,7 +33,11 @@ namespace Game.Agent
         
         void Update()
         {
-            if (_agent.isStopped) return;
+            if (_agent.isStopped)
+            {
+                OnMove?.Invoke(Vector2.zero);
+                return;
+            }
 
             // calculate movement relative to the direction we are facing
             Vector3 velocity = _agent.velocity;

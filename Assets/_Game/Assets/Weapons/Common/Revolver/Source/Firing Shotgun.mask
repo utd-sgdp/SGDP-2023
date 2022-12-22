@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Firing Shotgun
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Elbow_IK_L
+    m_Weight: 1
+  - m_Path: Armature/Elbow_IK_L/Elbow_IK_L_end
+    m_Weight: 1
+  - m_Path: Armature/Elbow_IK_R
+    m_Weight: 1
+  - m_Path: Armature/Elbow_IK_R/Elbow_IK_R_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L/mixamorig:RightHandIndex3_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandIndex1_L/mixamorig:RightHandIndex2_L/mixamorig:RightHandIndex3_L/mixamorig:RightHandIndex3_L_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L/mixamorig:RightHandMiddle3_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandMiddle1_L/mixamorig:RightHandMiddle2_L/mixamorig:RightHandMiddle3_L/mixamorig:RightHandMiddle3_L_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_L/mixamorig:_L/mixamorig:RightHandThumb1_L/mixamorig:RightHandThumb2_L/mixamorig:RightHandThumb3_L/mixamorig:RightHandThumb3_L_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandIndex1_R/mixamorig:RightHandIndex2_R/mixamorig:RightHandIndex3_R/mixamorig:RightHandIndex3_R_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandMiddle1_R/mixamorig:RightHandMiddle2_R/mixamorig:RightHandMiddle3_R/mixamorig:RightHandMiddle3_R_end
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R
+    m_Weight: 1
+  - m_Path: Armature/Hand_IK_R/mixamorig:_R/mixamorig:RightHandThumb1_R/mixamorig:RightHandThumb2_R/mixamorig:RightHandThumb3_R/mixamorig:RightHandThumb3_R_end
+    m_Weight: 1
+  - m_Path: Armature/Heel-IK_L
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_L/mixamorig:RightFoot_L
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L/mixamorig:RightToe_End_L
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_L/mixamorig:RightFoot_L/mixamorig:RightToeBase_L/mixamorig:RightToe_End_L/mixamorig:RightToe_End_L_end
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_R
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_R/mixamorig:RightFoot_R
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R/mixamorig:RightToe_End_R
+    m_Weight: 0
+  - m_Path: Armature/Heel-IK_R/mixamorig:RightFoot_R/mixamorig:RightToeBase_R/mixamorig:RightToe_End_R/mixamorig:RightToe_End_R_end
+    m_Weight: 0
+  - m_Path: Armature/Knee-IK_L
+    m_Weight: 0
+  - m_Path: Armature/Knee-IK_L/Knee-IK_L_end
+    m_Weight: 0
+  - m_Path: Armature/Knee-IK_R
+    m_Weight: 0
+  - m_Path: Armature/Knee-IK_R/Knee-IK_R_end
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L/mixamorig:RightLeg_L
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_L/mixamorig:RightLeg_L/mixamorig:RightLeg_L_end
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:RightUpLeg_R/mixamorig:RightLeg_R/mixamorig:RightLeg_R_end
+    m_Weight: 0
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y/mixamorig:HeadTop_End
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/y/mixamorig:HeadTop_End/mixamorig:HeadTop_End_end
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L/mixamorig:RightForeArm_L
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_L/mixamorig:RightArm_L/mixamorig:RightForeArm_L/mixamorig:RightForeArm_L_end
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R
+    m_Weight: 1
+  - m_Path: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder_R/mixamorig:RightArm_R/mixamorig:RightForeArm_R/mixamorig:RightForeArm_R_end
+    m_Weight: 1
+  - m_Path: Armature/Pistol
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Clip
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Clip/Cylinder
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Clip/Cylinder/Cylinder_end
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Slide
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Slide/Slide_end
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Trigger
+    m_Weight: 1
+  - m_Path: Armature/Pistol/Trigger/Trigger_end
+    m_Weight: 1
+  - m_Path: Basic Pistol
+    m_Weight: 1
+  - m_Path: Template
+    m_Weight: 1

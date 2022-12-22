@@ -3,6 +3,7 @@
 // It was also discussed in their YouTube video: https://www.youtube.com/watch?v=uZmWgQ7cLNI
 
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Utility
@@ -21,16 +22,13 @@ namespace Game.Utility
         [SerializeField]
         internal bool _enabled;
         
-        [SerializeField]
-        internal T _value;
-
         public bool Enabled => _enabled;
-        public T Value => _value;
+        public T Value;
 
         public Optional(bool enabled = false, T value = default)
         {
             _enabled = enabled;
-            _value = value;
+            Value = value;
         }
 
         public Optional()

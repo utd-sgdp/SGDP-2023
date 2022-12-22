@@ -15,7 +15,7 @@ namespace GameEditor.Utility
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var valueProperty = property.FindPropertyRelative(nameof(Optional<object>._value));
+            var valueProperty = property.FindPropertyRelative(nameof(Optional<object>.Value));
             var enabledProperty = property.FindPropertyRelative(nameof(Optional<object>._enabled));
 
             EditorGUI.BeginProperty(position, label, property);
