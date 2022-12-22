@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: InitializeAndUpdate
   m_EditorClassIdentifier: 
   Description: 
-  guid: d6e5fd23599c63842ae1bd18b38d7b74
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: 0, y: 0}
+  guid: d6e5fd23599c63842ae1bd18b38d7b74
   Children:
   - {fileID: -3631855447795760810}
   - {fileID: -5588232544082382212}
@@ -34,15 +33,14 @@ MonoBehaviour:
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
   Description: 
-  guid: 68eda0be213920a4ab027ce32e60cc3c
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: 75, y: 153.00003}
+  guid: 68eda0be213920a4ab027ce32e60cc3c
   child: {fileID: -2077761195207822090}
   LoopAmount:
     _enabled: 0
-    _value: 0
+    Value: 0
   _loopsDone: 0
 --- !u!114 &-5317675945141419527
 MonoBehaviour:
@@ -57,15 +55,14 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   Description: 
-  guid: 96cc6808334475a43abfba167a40e218
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: 0, y: -151.00002}
+  guid: 96cc6808334475a43abfba167a40e218
   child: {fileID: -5778115939103243418}
   LoopAmount:
     _enabled: 1
-    _value: 1
+    Value: 0
   _loopsDone: 0
 --- !u!114 &-3631855447795760810
 MonoBehaviour:
@@ -80,11 +77,10 @@ MonoBehaviour:
   m_Name: SetTargetToPlayerNode
   m_EditorClassIdentifier: 
   Description: 
-  guid: 1a139366c9a0d3b43ad545a5f7584441
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: -115.00008, y: 153.00003}
+  guid: 1a139366c9a0d3b43ad545a5f7584441
 --- !u!114 &-2077761195207822090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,11 +94,10 @@ MonoBehaviour:
   m_Name: Sequencer
   m_EditorClassIdentifier: 
   Description: 
-  guid: bd75037541b10904b85e4079b203d478
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: 77, y: 303}
+  guid: bd75037541b10904b85e4079b203d478
   Children:
   - {fileID: 7484631913695542551}
   - {fileID: 8942180950155859139}
@@ -124,7 +119,6 @@ MonoBehaviour:
   TreeState: 0
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   nodes:
   - {fileID: -5317675945141419527}
   - {fileID: -3631855447795760810}
@@ -146,11 +140,10 @@ MonoBehaviour:
   m_Name: FaceTarget
   m_EditorClassIdentifier: 
   Description: 
-  guid: 2be4fa635b169c6418fc67be67185a0b
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
-  editorPosition: {x: 0, y: 450}
+  editorPosition: {x: -0.40001717, y: 449.59998}
+  guid: 2be4fa635b169c6418fc67be67185a0b
   _lookSpeed: 130
   _lookThreshold: 10
 --- !u!114 &8942180950155859139
@@ -166,8 +159,7 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   Description: 
-  guid: 23ef5910c6642b0448ef11a0a067f658
   Blackboard:
     target: {fileID: 0}
-    movementReference: {fileID: 0}
   editorPosition: {x: 152, y: 450}
+  guid: 23ef5910c6642b0448ef11a0a067f658

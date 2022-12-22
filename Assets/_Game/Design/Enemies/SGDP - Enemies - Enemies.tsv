@@ -1,0 +1,8 @@
+Name	Class	Max Health	Move Speed	Turn Speed	Acceleration	Attack Range	Sight Range
+Melee	Grunt	30	3.5	120	8	2.1	2.5
+Ranged	Grunt	30	3.5	120	8	30	10
+Gun Turret	Grunt	30		130	8		
+Bomber	Grunt	100	3.5	120	8		
+Healer	Grunt	100	3.5	120	8		
+Summoner	Grunt	100	3.5	120	8		
+Heavy Gunner	Boss	60	3.5	120	8	60	30
