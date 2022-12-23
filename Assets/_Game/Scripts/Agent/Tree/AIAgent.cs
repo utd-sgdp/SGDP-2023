@@ -5,7 +5,6 @@ namespace Game.Agent.Tree
 {
     public class AIAgent : MonoBehaviour
     {
-        [SerializeField]
         public BehaviourTree Tree;
         
         void Start()
@@ -54,7 +53,7 @@ namespace Game.Agent.Tree
         /// </summary>
         /// <returns> The <see cref="BehaviourTree"/> to be used by this <see cref="AIAgent"/>. </returns>
         protected virtual BehaviourTree CreateTree() => null;
-        
+
         #if UNITY_EDITOR
         [Button(Spacing = 15)]
         public void ValidateDependencies()
