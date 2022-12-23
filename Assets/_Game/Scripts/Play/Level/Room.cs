@@ -13,6 +13,8 @@ namespace Game.Play.Level
 {
     public class Room : MonoBehaviour
     {
+        public RoomTrigger Trigger => _trigger;
+        
         [Header("Meta Data")]
         [SerializeField]
         [Tooltip("Meta data about the type of room.")]
