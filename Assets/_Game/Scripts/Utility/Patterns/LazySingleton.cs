@@ -13,8 +13,7 @@ namespace Game.Utility.Patterns
                     _instance = FindObjectOfType<T>();
                     if (!_instance)
                     {
-                        Debug.LogError($"{typeof(T).Name} has no instance in the scene.");
-                        return null;
+                        throw new System.NullReferenceException($"{typeof(T).Name} has no instance in the scene.");
                     }
                 }
 
