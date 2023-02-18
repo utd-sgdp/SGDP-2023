@@ -141,7 +141,7 @@ MonoBehaviour:
     _value: 0
   SpeedTarget: {fileID: 7007638659168083561}
   _speed:
-    BaseValue: 1
+    BaseValue: 2
     _value: 0
 --- !u!114 &7007638659168083563
 MonoBehaviour:

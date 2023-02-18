@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unbrokenObject: {fileID: 16216130306710529}
   _brokenObject: {fileID: 7637554197950598058}
-  _breakingThreshold: 10
+  _breakingThreshold: 2
   _despawnDelay: 30
   _despawnTime: 1.5
   OnBreak:

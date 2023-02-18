@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6642423781694556060
 Transform:
@@ -109,8 +109,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_office_sofa_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: af021a5e5e3e7684d87803bdad89c52f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af021a5e5e3e7684d87803bdad89c52f, type: 3}
+--- !u!1 &1354667120281775098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: af021a5e5e3e7684d87803bdad89c52f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2165623667479205547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3923788721724434104
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354667120281775098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.167015, y: 1.1701192, z: 1.150378}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1839560181478568256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af021a5e5e3e7684d87803bdad89c52f,

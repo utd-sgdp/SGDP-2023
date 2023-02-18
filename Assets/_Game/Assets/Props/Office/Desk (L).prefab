@@ -127,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 9fefa57200bcd554ea665a775fc637b9, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,7 +231,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2371365510928552124
 Transform:
@@ -276,7 +276,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 9fefa57200bcd554ea665a775fc637b9, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -460,11 +460,14 @@ MonoBehaviour:
   _unbrokenObject: {fileID: 401110887050682244}
   _brokenObject: {fileID: 1224935922469604223}
   _breakingThreshold: 15
-  _physicsDisableDelay: 60
   _despawnDelay: 30
+  _despawnTime: 1.5
   OnBreak:
     m_PersistentCalls:
       m_Calls: []
+  _piecesWithPhysics: []
+  _noPiecesHavePhysics: 0
+  _allPiecesHavePhysics: 0
 --- !u!54 &4590693150433106082
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -627,7 +630,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 9fefa57200bcd554ea665a775fc637b9, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -741,7 +744,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 9fefa57200bcd554ea665a775fc637b9, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -891,7 +894,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6649786847391261013
 Transform:

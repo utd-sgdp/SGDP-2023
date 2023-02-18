@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: c8446640b30b0394b9947239c4ad1c27, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,7 +132,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2478797031746176338
 Transform:
@@ -177,7 +177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: c8446640b30b0394b9947239c4ad1c27, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: c8446640b30b0394b9947239c4ad1c27, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -405,7 +405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: c8446640b30b0394b9947239c4ad1c27, type: 3}
+  - {fileID: 2100000, guid: dde5e220b93154c42979b4d54db06681, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -520,7 +520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2820560356468643338
 Transform:
   m_ObjectHideFlags: 0
@@ -639,7 +639,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7333198462104615705
 Transform:
@@ -922,11 +922,14 @@ MonoBehaviour:
   _unbrokenObject: {fileID: 6126563021550957050}
   _brokenObject: {fileID: 6473848569312089076}
   _breakingThreshold: 5
-  _physicsDisableDelay: 60
   _despawnDelay: 10
+  _despawnTime: 1.5
   OnBreak:
     m_PersistentCalls:
       m_Calls: []
+  _piecesWithPhysics: []
+  _noPiecesHavePhysics: 0
+  _allPiecesHavePhysics: 0
 --- !u!54 &7919042824851811361
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &640385409028177902
 Transform:
@@ -109,8 +109,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_office_cleaningcart
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c1c56dbca16727a42bc8460d610cf1c4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c56dbca16727a42bc8460d610cf1c4, type: 3}
+--- !u!1 &7206448717960934464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c1c56dbca16727a42bc8460d610cf1c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7548907347367446801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &896502264839308736
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206448717960934464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7259268, y: 1.1453787, z: 1.7811257}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &8019119015535390458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c1c56dbca16727a42bc8460d610cf1c4,

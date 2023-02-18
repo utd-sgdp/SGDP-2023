@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplier: 1
-  damage: 10
+  damage: 15
   attackDuration: 0.12
   cooldownDuration: 0
   fireMode: 0
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   _spread:
     _enabled: 0
     _value: 0
-  _hitScan: 0
+  _hitScan: 1
   _reloadEnabled: 1
   _magazineSize: 8
   _reloadTime: 1.7

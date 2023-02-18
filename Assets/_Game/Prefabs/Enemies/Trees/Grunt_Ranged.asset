@@ -96,7 +96,7 @@ MonoBehaviour:
     target: {fileID: 0}
   editorPosition: {x: 523, y: 748}
   guid: 6c99cf32c7659e948a5a5faecbb24184
-  _lookSpeed: 120
+  _lookSpeed: 300
   _lookThreshold: 10
 --- !u!114 &11400000
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
     target: {fileID: 0}
   editorPosition: {x: 0, y: 748}
   guid: 2a001c4945ebcff4bb0f2a43ac2defdd
-  _lookSpeed: 120
+  _lookSpeed: 300
   _lookThreshold: 10
 --- !u!114 &3918983163934840084
 MonoBehaviour:

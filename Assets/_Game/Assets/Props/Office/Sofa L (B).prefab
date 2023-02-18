@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6233524587113669568}
   - component: {fileID: 7002593846913526885}
   - component: {fileID: 5101102049199462575}
+  - component: {fileID: 5347285360516372481}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6233524587113669568
 Transform:
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5347285360516372481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758281506971629946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7579408, y: 1.1757768, z: 1.1559402}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7882266197610069678
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7151591755561672355
 Transform:
